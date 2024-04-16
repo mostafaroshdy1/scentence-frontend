@@ -1,0 +1,28 @@
+body{
+    background-color: rgba(250,250,250,1);
+}
+.btn-black{
+    background-color: #000;
+    color: #fff;
+
+}
+.btn-black:hover{
+    background-color: #4b4b4b;
+    color: #ffffff;
+}
+.form-check-input:checked {
+    background-color: #000;
+    border-color: #000;
+}
+.scrollable-div {
+    max-height: 300px; 
+    overflow-y: auto;
+}
+.alert {
+    font-size: 0.8rem; 
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 0.2rem; 
+  }
+  .form-control.is-invalid {
+    border-color: red; 
+  }
