@@ -14,9 +14,6 @@ section{
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-  font-family: "Rubik", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
   height: 100%;
 }
 
