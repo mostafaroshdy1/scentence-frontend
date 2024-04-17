@@ -1,0 +1,13 @@
+.product-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.price{
+    font-size: 20px;
+    font-weight: bold;
+    color: #f00;
+}

@@ -1,0 +1,27 @@
+
+<app-banner> </app-banner>
+@if(productDetails){
+<div class="container">
+  <div class="row product-details-container justify-content-center">
+    <div class="col-12">
+      <img src="{{productDetails.image}}" alt="{{productDetails.title}}" class="img-fluid mx-auto d-block">
+    </div>
+    <div class="col-md-12 product-details">
+      <h2 class="fs-2">{{productDetails.title}}</h2>
+      <p class="lead mt-2">{{productDetails.description}}</p>
+      <p class="price">${{productDetails.price}}</p>
+      <!-- <button class="btn btn-primary" (click)="addToCart()">Add to Cart</button> -->
+      
+      <div class="rating">
+
+
+      </div>
+    </div>
+  </div>
+</div>
+}@else{
+  <div class="d-flex justify-content-center mt-5">
+    <div class="spinner-border" role="status">
+    </div>
+  </div>
+}
