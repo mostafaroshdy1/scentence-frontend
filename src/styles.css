@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+/* Fonts  */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.hover {
+		@apply hover:text-rose-500 transition duration-500;
+	}
+
+	.hidden-item {
+		@apply -translate-y-[1000px] pointer-events-none opacity-0;
+	}
+
+	.show-item {
+		@apply translate-y-0 pointer-events-auto opacity-100;
+	}
+}

@@ -1,0 +1,9 @@
+<ul class="flex gap-10">
+	@for (link of links; track link.link) {
+		<li class="capitalize hover">
+			<a routerLink="{{ link.link }}">
+				{{ link.name }}
+			</a>
+		</li>
+	}
+</ul>
