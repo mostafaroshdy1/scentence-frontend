@@ -1,0 +1,34 @@
+section {
+  background-color: #eceff1;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  height: 100%;
+}
+
+.product-title {
+  font-weight: bold;
+}
+
+.separator {
+  margin: 0 5px;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+}
