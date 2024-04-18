@@ -4,11 +4,18 @@ import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OneProductComponent } from '../one-product/one-product.component';
 import { CommonModule, NgForOf } from '@angular/common';
+import { BannerComponent } from '../banner/banner.component';
 
 @Component({
   selector: 'app-all-products',
   standalone: true,
-  imports: [RouterModule, HttpClientModule, OneProductComponent, CommonModule],
+  imports: [
+    RouterModule,
+    HttpClientModule,
+    OneProductComponent,
+    CommonModule,
+    BannerComponent,
+  ],
   providers: [ProductsService],
   templateUrl: './all-products.component.html',
   styleUrl: './all-products.component.css',
