@@ -2,16 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiProductsService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
+  url = 'http://localhost:3000/products';
 
-  url='http://localhost:3000/products';
-
-  getProductById(id:string){
+  getProductById(id: string) {
     return this.http.get(`${this.url}/${id}`);
   }
-
 }

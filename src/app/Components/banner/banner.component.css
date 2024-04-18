@@ -1,4 +1,4 @@
-section{
+section {
   background-color: #eceff1;
   padding: 20px;
   margin-bottom: 20px;
@@ -6,10 +6,9 @@ section{
   height: 100px;
   display: flex;
   justify-content: center;
-
 }
 
-.banner{
+.banner {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,11 +24,11 @@ section{
   margin: 0 5px;
 }
 
-a{
+a {
   color: #000;
   text-decoration: none;
 }
 
-a:hover{
+a:hover {
   color: red;
 }

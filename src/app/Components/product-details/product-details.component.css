@@ -1,13 +1,13 @@
-.product-details{
-    display: flex;
-    flex-direction: column;
-    margin-top: 50px;
+.product-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
 }
 
-.price{
-    font-size: 30px;
-    font-weight: bold;
-    color: #e32a53;
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #e32a53;
 }
 
 .star-rating {
@@ -49,72 +49,26 @@
 .counter-button {
   margin: 0;
   border-radius: 0;
+  border: none;
 }
 
 .counter-value {
   margin: 0 10px;
 }
 
-.add-to-cart{
-    background-color: #000000;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-
-    border-radius: 0px!important;
-    -webkit-border-radius: 0px!important;
-    -moz-border-radius: 0px!important;
-    -ms-border-radius: 0px!important;
-    -o-border-radius: 0px!important;
-
-    transition: all 0.4s ease-in-out;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-}
-
-.add-to-cart:hover{
-    background-color: #e32a53;
-    border: none;
-}
-
-.wishlist-border{
-    border: 1px solid #ced4da;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-weight:normal ;
-    border-radius: 0px!important;
-    -webkit-border-radius: 0px!important;
-    -moz-border-radius: 0px!important;
-    -ms-border-radius: 0px!important;
-    -o-border-radius: 0px!important;
-    transition: all 0.4s ease-in-out;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-}
-
-.wishlist-border:hover{
-    color: #e32a53;
-}
-.wishlist-border i{
-  font-weight:normal !important;
-}
-
-.buy-now-btn{
-  background-color: #f8dc68;
-  color: #000;
+.add-to-cart {
+  background-color: #000000;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  border-radius: 0px!important;
-  -webkit-border-radius: 0px!important;
-  -moz-border-radius: 0px!important;
-  -ms-border-radius: 0px!important;
-  -o-border-radius: 0px!important;
+
+  border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  -ms-border-radius: 0px !important;
+  -o-border-radius: 0px !important;
+
   transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
@@ -122,11 +76,57 @@
   -o-transition: all 0.4s ease-in-out;
 }
 
-.buy-now-btn:hover{
-    background-color: #e32a53;
-    color: #fff;
+.add-to-cart:hover {
+  background-color: #e32a53;
+  border: none;
 }
 
+.wishlist-border {
+  border: 1px solid #ced4da;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: normal;
+  border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  -ms-border-radius: 0px !important;
+  -o-border-radius: 0px !important;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+
+.wishlist-border:hover {
+  color: #e32a53;
+}
+.wishlist-border i {
+  font-weight: normal !important;
+}
+
+.buy-now-btn {
+  background-color: #f8dc68;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  -ms-border-radius: 0px !important;
+  -o-border-radius: 0px !important;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+
+.buy-now-btn:hover {
+  background-color: #e32a53;
+  color: #fff;
+}
 
 .navigation-menu {
   margin-top: 5px;
@@ -146,7 +146,7 @@
 }
 
 .navigation-menu a::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -2px;
@@ -177,20 +177,18 @@
   margin-bottom: 10px;
 }
 
-.navigation-menu{
+.navigation-menu {
   border: 1px solid #ced4da;
   padding: 30px;
   margin-bottom: 50px;
 }
 
-
-.desc-section{
-  height :600px;
+.desc-section {
+  height: 600px;
 }
 
-
 .navigation-menu .nav-link.active::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -2px;
