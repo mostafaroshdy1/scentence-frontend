@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-12">
+      <div class="search-container mb-5">
+        <h6>Search</h6>
+        <div class="search-input-wrapper mt-3">
+          <input
+            type="search"
+            class="search-input"
+            name="q"
+            value=""
+            placeholder="Search our store"
+            aria-label="Search our store"
+            autocomplete="off"
+          />
+          <button type="submit" class="search-button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+      <h6>Categories</h6>
+      <ul class="list-group categories mt-3">
+        <li>
+          <div class="form-check category mb-3">
+            <input type="checkbox" class="form-check-input" id="menCheckbox" />
+            <label class="form-check-label" for="menCheckbox">Men</label>
+            <span class="circle">1</span>
+          </div>
+        </li>
+        <li>
+          <div class="form-check category mb-3">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="womenCheckbox"
+            />
+            <label class="form-check-label" for="womenCheckbox">Women</label>
+            <span class="circle">1</span>
+          </div>
+        </li>
+        <li>
+          <div class="form-check category mb-3">
+            <input type="checkbox" class="form-check-input" id="kidsCheckbox" />
+            <label class="form-check-label" for="kidsCheckbox">Kids</label>
+            <span class="circle">1</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-9 col-md-12">
+      <div class="container">
+        <div class="row">
+          <div class="sort mb-5">
+            <p>Sort By</p>
+            <select class="border-0">
+              <option selected>Alphabetically, A-Z</option>
+              <option value="1">Alphabetically, Z-A</option>
+              <option value="2">Price, Low To High</option>
+              <option value="3">Price, High To Low</option>
+              <option value="4">Date, New To Old</option>
+              <option value="4">Date, Old To New</option>
+            </select>
+          </div>
+          <div
+            *ngFor="let p of Products; trackBy: trackById"
+            class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center"
+          >
+            <app-one-product [product]="p"></app-one-product>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
