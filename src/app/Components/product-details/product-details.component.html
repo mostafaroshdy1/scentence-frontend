@@ -45,15 +45,56 @@
             <button class=" ms-2 btn btn-primary add-to-cart" >
               Add to Cart
             </button>
-            <button class="ms-2 btn wishlist-border" >
+            <div class="ms-2 btn wishlist-border" >
               <i class="far fa-heart fs-5"></i>
-            </button>
+            </div>
           </div>
 
           <div class="btn w-50 mt-4 buy-now-btn">Buy Now</div>
         </div>
 
+        <div class="row desc-section">
+          <div class="col-lg-8 col-12">
+            <div class="navigation-menu mt-5">
+              <div class="d-flex ">
+                <a (click)="showDescription()" [ngClass]="{'active': currentComponent === 'description'}" class="nav-link pe-4" >Description</a>
+                <!-- <a (click)="showReviews()" [ngClass]="{'active': currentComponent === 'reviews'}" class="nav-link pe-4">Reviews</a> -->
+                <a (click)="showShippingPolicy()" [ngClass]="{'active': currentComponent === 'shipping-policy'}" class="nav-link pe-4">Shipping Policy</a>
+              </div>
+              <div *ngIf="currentComponent === 'description'">
+                <app-description-for-product></app-description-for-product>
+              </div>
 
+              <div *ngIf="currentComponent === 'reviews'">
+                <app-reviews></app-reviews>
+              </div>
+
+              <div *ngIf="currentComponent === 'shipping-policy'">
+                <app-shipping-policy></app-shipping-policy>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-4 img-des">
+            <img src="{{productDetails.image[3]}}" class="w-100 img-fluid" alt="">
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-4">hello</div>
+          <div class="col-md-4">hello</div>
+          <div class="col-md-4">hello</div>
+          <div class="col-md-4">hello</div>
+          <div class="col-md-4">hello</div>
+          <div class="col-md-4">hello</div>
+          <div class="col-md-4">hello</div>
+          <div class="col-md-4">hello</div>
+          <div class="col-md-4">hello</div>
+          <div class="col-md-4">hello</div>
+          <div class="col-md-4">hello</div>
+        </div>
 
     </div>
   </div>
