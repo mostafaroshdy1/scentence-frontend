@@ -184,7 +184,7 @@
 }
 
 .desc-section {
-  height: 600px;
+  min-height: 600px;
 }
 
 .navigation-menu .nav-link.active::after {
@@ -199,4 +199,14 @@
 
 .navigation-menu .nav-link.active {
   font-weight: 700;
+}
+
+.related-prod-paragraph {
+  line-height: -1.5;
+}
+
+.one-product-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

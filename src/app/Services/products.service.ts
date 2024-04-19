@@ -12,8 +12,8 @@ export class ProductsService {
   getAllProducts() {
     return this.http.get(this.URL_DB);
   }
-  getProductById(id: number) {
-    return this.http.get(this.URL_DB + '/' + id);
+  getProductById(id: string) {
+    return this.http.get(`${this.URL_DB}/${id}`);
   }
   createProduct(product: any) {
     return this.http.post(this.URL_DB, product);

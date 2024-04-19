@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ApiProductsService } from '../../Services/api-products.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { BannerComponent } from '../banner/banner.component';
@@ -7,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { DescriptionForProductComponent } from '../about-product-details/description-for-product/description-for-product.component';
 import { ReviewsComponent } from '../about-product-details/reviews/reviews.component';
 import { ShippingPolicyComponent } from '../about-product-details/shipping-policy/shipping-policy.component';
+import { OneProductComponent } from '../one-product/one-product.component';
+import { ProductsService } from '../../Services/products.service';
 
 @Component({
   selector: 'app-product-details',
@@ -19,14 +20,16 @@ import { ShippingPolicyComponent } from '../about-product-details/shipping-polic
     DescriptionForProductComponent,
     ReviewsComponent,
     ShippingPolicyComponent,
+    OneProductComponent,
   ],
-  providers: [ApiProductsService],
+  providers: [ProductsService],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent {
-  constructor(private apiService: ApiProductsService, private router: Router) {}
+  constructor(private apiService: ProductsService, private router: Router) {}
   productDetails: any;
+  allProducts: any;
   mainImage = '';
   countValue = 0;
   style = '';
@@ -38,6 +41,15 @@ export class ProductDetailsComponent {
         this.productDetails = data;
         this.mainImage = this.productDetails.image[3];
       });
+
+    this.apiService.getAllProducts().subscribe({
+      next: (data: any) => {
+        this.allProducts = data;
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
   }
 
   filterImages(images: string[]): string[] {

@@ -3,7 +3,10 @@
     <div class="col-12">
       <div class="banner">
         <a routerLink="/">Home</a> <span class="separator"> / </span
-        ><span class="product-title">{{ productTitle }}</span>
+        ><span class="product-title" *ngIf="productTitle">{{
+          productTitle
+        }}</span>
+        <span class="product-title" *ngIf="data">{{ data }}</span>
       </div>
     </div>
   </div>

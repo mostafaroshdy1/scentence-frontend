@@ -2,7 +2,7 @@
 @if(productDetails){
 <div class="container">
   <div class="row product-details-container justify-content-center">
-    <div class="col-lg-6 col-12 large-img-container">
+    <div class="col-lg-6 col-11 large-img-container">
       <div class="row">
         <div class="col-md-8">
           <img
@@ -36,7 +36,6 @@
       <p class="fs-5">
         <strong>Category: </strong> {{ productDetails.category }}
       </p>
-      <!-- <button class="btn btn-primary" (click)="addToCart()">Add to Cart</button> -->
       <div class="star-rating mb-4">
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
@@ -95,7 +94,6 @@
               class="nav-link pe-4"
               >Description</a
             >
-            <!-- <a (click)="showReviews()" [ngClass]="{'active': currentComponent === 'reviews'}" class="nav-link pe-4">Reviews</a> -->
             <a
               (click)="showShippingPolicy()"
               [ngClass]="{ active: currentComponent === 'shipping-policy' }"
@@ -117,7 +115,7 @@
         </div>
       </div>
 
-      <div class="col-lg-4 img-des">
+      <div class="col-lg-4 col-12">
         <img
           src="{{ productDetails.image[3] }}"
           class="w-100 img-fluid"
@@ -126,18 +124,19 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-4">hello</div>
-      <div class="col-md-4">hello</div>
-      <div class="col-md-4">hello</div>
-      <div class="col-md-4">hello</div>
-      <div class="col-md-4">hello</div>
-      <div class="col-md-4">hello</div>
-      <div class="col-md-4">hello</div>
-      <div class="col-md-4">hello</div>
-      <div class="col-md-4">hello</div>
-      <div class="col-md-4">hello</div>
-      <div class="col-md-4">hello</div>
+    <div class="row mt-md-0 mt-4">
+      <div class="col-12 text-center">
+        <p class="display-5">Related products</p>
+        <p class="d-block m-auto mb-4 lead">
+          Contrary to popular belief, Lorem Ipsum is not simply random text. It
+          has roots in a piece of classical
+        </p>
+      </div>
+      @for (product of allProducts.slice(0, 3); track product._id) {
+      <div class="col-md-4 mt-4 one-product-component">
+        <app-one-product [product]="product"></app-one-product>
+      </div>
+      }
     </div>
   </div>
 </div>
