@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { faCircleXmark, faBars } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
 	selector: 'app-navbar-links',
 	standalone: true,
-	imports: [RouterModule],
+	imports: [RouterModule, FontAwesomeModule],
 	templateUrl: './navbar-links.component.html',
 	styleUrl: './navbar-links.component.css',
 })
@@ -17,4 +20,15 @@ export class NavbarLinksComponent {
 		{ name: 'about us', link: '/about-us' },
 		{ name: 'contact', link: '/contact' },
 	];
+
+  closeIcon = faCircleXmark;
+  barsIcon = faBars;
+
+  navDisplay = 'hidden-display';
+
+  changeNav() {
+		this.navDisplay = this.navDisplay === 'hidden-display' ? 'show-display' : 'hidden-display';
+  }
+
+
 }

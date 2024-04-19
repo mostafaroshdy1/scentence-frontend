@@ -19,4 +19,18 @@
 	.show-item {
 		@apply translate-y-0 pointer-events-auto opacity-100;
 	}
+
+	.nav-links {
+		@apply flex flex-col lg:flex-row absolute lg:static right-0 top-0 bg-white lg:bg-transparent shadow-sm lg:shadow-none h-screen lg:h-auto min-w-44 lg:min-w-full z-50 p-4 lg:p-0 justify-center gap-10 transition duration-500;
+	}
+
+	@media (max-width: 1024px) {
+		.nav-links.show-display {
+			@apply translate-x-0 pointer-events-auto;
+		}
+
+		.nav-links.hidden-display {
+			@apply translate-x-[1000px] pointer-events-none;
+		}
+	}
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LogoComponent } from '../logo/logo.component';
+import { LogoComponent } from '../../logo/logo.component';
 import { NavbarButtonsComponent } from '../navbar-buttons/navbar-buttons.component';
 import { NavbarLinksComponent } from '../navbar-links/navbar-links.component';
 
