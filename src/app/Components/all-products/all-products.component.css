@@ -88,12 +88,74 @@ body {
   color: #e32a53;
 }
 
-.sort {
+.sort-banner {
   display: flex;
   align-items: center;
   align-content: center;
 }
 
-.sort p {
-  margin: 0px 15px;
+.sort-banner p {
+  font-weight: lighter;
+  margin: 0px;
+}
+
+.sort-banner select,
+.sort-banner select option {
+  font-weight: lighter;
+  margin-left: 15px;
+}
+
+.sort-banner .displayed-products-counter {
+  margin-left: 30px;
+}
+
+.pagination {
+  margin: 10px 0;
+}
+
+.pagination li {
+  margin: 0 6px;
+}
+
+.pagination .page-item a {
+  display: inline-block;
+  width: 43px;
+  height: 43px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 18px;
+  color: #e32a53;
+  -webkit-box-shadow: 0 0px 12px 0.8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 12px 0.8px #0000001a;
+  text-decoration: none;
+}
+
+.pagination .page-item-prev a,
+.pagination .page-item-next a {
+  display: inline-block;
+  width: 43px;
+  height: 43px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 22px;
+  background-color: #eee;
+  color: #e32a53;
+  text-decoration: none;
+}
+
+.pagination .page-item-prev a:hover,
+.pagination .page-item-next a:hover {
+  background-color: #e32a53;
+  color: #eee;
+}
+
+.page-item-prev.disabled a,
+.page-item-next.disabled a {
+  cursor: url("/src/assets/stop.png"), not-allowed;
+}
+
+.pagination .page-item.active a {
+  color: #eee;
+  background-color: #e32a53;
+  box-shadow: none;
 }

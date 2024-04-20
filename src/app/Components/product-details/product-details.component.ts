@@ -30,6 +30,7 @@ export class ProductDetailsComponent {
   constructor(private apiService: ProductsService, private router: Router) {}
   productDetails: any;
   allProducts: any;
+  result: any;
   mainImage = '';
   countValue = 0;
   style = '';
@@ -44,7 +45,8 @@ export class ProductDetailsComponent {
 
     this.apiService.getAllProducts().subscribe({
       next: (data: any) => {
-        this.allProducts = data;
+        this.result = data;
+        this.allProducts = this.result.products;
       },
       error: (error: any) => {
         console.log(error);

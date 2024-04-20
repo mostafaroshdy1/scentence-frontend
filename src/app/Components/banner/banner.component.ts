@@ -27,7 +27,11 @@ export class BannerComponent implements OnInit {
           console.log(data.title);
         });
     } else {
-      this.data = this.router.url.split('/')[1];
+      if (this.router.url.includes('?')) {
+        this.data = this.router.url.split('/')[1].split('?')[0];
+      } else {
+        this.data = this.router.url.split('/')[1];
+      }
     }
   }
 }

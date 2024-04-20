@@ -4,7 +4,7 @@
     <div class="col-lg-3 col-md-12">
       <div class="search-container mb-5">
         <h6>Search</h6>
-        <div class="search-input-wrapper mt-3">
+        <div class="search-input-wrapper mt-5">
           <input
             type="search"
             class="search-input"
@@ -20,10 +20,16 @@
         </div>
       </div>
       <h6>Categories</h6>
-      <ul class="list-group categories mt-3">
+      <ul class="list-group categories mt-5">
         <li>
           <div class="form-check category mb-3">
-            <input type="checkbox" class="form-check-input" id="menCheckbox" />
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="menCheckbox"
+              name="category"
+              (change)="filterByCategory('men', $event)"
+            />
             <label class="form-check-label" for="menCheckbox">Men</label>
             <span class="circle">1</span>
           </div>
@@ -34,6 +40,8 @@
               type="checkbox"
               class="form-check-input"
               id="womenCheckbox"
+              name="category"
+              (change)="filterByCategory('women', $event)"
             />
             <label class="form-check-label" for="womenCheckbox">Women</label>
             <span class="circle">1</span>
@@ -41,7 +49,13 @@
         </li>
         <li>
           <div class="form-check category mb-3">
-            <input type="checkbox" class="form-check-input" id="kidsCheckbox" />
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="kidsCheckbox"
+              name="category"
+              (change)="filterByCategory('kids', $event)"
+            />
             <label class="form-check-label" for="kidsCheckbox">Kids</label>
             <span class="circle">1</span>
           </div>
@@ -51,22 +65,77 @@
     <div class="col-lg-9 col-md-12">
       <div class="container">
         <div class="row">
-          <div class="sort mb-5">
-            <p>Sort By</p>
-            <select class="border-0">
-              <option selected>Alphabetically, A-Z</option>
+          <div class="sort-banner mb-5">
+            <p class="sort-title">Sort By</p>
+            <select class="border-0" (change)="onChangeSortOption($event)">
+              <option value="0" selected>Alphabetically, A-Z</option>
               <option value="1">Alphabetically, Z-A</option>
               <option value="2">Price, Low To High</option>
               <option value="3">Price, High To Low</option>
               <option value="4">Date, New To Old</option>
-              <option value="4">Date, Old To New</option>
+              <option value="5">Date, Old To New</option>
             </select>
+            <p class="displayed-products-counter">
+              Showing {{ (currentPage - 1) * pageSize + 1 }} -
+              {{
+                currentPage * pageSize > totalProducts
+                  ? totalProducts
+                  : currentPage * pageSize
+              }}
+              of {{ totalProducts }} results
+            </p>
           </div>
+          @for (product of products; track product._id){
           <div
-            *ngFor="let p of Products; trackBy: trackById"
             class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center"
           >
-            <app-one-product [product]="p"></app-one-product>
+            <app-one-product [product]="product"></app-one-product>
+          </div>
+          }
+        </div>
+        <div class="row mt-5">
+          <div class="col">
+            <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-center">
+                <li
+                  class="page-item-prev"
+                  *ngIf="totalPages > 0"
+                  [class.disabled]="currentPage === 1"
+                >
+                  <a
+                    href="javascript:void(0)"
+                    (click)="goToPage(currentPage - 1)"
+                    aria-label="Previous"
+                  >
+                    <span aria-hidden="true">&lt;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li
+                  class="page-item"
+                  *ngFor="let page of pages"
+                  [class.active]="currentPage === page"
+                >
+                  <a href="javascript:void(0)" (click)="goToPage(page)">
+                    {{ page }}
+                  </a>
+                </li>
+                <li
+                  class="page-item-next"
+                  *ngIf="totalPages > 0"
+                  [class.disabled]="currentPage === totalPages"
+                >
+                  <a
+                    href="javascript:void(0)"
+                    (click)="goToPage(currentPage + 1)"
+                    aria-label="Next"
+                  >
+                    <span aria-hidden="true">&gt;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
