@@ -12,6 +12,10 @@
 		@apply hover:text-rose-500 transition duration-500;
 	}
 
+	.hover-gray {
+		@apply hover:text-[#666] transition duration-500;
+	}
+
 	.hidden-item {
 		@apply -translate-y-[1000px] pointer-events-none opacity-0;
 	}
@@ -32,5 +36,9 @@
 		.nav-links.hidden-display {
 			@apply translate-x-[1000px] pointer-events-none;
 		}
+	}
+
+	.btn {
+		@apply text-center bg-black hover:bg-rose-500 text-white w-full md:w-fit py-2 md:px-6 text-sm transition duration-500;
 	}
 }
