@@ -13,11 +13,17 @@ import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { BannerComponent } from '../../banner/banner.component';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    HttpClientModule,
+    CommonModule,
+    BannerComponent,
+  ],
   providers: [ApiAdminService],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
@@ -26,10 +32,7 @@ export class AddProductComponent implements OnInit {
   isEdit = false;
   loading = false;
   error: any;
-  constructor(
-    private router: Router,
-    private apiService: ApiAdminService
-  ) {}
+  constructor(private router: Router, private apiService: ApiAdminService) {}
 
   ngOnInit(): void {
     if (this.router.url.split('/')[3] === 'edit') {
@@ -57,20 +60,19 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  productForm=new FormGroup({
-    title: new FormControl("",Validators.required),
-    description: new FormControl("",Validators.required),
-    price: new FormControl("",Validators.required),
-    category: new FormControl(null,Validators.required),
-    stock: new FormControl("",Validators.required),
-    images: new FormControl(null,Validators.required)
+  productForm = new FormGroup({
+    title: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
+    category: new FormControl(null, Validators.required),
+    stock: new FormControl('', Validators.required),
+    images: new FormControl(null, Validators.required),
   });
-
 
   addImage(event: any) {
     const files = event.target.files;
-    if(files?.length < 4 || files?.length > 4  ){
-      this.error="Please Enter 4 Images";
+    if (files?.length !== 4) {
+      this.error = 'Please Enter 4 Images';
       return;
     }
 
@@ -162,7 +164,7 @@ export class AddProductComponent implements OnInit {
 
   private getErrorMessage(error: HttpErrorResponse): string {
     let errorMessage = 'An error occurred';
-    if ( error.error?.errors?.length > 0) {
+    if (error.error?.errors?.length > 0) {
       errorMessage = error.error.errors.map((e: any) => e.msg).join('<br>');
     }
     return errorMessage;

@@ -1,5 +1,11 @@
+<app-banner></app-banner>
 <div class="container mt-5">
-  <div *ngIf="error" class="alert alert-danger mt-3" role="alert" [innerHTML]="error"></div>
+  <div
+    *ngIf="error"
+    class="alert alert-danger mt-3"
+    role="alert"
+    [innerHTML]="error"
+  ></div>
 
   <h2 class="display-5 text-center" *ngIf="!isEdit">Add Product</h2>
   <h2 class="display-5 text-center" *ngIf="isEdit">Edit Product</h2>
