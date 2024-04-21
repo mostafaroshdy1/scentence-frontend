@@ -102,3 +102,15 @@
 .cart-btn:hover i {
   color: #e32a53;
 }
+
+.edit-delete-btn{
+  background-color: #cc5a73;
+  border-color: #cc5a73;
+  color:#fff;
+}
+
+.edit-delete-btn:hover{
+  background-color: white;
+  border-color: #e32a53;
+  color:black;
+}

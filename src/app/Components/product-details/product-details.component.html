@@ -5,23 +5,32 @@
     <div class="col-lg-6 col-11 large-img-container">
       <div class="row">
         <div class="col-md-8">
-          <img
-            [src]="mainImage"
-            alt="{{ productDetails.title }}"
-            class="img-fluid mx-auto d-block mt-3 large-image w-100"
-          />
+          <div class="large-image-container">
+            <img
+              [src]="mainImage"
+              alt="{{ productDetails.title }}"
+              class="img-fluid mx-auto d-block large-image"
+            />
+          </div>
         </div>
-        <div class="col-3 d-md-block d-none large-img-container">
-          <img
-            *ngFor="let img of productDetails.image"
-            [src]="img"
-            alt="{{ productDetails.title }}"
-            class="img-fluid mx-auto d-block small-image mb-2"
-            (click)="mainImage = img"
-          />
+        <div class="col-4 d-md-block d-none small-img-container align-items-center">
+          <div class="row">
+            <div class="col-12">
+              <div class="small-images-container">
+                <img
+                  *ngFor="let img of productDetails.image"
+                  [src]="img"
+                  alt="{{ productDetails.title }}"
+                  class="img-fluid mx-auto d-block small-image mb-2"
+                  (click)="mainImage = img"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
 
     <div class="col-lg-6 col-md-12 product-details">
       <h2 class="fs-2">{{ productDetails.title }}</h2>
@@ -115,29 +124,32 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-12">
+      <div class="col-lg-4 col-12 prod-image">
         <img
-          src="{{ productDetails.image[3] }}"
+          src="{{ productDetails.image[0] }}"
           class="w-100 img-fluid"
           alt=""
         />
       </div>
     </div>
 
-    <div class="row mt-md-0 mt-4">
-      <div class="col-12 text-center">
-        <p class="display-5">Related products</p>
-        <p class="d-block m-auto mb-4 lead">
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It
-          has roots in a piece of classical
-        </p>
+    <!-- Related products -->
+    <ng-container *ngIf="allProducts && allProducts.length >= 3">
+      <div class="row mt-md-0 mt-4">
+        <div class="col-12 text-center">
+          <p class="display-5">Related products</p>
+          <p class="d-block m-auto mb-4 lead">
+            Contrary to popular belief, Lorem Ipsum is not simply random text. It
+            has roots in a piece of classical
+          </p>
+        </div>
+        @for (product of allProducts.slice(0, 3); track product._id) {
+        <div class="col-md-4 mt-4 one-product-component">
+          <app-one-product [product]="product"></app-one-product>
+        </div>
+        }
       </div>
-      @for (product of allProducts.slice(0, 3); track product._id) {
-      <div class="col-md-4 mt-4 one-product-component">
-        <app-one-product [product]="product"></app-one-product>
-      </div>
-      }
-    </div>
+    </ng-container>
   </div>
 </div>
 

@@ -26,8 +26,8 @@ export class AllProductsComponent {
   Products: any;
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe({
-      next: (data) => {
-        this.Products = data;
+      next: (data:any) => {
+        this.Products = data['products'];
       },
       error: (err) => {
         console.log('Error Happened!');

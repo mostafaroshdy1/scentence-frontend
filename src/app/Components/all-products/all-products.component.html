@@ -66,7 +66,12 @@
             *ngFor="let p of Products; trackBy: trackById"
             class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center"
           >
-            <app-one-product [product]="p"></app-one-product>
+            <a
+              routerLink="/products/{{ p._id }}"
+              class="text-dark text-decoration-none"
+            >
+              <app-one-product [product]="p"></app-one-product>
+            </a>
           </div>
         </div>
       </div>

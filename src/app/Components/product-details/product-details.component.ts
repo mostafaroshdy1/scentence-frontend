@@ -39,12 +39,12 @@ export class ProductDetailsComponent {
       .getProductById(this.router.url.split('/')[2])
       .subscribe((data: any) => {
         this.productDetails = data;
-        this.mainImage = this.productDetails.image[3];
+        this.mainImage = this.productDetails.image[0];
       });
 
     this.apiService.getAllProducts().subscribe({
       next: (data: any) => {
-        this.allProducts = data;
+        this.allProducts = data.products;
       },
       error: (error: any) => {
         console.log(error);
