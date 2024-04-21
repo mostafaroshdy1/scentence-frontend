@@ -14,6 +14,11 @@ export class OrdersService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(this.URL_DB, { headers });
   }
+  getOrderDetails(id:any) {
+    const token=localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.URL_DB}/${id}`, { headers });
+  }
   
 }
 
