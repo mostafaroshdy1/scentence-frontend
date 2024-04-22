@@ -1,6 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { getAllProductsDto } from '../Models/get-all-products.dto';
 
@@ -8,10 +7,7 @@ import { getAllProductsDto } from '../Models/get-all-products.dto';
   providedIn: 'root',
 })
 export class ProductsService {
-  constructor(
-    private readonly http: HttpClient,
-    private readonly route: ActivatedRoute
-  ) {}
+  constructor(private readonly http: HttpClient) {}
 
   private readonly URL_DB = 'http://localhost:3000/products';
 
@@ -19,16 +15,19 @@ export class ProductsService {
     page: number = 1,
     limit: number = 9,
     sortBy: number = 0,
+    searchedWord: string = '',
     category: string = ''
   ): Observable<getAllProductsDto> {
     const paramsPage = page;
     const paramsLimit = limit;
     const paramsSortBy = sortBy;
+    const paramsSearchedWord = searchedWord;
 
     const params = new HttpParams()
       .set('page', paramsPage)
       .set('limit', paramsLimit)
-      .set('sortBy', paramsSortBy);
+      .set('sortBy', paramsSortBy)
+      .set('search', paramsSearchedWord);
 
     if (category) {
       return this.http.get<getAllProductsDto>(
@@ -50,7 +49,7 @@ export class ProductsService {
   deleteProductById(id: number) {
     return this.http.delete(this.URL_DB + '/' + id);
   }
-  searchProduct() {
-    return this.http.get(this.URL_DB);
+  getCategoryProductCounts(): Observable<any> {
+    return this.http.get<any>(this.URL_DB + '/categoryCount');
   }
 }

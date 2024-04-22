@@ -1,48 +1,56 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ProductsService } from '../../Services/products.service';
-import { NavigationExtras, Router, RouterModule } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ProductFilterService } from '../../Services/products-filtration-search.service';
+import { CommonModule } from '@angular/common';
 import { OneProductComponent } from '../one-product/one-product.component';
-import { CommonModule, NgForOf } from '@angular/common';
-import { BannerComponent } from '../banner/banner.component';
-import { ActivatedRoute } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-all-products',
+  selector: 'app-displayed-products',
   standalone: true,
-  imports: [
-    RouterModule,
-    HttpClientModule,
-    OneProductComponent,
-    CommonModule,
-    BannerComponent,
-  ],
+  imports: [CommonModule, OneProductComponent, HttpClientModule],
   providers: [ProductsService],
-  templateUrl: './all-products.component.html',
-  styleUrl: './all-products.component.css',
+  templateUrl: './displayed-products.component.html',
+  styleUrl: './displayed-products.component.css',
 })
-export class AllProductsComponent {
+export class DisplayedProductsComponent {
   results: any;
   products: any;
-  displayedProducts: any[] = [];
   pageSize: number = 9;
   currentPage: number = 1;
   totalPages: number = 0;
   totalProducts: number = 0;
   selectedSortOption: number = 0;
+  searchedWord: string = '';
   selectedCategory: string = '';
 
   constructor(
     private productService: ProductsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private productFilterService: ProductFilterService
   ) {}
 
   ngOnInit(): void {
     this.currentPage = this.route.snapshot.queryParams['page'];
     this.selectedSortOption = this.route.snapshot.queryParams['sortBy'];
+    this.searchedWord = this.route.snapshot.queryParams['search'];
     this.selectedCategory = this.route.snapshot.params['category'];
-    console.log(this.selectedCategory);
+    this.productFilterService.filter$.subscribe({
+      next: (data) => {
+        this.selectedCategory = data;
+        this.getProducts();
+      },
+      error: (err) => this.handleError(err),
+    });
+    this.productFilterService.search$.subscribe({
+      next: (data) => {
+        this.searchedWord = data;
+        this.getProducts();
+      },
+      error: (err) => this.handleError(err),
+    });
     this.getProducts();
   }
 
@@ -52,6 +60,7 @@ export class AllProductsComponent {
         this.currentPage,
         this.pageSize,
         this.selectedSortOption,
+        this.searchedWord,
         this.selectedCategory
       )
       .subscribe({
@@ -80,32 +89,6 @@ export class AllProductsComponent {
       this.getProducts();
       this.router.navigate([], navigationExtras);
     }
-  }
-
-  filterByCategory(category: string, event: Event, page: number = 1): void {
-    this.selectedCategory = category;
-    this.currentPage = page;
-
-    const checkbox = event.target as HTMLInputElement;
-    const checkboxes = document.querySelectorAll(
-      'input[type="checkbox"][name="category"]'
-    );
-    checkboxes.forEach((cb) => {
-      if (cb !== checkbox) {
-        (cb as HTMLInputElement).checked = false;
-      }
-    });
-
-    const navigationExtras: NavigationExtras = {
-      queryParams: { page: this.currentPage.toString() },
-      queryParamsHandling: 'merge',
-    };
-
-    this.getProducts();
-    this.router.navigate(
-      ['/category', this.selectedCategory],
-      navigationExtras
-    );
   }
 
   onChangeSortOption(event: Event): void {
