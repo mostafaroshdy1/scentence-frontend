@@ -1,7 +1,7 @@
 import { CommonModule, NgForOf } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { OrdersService } from '../../Services/orders.services';
 
 @Component({
@@ -12,12 +12,18 @@ import { OrdersService } from '../../Services/orders.services';
   templateUrl: './orders-history.component.html',
   styleUrl: './orders-history.component.css',
 })
-export class OrdersHistoryComponent {
-  constructor(private orderService: OrdersService) {}
+export class OrdersHistoryComponent implements OnInit {
   Orders: any;
   date: any;
   time: any;
+
+  constructor(private orderService: OrdersService, private router: Router) {}
+
   ngOnInit() {
+    this.loadOrders();
+  }
+
+  loadOrders() {
     this.orderService.getUserOrders().subscribe({
       next: (data) => {
         this.Orders = data;
@@ -32,6 +38,19 @@ export class OrdersHistoryComponent {
       },
     });
   }
+
+  cancelOrder(id: any) {
+    this.orderService.cancelOrder(id).subscribe({
+      next: (data) => {
+        this.loadOrders();
+        this.router.navigate(['/orders']);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
+
   trackById(index: number, order: any) {
     return order.id;
   }

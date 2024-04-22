@@ -49,3 +49,9 @@ body {
 .canceled {
   background-color: rgb(0, 0, 0);
 }
+.on-way {
+  background-color: #fdd941;
+}
+a {
+  text-decoration: none;
+}
