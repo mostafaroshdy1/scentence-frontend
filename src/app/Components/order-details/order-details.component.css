@@ -25,9 +25,6 @@ p {
   letter-spacing: 0.5px !important;
 }
 
-.card-1 {
-  box-shadow: 2px 2px 10px 0px rgb(172, 172, 172);
-}
 .products::before {
   content: "";
   position: absolute;
@@ -86,97 +83,93 @@ hr {
 .bg-secondary {
   background-color: #f5f5f5 !important;
 }
-
 #progressbar {
-  margin-bottom: 3vh;
-  overflow: hidden;
-  color: rgb(0, 0, 0);
+  margin-bottom: 30px;
+  overflow: visible;
+  color: #455a64;
   padding-left: 0px;
-  margin-top: 3vh;
+  margin-top: 30px;
+  height: 80px;
 }
 
 #progressbar li {
   list-style-type: none;
-  font-size: 0.7rem;
+  font-size: 13px;
   width: 25%;
   float: left;
   position: relative;
   font-weight: 400;
-  color: rgb(0, 0, 0);
+  text-align: center;
 }
 
-#progressbar #step1:before {
-  content: "";
-  color: rgb(0, 0, 0);
-  width: 20px;
-  height: 20px;
-  margin-left: 0px !important;
-}
-
-#progressbar #step2:before {
-  content: "";
-  color: #000000;
-  width: 20px;
-  height: 20px;
-  margin-left: 32%;
-}
-
-#progressbar #step3:before {
-  content: "";
-  color: #000000;
-  width: 20px;
-  height: 20px;
-  margin-right: 32%;
-}
-
-#progressbar #step4:before {
-  content: "";
-  color: rgb(151, 149, 149, 0.651);
-  width: 20px;
-  height: 20px;
-  margin-right: 0px !important;
+#progressbar .step0:before {
+  font-family: FontAwesome;
+  content: "\f06a";
+  color: #fff;
 }
 
 #progressbar li:before {
-  line-height: 29px;
+  width: 40px;
+  height: 40px;
+  line-height: 45px;
   display: block;
-  font-size: 12px;
-  background: rgb(151, 149, 149);
+  font-size: 20px;
+  background: #c1c1c1;
   border-radius: 50%;
   margin: auto;
-  z-index: -1;
-  margin-bottom: 1vh;
+  padding: 0px;
+  position: relative;
+  z-index: 2;
+}
+
+#progressbar li span {
+  display: block;
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-90deg);
+  white-space: nowrap;
+  z-index: 3;
 }
 
 #progressbar li:after {
   content: "";
-  height: 3px;
-  background: rgb(151, 149, 149, 0.651);
+  width: 100%;
+  height: 12px;
+  background: #c1c1c1;
   position: absolute;
-  left: 0%;
-  right: 0%;
-  margin-bottom: 2vh;
-  top: 8px;
+  left: 0;
+  top: 16px;
   z-index: 1;
 }
-.progress-track {
-  padding: 0 8%;
-}
-#progressbar li:nth-child(2):after {
-  margin-right: auto;
+
+#progressbar li:last-child:after {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: absolute;
+  left: -50%;
 }
 
-#progressbar li:nth-child(1):after {
-  margin: auto;
-}
-
+#progressbar li:nth-child(2):after,
 #progressbar li:nth-child(3):after {
-  float: left;
-  width: 68%;
+  left: -50%;
 }
-#progressbar li:nth-child(4):after {
-  margin-left: auto;
-  width: 132%;
+
+#progressbar li:first-child:after {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  position: absolute;
+  left: 50%;
+}
+
+#progressbar li:last-child:after {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#progressbar li:first-child:after {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 #progressbar li.active:before,
@@ -184,13 +177,9 @@ hr {
   background: #e32a53;
 }
 
-#three {
-  font-size: 1.2rem;
-}
-@media (max-width: 767px) {
-  #three {
-    font-size: 1rem;
-  }
+#progressbar li.active:before {
+  font-family: FontAwesome;
+  content: "\f00c";
 }
 
 .my-right {

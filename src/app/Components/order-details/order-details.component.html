@@ -143,17 +143,41 @@
                     </div>
                   </div>
                 </div>
-                <div class="progress-track">
-                  <ul id="progressbar">
-                    <li class="step0 active" id="step1">Pending</li>
-                    <li class="step0 active text-center" id="step2">
-                      Accepted
-                    </li>
-                    <li class="step0 active text-right" id="step3">
-                      <span id="three">On way</span>
-                    </li>
-                    <li class="step0 text-right" id="step4">Delivered</li>
-                  </ul>
+                <div class="tracking">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                      <ul id="progressbar" class="text-center">
+                        <li
+                          [ngClass]="{ active: currentStatusIndex >= 0 }"
+                          id="step1"
+                          class="step0"
+                        >
+                          <span>Pending</span>
+                        </li>
+                        <li
+                          [ngClass]="{ active: currentStatusIndex >= 1 }"
+                          id="step2"
+                          class="step0"
+                        >
+                          <span>Accepted</span>
+                        </li>
+                        <li
+                          [ngClass]="{ active: currentStatusIndex >= 2 }"
+                          id="step3"
+                          class="step0"
+                        >
+                          <span>On Way</span>
+                        </li>
+                        <li
+                          [ngClass]="{ active: currentStatusIndex >= 3 }"
+                          id="step4"
+                          class="step0"
+                        >
+                          <span>Delivered</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

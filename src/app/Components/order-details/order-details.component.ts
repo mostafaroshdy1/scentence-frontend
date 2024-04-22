@@ -13,14 +13,19 @@ import { OrdersService } from '../../Services/orders.services';
   styleUrl: './order-details.component.css',
 })
 export class OrderDetailsComponent {
+  orderStatuses: string[] = ['pending', 'accepted', 'on way', 'delivered'];
+  currentStatusIndex: number = 0;
+  getCurrentStatusIndex(status: string): number {
+    return this.orderStatuses.indexOf(status);
+  }
   constructor(
     private orderService: OrdersService,
-    private router: Router,
     private route: ActivatedRoute
   ) {}
   order: any;
   date: any;
   time: any;
+  
   ngOnInit() {
     console.log(this.route);
     this.orderService
@@ -31,11 +36,15 @@ export class OrderDetailsComponent {
           this.date = new Date(this.order.order.createdAt).toLocaleDateString();
           this.time = new Date(this.order.order.createdAt).toLocaleTimeString();
           this.order.order.createdAt = this.date + ' ' + this.time;
+          this.currentStatusIndex = this.getCurrentStatusIndex(this.order.order.status);
+          console.log(this.order.order.status);
           console.log(this.order.products);
         },
         error: (error) => {
           console.error(error);
         },
       });
+    
   }
+  
 }
