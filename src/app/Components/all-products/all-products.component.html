@@ -67,8 +67,17 @@
             class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center"
           >
             <a
+             *ngIf="!isAdmin"
               routerLink="/products/{{ p._id }}"
               class="text-dark text-decoration-none"
+
+            >
+              <app-one-product [product]="p"></app-one-product>
+            </a>
+            <a
+              routerLink="{{ p._id }}"
+              class="text-dark text-decoration-none"
+              *ngIf="isAdmin"
             >
               <app-one-product [product]="p"></app-one-product>
             </a>

@@ -54,7 +54,7 @@
         <i class="far fa-star"></i>
       </div>
 
-      <div class="mt-3 counter-container">
+      <div class="mt-3 counter-container" *ngIf="!isAdmin">
         <div class="counter-border">
           <button
             class="btn counter-button"
@@ -89,9 +89,24 @@
       <button
         class="btn w-50 mt-4 buy-now-btn"
         [disabled]="productDetails.stock == 0"
+        *ngIf="!isAdmin"
       >
         Buy Now
       </button>
+      <div class="admin-btns mt-2" *ngIf="isAdmin">
+        <a
+          routerLink="/admin/products/edit/{{ productDetails._id }}"
+          class="btn edit-delete-btn ms-2"
+        >
+          Edit
+        </a>
+        <button
+          class="btn edit-delete-btn ms-2"
+          (click)="deleteProduct(productDetails)"
+        >
+          Delete
+        </button>
+      </div>
     </div>
 
     <div class="row desc-section">

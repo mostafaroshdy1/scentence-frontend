@@ -36,23 +36,27 @@ export class LineChartComponent implements OnInit, OnDestroy {
                 backgroundColor: '#9fa8da',
                 borderColor: '#9fa8da',
                 borderWidth: 1,
-                // barPercentage: 0.5,
+                barPercentage: 0.6,
               },
               {
                 label: 'Users',
-                data: Object.values(userData),
+                // will change latter
+                // data: Object.values(userData),
+                data: Object.values('8'),
                 backgroundColor: '#f48fb1',
                 borderColor: '#f48fb1',
                 borderWidth: 1,
-                // barPercentage: 0.5,
+                barPercentage: 0.6,
               },
               {
                 label: 'Orders',
-                data: Object.values(orderData),
+                // will change latter
+                data: Object.values('9'),
+                // data: Object.values(orderData),
                 backgroundColor: '#80cbc4',
                 borderColor: '#80cbc4',
                 borderWidth: 1,
-                // barPercentage: 0.5,
+                barPercentage: 0.6,
               },
             ],
           };

@@ -7,6 +7,7 @@ import { DescriptionForProductComponent } from '../about-product-details/descrip
 import { ReviewsComponent } from '../about-product-details/reviews/reviews.component';
 import { ShippingPolicyComponent } from '../about-product-details/shipping-policy/shipping-policy.component';
 import { OneProductComponent } from '../one-product/one-product.component';
+import { ApiProductsService } from '../../Services/api-products.service';
 import { ProductsService } from '../../Services/products.service';
 
 @Component({
@@ -33,14 +34,16 @@ export class ProductDetailsComponent {
   mainImage = '';
   countValue = 0;
   style = '';
+  isAdmin=false;
   currentComponent: string = 'description';
   ngOnInit(): void {
-    this.apiService
-      .getProductById(this.router.url.split('/')[2])
-      .subscribe((data: any) => {
-        this.productDetails = data;
-        this.mainImage = this.productDetails.image[0];
-      });
+    if(this.router.url.split('/')[2]){
+      this.getProductDetails();
+    }
+    if(this.router.url.split('/')[3]){
+      this.getProductDetailsForAdmin();
+      this.isAdmin=true;
+    }
 
     this.apiService.getAllProducts().subscribe({
       next: (data: any) => {
@@ -76,5 +79,39 @@ export class ProductDetailsComponent {
 
   showShippingPolicy() {
     this.currentComponent = 'shipping-policy';
+  }
+
+  getProductDetails(){
+    this.apiService.getProductById(this.router.url.split('/')[2]).subscribe({
+      next: (data: any) => {
+        this.productDetails = data;
+        this.mainImage = this.productDetails.image[0];
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+  }
+
+  getProductDetailsForAdmin(){
+    this.apiService.getProductById(this.router.url.split('/')[3]).subscribe({
+      next: (data: any) => {
+        this.productDetails = data;
+        this.mainImage = this.productDetails.image[0];
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+  }
+  deleteProduct(product: any) {
+    this.apiService.deleteProductById(product._id).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      complete: () => {
+        this.router.navigate(['/admin/products/']);
+      },
+    });
   }
 }

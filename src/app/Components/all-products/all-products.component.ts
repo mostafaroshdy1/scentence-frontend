@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../Services/products.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OneProductComponent } from '../one-product/one-product.component';
 import { CommonModule, NgForOf } from '@angular/common';
@@ -22,7 +22,12 @@ import { BannerComponent } from '../banner/banner.component';
 })
 export class AllProductsComponent {
   p: any;
-  constructor(private productService: ProductsService) {}
+  isAdmin=false;
+  constructor(private productService: ProductsService ,private router:Router) {
+    if(router.url.split('/')[1]=='admin'){
+      this.isAdmin=true;
+    }
+  }
   Products: any;
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe({

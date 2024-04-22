@@ -149,6 +149,7 @@
 
 .navigation-menu {
   margin-top: 5px;
+  height: 500px;
 }
 
 .navigation-menu a {
@@ -233,4 +234,16 @@
 .prod-image {
   display: flex;
   align-items: center;
+}
+
+.edit-delete-btn{
+  background-color: #cc5a73;
+  border-color: #cc5a73;
+  color:#fff;
+}
+
+.edit-delete-btn:hover{
+  background-color: white;
+  border-color: #e32a53;
+  color:black;
 }
