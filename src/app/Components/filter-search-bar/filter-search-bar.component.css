@@ -1,15 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 .search-container {
   padding-top: 20px;
   align-items: center;
@@ -88,12 +76,27 @@ body {
   color: #e32a53;
 }
 
-.sort {
+.check {
+  background-color: #e32a53;
+}
+
+.sort-banner {
   display: flex;
   align-items: center;
   align-content: center;
 }
 
-.sort p {
-  margin: 0px 15px;
+.sort-banner p {
+  font-weight: lighter;
+  margin: 0px;
+}
+
+.sort-banner select,
+.sort-banner select option {
+  font-weight: lighter;
+  margin-left: 15px;
+}
+
+.sort-banner .displayed-products-counter {
+  margin-left: 30px;
 }
