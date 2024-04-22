@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-12">
       <div class="banner">
-        <a routerLink="/">Home</a> <span class="separator"> / </span
+        <a routerLink="/" *ngIf="!showAdminHome">Home</a>
+        <a routerLink="/admin" *ngIf="showAdminHome">Home</a>
+        <span class="separator"> / </span
         ><span class="product-title" *ngIf="productTitle">{{
           productTitle
         }}</span>

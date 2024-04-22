@@ -15,20 +15,27 @@ import { ProductsService } from '../../Services/products.service';
 export class BannerComponent implements OnInit {
   productTitle!: string;
   checkRoute = this.router.url.split('/')[2];
-  checkRouteWithCategory = this.router.url.split('/')[3];
+  checkRouteWithCategory = this.router.url.split('/')[2]=='category';
+  showAdminHome = false;
   data!: string;
   constructor(private apiService: ProductsService, private router: Router) {}
 
   ngOnInit(): void {
     if (this.checkRouteWithCategory) {
       this.data = this.router.url.split('/')[1];
-    } else if (this.checkRoute) {
-      this.apiService
-        .getProductById(this.router.url.split('/')[2])
-        .subscribe((data: any) => {
-          this.productTitle = data.title;
-          console.log(data.title);
-        });
+    }
+    else if (this.checkRoute) {
+      if (this.router.url.split('/')[1] == 'admin') {
+        this.data = 'Admin Dashboard';
+        this.showAdminHome = true;
+      } else {
+        this.apiService
+          .getProductById(this.router.url.split('/')[2])
+          .subscribe((data: any) => {
+            this.productTitle = data['title'];
+            console.log(data['title']);
+          });
+      }
     } else {
       if (this.router.url.includes('?')) {
         this.data = this.router.url.split('/')[1].split('?')[0];

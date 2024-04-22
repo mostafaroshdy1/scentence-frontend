@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router, RouterModule } from '@angular/router';
 import { ProductsService } from '../../Services/products.service';
 import { ProductFilterService } from '../../Services/products-filtration-search.service';
 import { CommonModule } from '@angular/common';
@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-displayed-products',
   standalone: true,
-  imports: [CommonModule, OneProductComponent, HttpClientModule],
+  imports: [CommonModule, OneProductComponent, HttpClientModule,RouterModule],
   providers: [ProductsService],
   templateUrl: './displayed-products.component.html',
   styleUrl: './displayed-products.component.css',
@@ -24,13 +24,18 @@ export class DisplayedProductsComponent {
   selectedSortOption: number = 0;
   searchedWord: string = '';
   selectedCategory: string = '';
+  isAdmin=false;
 
   constructor(
     private productService: ProductsService,
     private router: Router,
     private route: ActivatedRoute,
     private productFilterService: ProductFilterService
-  ) {}
+  ) {
+    if(router.url.split('/')[1]=='admin'){
+      this.isAdmin=true;
+    }
+  }
 
   ngOnInit(): void {
     this.currentPage = this.route.snapshot.queryParams['page'];

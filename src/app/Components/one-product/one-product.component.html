@@ -1,9 +1,9 @@
-<div class="card mb-4">
+<div class="card mt-3 mb-4">
   <div class="card-img">
     <img
       src="{{ product.image[0] }}"
       alt="{{ product.title }}"
-      class="product-image img-fluid"
+      class="product-image img-fluid w-100"
     />
     <div class="product-popup">
       <button class="wishList-btn">
@@ -17,12 +17,21 @@
   <div class="card-body">
     <h1 class="product-title">{{ product.title }}</h1>
     <p class="product-price">${{ product.price }}</p>
-    <div class="rating">
+    <div class="rating" *ngIf="!isAdmin">
       <i class="fas fa-star"></i>
       <i class="fas fa-star"></i>
       <i class="fas fa-star"></i>
       <i class="fas fa-star-half-alt"></i>
       <i class="far fa-star"></i>
+    </div>
+    <!-- admin btns -->
+    <div class="admin-btns mt-2" *ngIf="isAdmin">
+      <a routerLink="edit/{{ product._id }}" class="btn edit-delete-btn ms-2">
+        Edit
+      </a>
+      <button class="btn edit-delete-btn ms-2" (click)="deleteProduct(product)">
+        Delete
+      </button>
     </div>
   </div>
 </div>
