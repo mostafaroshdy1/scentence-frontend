@@ -3,11 +3,12 @@ import { AddIconComponent } from '../add-icon/add-icon.component';
 import { Router, RouterModule } from '@angular/router';
 import { ApiAdminService } from '../../../Services/api-admin.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LineChartComponent } from '../line-chart/line-chart.component';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [AddIconComponent, RouterModule, HttpClientModule],
+  imports: [AddIconComponent, RouterModule, HttpClientModule, LineChartComponent],
   providers: [ApiAdminService],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css',

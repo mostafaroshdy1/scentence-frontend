@@ -32,6 +32,9 @@ export class ApiAdminService {
     return this.http.delete(this.url + '/' + id);
   }
 
+  countNumberOfProducts() {
+    return this.http.get(this.url + 'count');
+  }
 
   // private handleError(error: HttpErrorResponse) {
   //   if (error.error instanceof ErrorEvent) {
@@ -39,7 +42,7 @@ export class ApiAdminService {
   //   } else {
   //     console.error(
   //       `Backend returned code ${error.status}, ` +
-  //       `body was:`, error.error); 
+  //       `body was:`, error.error);
   //   }
   //   return throwError('Something bad happened; please try again later.');
   // }
