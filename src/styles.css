@@ -33,4 +33,31 @@
 			@apply translate-x-[1000px] pointer-events-none;
 		}
 	}
+
+	.btn-outline {
+		@apply px-6 py-3 border border-black text-sm font-bold transition duration-500 hover:bg-rose-500 hover:text-white hover:border-rose-500;
+	}
+}
+
+.left {
+	--translate: -1000px;
+}
+
+.right {
+	--translate: 1000px;
+}
+
+.fade-in {
+	animation: fadeInAnimation ease 3s;
+	animation-iteration-count: 1;
+}
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+		transform: translate(var(--translate), 0);
+	}
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
 }
