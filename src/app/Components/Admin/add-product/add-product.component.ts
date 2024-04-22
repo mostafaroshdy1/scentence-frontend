@@ -113,7 +113,12 @@ export class AddProductComponent implements OnInit {
           console.log(data);
         },
         error: (err: HttpErrorResponse) => {
-          this.error = this.getErrorMessage(err);
+          if (err.status === 400 && err.error?.message) {
+            this.error = err.error.message;
+          } else {
+            this.error = this.getErrorMessage(err);
+          }
+          console.log(this.error);
           this.loading = false;
         },
         complete: () => {

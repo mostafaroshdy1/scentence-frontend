@@ -40,7 +40,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
               },
               {
                 label: 'Users',
-                // will change latter
+                // will change later
                 // data: Object.values(userData),
                 data: Object.values('8'),
                 backgroundColor: '#f48fb1',
@@ -50,7 +50,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
               },
               {
                 label: 'Orders',
-                // will change latter
+                // will change later
                 data: Object.values('9'),
                 // data: Object.values(orderData),
                 backgroundColor: '#80cbc4',

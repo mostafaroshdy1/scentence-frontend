@@ -35,15 +35,15 @@ export class ProductDetailsComponent {
   mainImage = '';
   countValue = 0;
   style = '';
-  isAdmin=false;
+  isAdmin = false;
   currentComponent: string = 'description';
   ngOnInit(): void {
-    if(this.router.url.split('/')[2]){
+    if (this.router.url.split('/')[2]) {
       this.getProductDetails();
     }
-    if(this.router.url.split('/')[3]){
+    if (this.router.url.split('/')[3]) {
       this.getProductDetailsForAdmin();
-      this.isAdmin=true;
+      this.isAdmin = true;
     }
 
     this.apiService.getAllProducts().subscribe({
@@ -82,7 +82,7 @@ export class ProductDetailsComponent {
     this.currentComponent = 'shipping-policy';
   }
 
-  getProductDetails(){
+  getProductDetails() {
     this.apiService.getProductById(this.router.url.split('/')[2]).subscribe({
       next: (data: any) => {
         this.productDetails = data;
@@ -94,7 +94,7 @@ export class ProductDetailsComponent {
     });
   }
 
-  getProductDetailsForAdmin(){
+  getProductDetailsForAdmin() {
     this.apiService.getProductById(this.router.url.split('/')[3]).subscribe({
       next: (data: any) => {
         this.productDetails = data;
