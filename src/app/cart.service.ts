@@ -11,7 +11,7 @@ export class CartService {
   private url = 'http://localhost:3000/cart/';
 
   getCart() {
-    const jwtToken = localStorage.getItem('accessToken');
+    const jwtToken = localStorage.getItem('token');
     if (!jwtToken) {
       this.router.navigate(['/login']);
       // throw new Error('invalid Token');
@@ -22,7 +22,7 @@ export class CartService {
     return this.http.get(this.url, { headers: headers });
   }
   clearCart() {
-    const jwtToken = localStorage.getItem('accessToken');
+    const jwtToken = localStorage.getItem('token');
     if (!jwtToken) {
       this.router.navigate(['/login']);
       // throw new Error('invalid Token');
@@ -33,7 +33,7 @@ export class CartService {
     return this.http.delete(this.url, { headers: headers });
   }
   updateCart(cart: any) {
-    const jwtToken = localStorage.getItem('accessToken');
+    const jwtToken = localStorage.getItem('token');
     if (!jwtToken) {
       this.router.navigate(['/login']);
       // throw new Error('invalid Token');
