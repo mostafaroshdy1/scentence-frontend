@@ -4,6 +4,7 @@ body {
 .btn-black {
   background-color: #000;
   color: #fff;
+  width: 25%;
 }
 .btn-black:hover {
   background-color: #4b4b4b;
@@ -14,7 +15,7 @@ body {
   border-color: #000;
 }
 .scrollable-div {
-  max-height: 300px;
+  max-height: 340px;
   overflow-y: auto;
 }
 .alert {

@@ -2,58 +2,62 @@ import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
+  NgModel,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { OrdersService } from '../../Services/orders.services';
+import { Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
+  providers: [OrdersService, CartService],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css',
 })
 export class CheckoutComponent {
+  formData: any;
+  cart: any;
+  constructor(
+    private orderService: OrdersService,
+    private cartService: CartService,
+    private router: Router
+  ) {}
+  ngOnInit() {
+    this.cartService.getCart().subscribe({
+      next: (data: any) => {
+        this.cart = data;
+        this.cart.total = this.cart.reduce(
+          (acc: any, item: any) => acc + item.price * item.qty,
+          0
+        );
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
+  }
   regForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^\+?[0-9]+$/),
-    ]),
-    secPhone: new FormControl('', Validators.pattern(/^\+?[0-9]+$/)),
+    secondPhone: new FormControl('', Validators.pattern(/^\+?[0-9]+$/)),
     city: new FormControl('', Validators.required),
-    area: new FormControl('', Validators.required),
+    Area: new FormControl('', Validators.required),
     street: new FormControl('', Validators.required),
     building: new FormControl('', Validators.required),
     floor: new FormControl('', Validators.required),
     apartment: new FormControl('', Validators.required),
     extra: new FormControl(''),
-    flexRadioDefault: new FormControl('flexRadioDefault1', Validators.required),
+    paymentMethod: new FormControl('paymentMethod', Validators.required),
   });
 
-  get nameValid() {
-    return (
-      this.regForm.controls['name'].valid ||
-      this.regForm.controls['name'].untouched
-    );
-  }
-  get emailValid() {
-    return (
-      this.regForm.controls['email'].valid ||
-      this.regForm.controls['email'].untouched
-    );
-  }
-  get phoneValid() {
-    return (
-      this.regForm.controls['phone'].valid ||
-      this.regForm.controls['phone'].untouched
-    );
-  }
   get secPhoneValid() {
     return (
-      this.regForm.controls['secPhone'].valid ||
-      this.regForm.controls['secPhone'].untouched
+      this.regForm.controls['secondPhone'].valid ||
+      this.regForm.controls['secondPhone'].untouched
     );
   }
   get cityValid() {
@@ -64,8 +68,8 @@ export class CheckoutComponent {
   }
   get areaValid() {
     return (
-      this.regForm.controls['area'].valid ||
-      this.regForm.controls['area'].untouched
+      this.regForm.controls['Area'].valid ||
+      this.regForm.controls['Area'].untouched
     );
   }
   get streetValid() {
@@ -94,12 +98,22 @@ export class CheckoutComponent {
   }
   get paymentMethodValid() {
     return (
-      this.regForm.controls['flexRadioDefault'].valid ||
-      this.regForm.controls['flexRadioDefault'].untouched
+      this.regForm.controls['paymentMethod'].valid ||
+      this.regForm.controls['paymentMethod'].untouched
     );
   }
 
   submitForm() {
-    // console.log(this.regForm.value);
+    this.formData = this.regForm.value;
+    console.log(this.formData);
+    this.orderService.createOrder(this.formData).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.router.navigate(['/orders', data.order._id]);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
   }
 }

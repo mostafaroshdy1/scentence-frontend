@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CartService } from '../cart.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule, RouterModule],
   providers: [CartService],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',

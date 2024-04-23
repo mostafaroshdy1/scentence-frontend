@@ -8,74 +8,14 @@
             <div class="p-4">
               <h2 class="card-title mb-3">Checkout</h2>
               <div class="row">
-                <div class="col-6 mb-3">
-                  <p class="mb-0">Name</p>
+                <div class="col-12 mb-3">
+                  <p class="mb-0">Second Phone number (Optional)</p>
                   <div class="form-outline">
                     <input
-                      formControlName="name"
+                      formControlName="secondPhone"
                       type="text"
-                      id="name"
-                      name="name"
-                      class="form-control"
-                      [class.is-invalid]="!nameValid"
-                    />
-                    @if(!nameValid){
-                    <div class="alert alert-danger" id="nameError">
-                      Name is required
-                    </div>
-                    }
-                  </div>
-                </div>
-
-                <div class="col-6 mb-3">
-                  <p class="mb-0">Email</p>
-                  <div class="form-outline">
-                    <input
-                      formControlName="email"
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="example@gmail.com"
-                      class="form-control"
-                      [class.is-invalid]="!emailValid"
-                    />
-                    @if(!emailValid){
-                    <div class="alert alert-danger" id="emailError">
-                      email is required
-                    </div>
-                    }
-                  </div>
-                </div>
-
-                <div class="col-6 mb-3">
-                  <p class="mb-0">Phone</p>
-                  <div class="form-outline">
-                    <input
-                      formControlName="phone"
-                      type="tel"
-                      id="phone"
-                      value="+20 "
-                      name="phone"
-                      class="form-control"
-                      [class.is-invalid]="!phoneValid"
-                    />
-                    @if(!phoneValid){
-                    <div class="alert alert-danger" id="phoneError">
-                      Phone is required
-                    </div>
-                    }
-                  </div>
-                </div>
-
-                <div class="col-6 mb-3">
-                  <p class="mb-0">Second Phone no.</p>
-                  <div class="form-outline">
-                    <input
-                      formControlName="secPhone"
-                      type="tel"
-                      id="secPhone"
-                      value="+20 "
-                      name="secPhone"
+                      id="secondPhone"
+                      name="secondPhone"
                       class="form-control"
                       [class.is-invalid]="!secPhoneValid"
                     />
@@ -113,10 +53,10 @@
                   <p class="mb-0">Area</p>
                   <div class="form-outline">
                     <input
-                      formControlName="area"
+                      formControlName="Area"
                       type="text"
-                      id="area"
-                      name="area"
+                      id="Area"
+                      name="Area"
                       class="form-control"
                       [class.is-invalid]="!areaValid"
                     />
@@ -225,12 +165,12 @@
                   <div class="form-check h-100 border rounded-3">
                     <div class="p-3">
                       <input
-                        formControlName="flexRadioDefault1"
+                        formControlName="paymentMethod"
                         class="form-check-input"
+                        name="paymentMethod"
                         type="radio"
-                        name="flexRadioDefault"
                         id="flexRadioDefault1"
-                        checked
+                        value="cash"
                       />
                       <label class="form-check-label" for="flexRadioDefault1">
                         Cash on delivery
@@ -243,11 +183,12 @@
                   <div class="form-check h-100 border rounded-3">
                     <div class="p-3">
                       <input
-                        formControlName="flexRadioDefault2"
+                        formControlName="paymentMethod"
                         class="form-check-input"
+                        name="paymentMethod"
                         type="radio"
-                        name="flexRadioDefault"
                         id="flexRadioDefault2"
+                        value="credit"
                       />
                       <label class="form-check-label" for="flexRadioDefault2">
                         Credit Card
@@ -255,16 +196,21 @@
                     </div>
                   </div>
                 </div>
-                @if(!paymentMethodValid){
-                <div class="alert alert-danger" id="paymentMethodError">
-                  Payment Method is required
-                </div>
-                }
               </div>
 
-              <div class="float-end mb-4">
-                <button class="btn btn-light border mr-1">Cancel</button>
-                <button class="btn btn-black shadow-0 border">Continue</button>
+              @if(!paymentMethodValid){
+              <div class="alert alert-danger" id="paymentMethodError">
+                Payment Method is required
+              </div>
+              }
+
+              <div class="text-center mybtn mb-2">
+                <button
+                  (click)="submitForm()"
+                  class="btn btn-black shadow-0 border"
+                >
+                  Continue
+                </button>
               </div>
             </div>
           </form>
@@ -278,20 +224,20 @@
           <h5 class="card-title mb-3">Summary</h5>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Total price:</p>
-            <p class="mb-2">$195.90</p>
+            <p class="mb-2">{{ cart.total }} EGP</p>
           </div>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Discount:</p>
-            <p class="mb-2 text-danger">- $60.00</p>
+            <p class="mb-2 text-danger">- 00.00 EGP</p>
           </div>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Shipping cost:</p>
-            <p class="mb-2">+ $14.00</p>
+            <p class="mb-2">+ 00.00 EGP</p>
           </div>
           <hr />
           <div class="d-flex justify-content-between">
             <p class="mb-2">Total price:</p>
-            <p class="mb-2 fw-bold">$149.90</p>
+            <p class="mb-2 fw-bold">00.00 EGP</p>
           </div>
 
           <div class="input-group mt-3 mb-4">
@@ -307,113 +253,30 @@
           <hr />
           <h5 class="card-title mb-3">Cart Items</h5>
           <div class="scrollable-div">
-            <div class="d-flex align-items-center mb-4">
+            @for(item of cart; track item.productId){
+            <div class="d-flex align-items-center mb-4 mt-3">
               <div class="me-3 position-relative">
                 <span
                   class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary"
                 >
-                  1
+                  {{ item.qty }}
                 </span>
                 <img
-                  src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/7.webp"
+                  src="{{ item.img }}"
                   style="height: 96px; width: 96x"
                   class="img-sm rounded border"
                 />
               </div>
               <div class="">
-                <a href="#" class="nav-link">
-                  Gaming Headset with Mic <br />
-                  Darkblue color
-                </a>
-                <div class="price text-muted">Total: $295.99</div>
+                <p href="#" class="nav-link">
+                  {{ item.name }}
+                </p>
+                <div class="price text-muted">
+                  Total: {{ item.price * item.qty }} EGP
+                </div>
               </div>
             </div>
-            <div class="d-flex align-items-center mb-4">
-              <div class="me-3 position-relative">
-                <span
-                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary"
-                >
-                  1
-                </span>
-                <img
-                  src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/7.webp"
-                  style="height: 96px; width: 96x"
-                  class="img-sm rounded border"
-                />
-              </div>
-              <div class="">
-                <a href="#" class="nav-link">
-                  Gaming Headset with Mic <br />
-                  Darkblue color
-                </a>
-                <div class="price text-muted">Total: $295.99</div>
-              </div>
-            </div>
-
-            <div class="d-flex align-items-center mb-4">
-              <div class="me-3 position-relative">
-                <span
-                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary"
-                >
-                  1
-                </span>
-                <img
-                  src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/7.webp"
-                  style="height: 96px; width: 96x"
-                  class="img-sm rounded border"
-                />
-              </div>
-              <div class="">
-                <a href="#" class="nav-link">
-                  Gaming Headset with Mic <br />
-                  Darkblue color
-                </a>
-                <div class="price text-muted">Total: $295.99</div>
-              </div>
-            </div>
-
-            <div class="d-flex align-items-center mb-4">
-              <div class="me-3 position-relative">
-                <span
-                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary"
-                >
-                  1
-                </span>
-                <img
-                  src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/5.webp"
-                  style="height: 96px; width: 96x"
-                  class="img-sm rounded border"
-                />
-              </div>
-              <div class="">
-                <a href="#" class="nav-link">
-                  Apple Watch Series 4 Space <br />
-                  Large size
-                </a>
-                <div class="price text-muted">Total: $217.99</div>
-              </div>
-            </div>
-
-            <div class="d-flex align-items-center mb-4">
-              <div class="me-3 position-relative">
-                <span
-                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary"
-                >
-                  3
-                </span>
-                <img
-                  src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/1.webp"
-                  style="height: 96px; width: 96x"
-                  class="img-sm rounded border"
-                />
-              </div>
-              <div class="">
-                <a href="#" class="nav-link"
-                  >GoPro HERO6 4K Action Camera - Black</a
-                >
-                <div class="price text-muted">Total: $910.00</div>
-              </div>
-            </div>
+            }
           </div>
         </div>
       </div>

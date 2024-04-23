@@ -24,4 +24,22 @@ export class OrdersService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.put<any>(`${this.URL_DB}/cancel/${id}`, {}, { headers });
   }
+  createOrder(formData: any) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const requestData = {
+      apartment: formData.apartment,
+      floor: formData.floor,
+      building: formData.building,
+      street: formData.street,
+      Area: formData.Area,
+      city: formData.city,
+      secondPhone: formData.secondPhone,
+      paymentMethod: formData.paymentMethod,
+      extra: formData.extra,
+    };
+    console.log(requestData);
+    console.log(this.URL_DB, requestData, { headers });
+    return this.http.post<any>(this.URL_DB, requestData, { headers });
+  }
 }
