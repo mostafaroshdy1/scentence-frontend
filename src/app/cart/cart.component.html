@@ -1,84 +1,136 @@
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-12">
-            <h4 class="fw-medium">Your cart items</h4>
-        </div>
+<div class="container mt-5 pt-5">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="fw-medium">Your cart items</h4>
     </div>
-    <div class="row">
-        <div class="col-12 border">
-            <div class="row border-bottom" style="background-color: rgb(249, 249, 249);">
-                <div class="col-2 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        IMAGE
-                    </p>
-                </div>
-                <div class="col-2 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        PRODUCT
-                    </p>
-                </div>
-                <div class="col-3 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        PRICE
-                    </p>
-                </div>
-                <div class="col-3 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        QUANTITY
-                    </p>
-                </div>
-                <div class="col-1 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        TOTAL
-                    </p>
-                </div>
-                <div class="col-1 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        REMOVE
-                    </p>
-                </div>
+  </div>
+  <div class="row">
+    <div class="col-12 border">
+      <div
+        class="row border-bottom"
+        style="background-color: rgb(249, 249, 249)"
+      >
+        <div class="col-2 border-end pt-3 pb-3 text-center">
+          <p class="m-0 fw-bold responsive-font">IMAGE</p>
+        </div>
+        <div class="col-2 border-end pt-3 pb-3 text-center">
+          <p class="m-0 fw-bold responsive-font">PRODUCT</p>
+        </div>
+        <div class="col-2 border-end pt-3 pb-3 text-center responsive-font">
+          <p class="m-0 fw-bold">PRICE</p>
+        </div>
+        <div
+          class="col-2 border-end pt-3 pb-3 ps-0 pe-0 text-center responsive-font"
+        >
+          <p class="m-0 fw-bold">QUANTITY</p>
+        </div>
+        <div class="col-2 border-end pt-3 pb-3 text-center responsive-font">
+          <p class="m-0 fw-bold">TOTAL</p>
+        </div>
+        <div class="col-2 border-end pt-3 pb-3 text-center responsive-font">
+          <p class="m-0 fw-bold">REMOVE</p>
+        </div>
+      </div>
+      @for(item of cart; track item.productId){
+      <div class="row border-bottom">
+        <div
+          class="col-2 border-end text-center justify-content-center align-items-center d-flex"
+        >
+          <p class="m-0 fw-bold">
+            <img
+              loading="lazy"
+              class="img-fluid mt-1 mb-1"
+              src="{{ item.img }}"
+              alt="product-photo"
+            />
+          </p>
+        </div>
+        <div
+          class="col-2 border-end p-3 text-center d-flex justify-content-center align-items-center"
+        >
+          <p class="m-0 fw-bold responsive-font">
+            {{ item.name }}
+          </p>
+        </div>
+        <div
+          class="col-2 border-end p-3 text-center d-flex justify-content-center align-items-center"
+        >
+          <p class="m-0 fw-bold responsive-font">
+            {{ item.price }}
+          </p>
+        </div>
+        <div
+          class="col-2 border-end p-3 text-center d-flex justify-content-center align-items-center"
+        >
+          <div
+            class="counter-container d-flex justify-content-center align-items-center"
+          >
+            <div class="counter-border">
+              <button
+                class="btn counter-button"
+                (click)="reduceQty(item.productId)"
+              >
+                -
+              </button>
+              <span class="counter-value">{{ item.qty }}</span>
+              <button
+                class="btn counter-button"
+                (click)="increaseQty(item.productId)"
+              >
+                +
+              </button>
             </div>
-            <div class="row border-bottom">
-                <div class="col-2 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        IMAGE
-                    </p>
-                </div>
-                <div class="col-2 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        PRODUCT
-                    </p>
-                </div>
-                <div class="col-3 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        PRICE
-                    </p>
-                </div>
-                <div class="col-3 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        QUANTITY
-                    </p>
-                </div>
-                <div class="col-1 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        TOTAL
-                    </p>
-                </div>
-                <div class="col-1 border-end p-3 text-center">
-                    <p class="m-0 fw-bold">
-                        REMOVE
-                    </p>
-                </div>
-            </div>
+          </div>
         </div>
+        <div
+          class="col-2 border-end p-3 text-center d-flex justify-content-center align-items-center"
+        >
+          <p class="m-0 fw-bold responsive-font">
+            {{ item.qty * item.price }}
+          </p>
+        </div>
+        <div
+          class="col-2 border-end p-3 text-center d-flex justify-content-center align-items-center"
+        >
+          <p
+            class="m-0 btn fw-bold responsive-font"
+            (click)="deleteItem(item.productId)"
+          >
+            REMOVE
+          </p>
+        </div>
+      </div>
+      }
     </div>
-    <div class="row">
-        <div class="col-6">
-            <button type="button" class="btn btn-secondary">Continue Shopping</button>
-        </div>
-        <div class="col-6 d-flex justify-content-end">
-            <button type="button" class="btn btn-primary">Update Cart</button>
-            <button type="button" class="btn btn-danger ms-2">Clear Cart</button>
-        </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12 col-md-6 p-0">
+      <a
+        href=""
+        class="red-on-hover fs-6 fw-bold btn text-center m-0 d-flex align-items-center justify-content-center"
+        style="background-color: #f2f2f2; width: 216px; height: 48px"
+        >Continue Shopping</a
+      >
     </div>
+    <div
+      class="col-12 col-md-6 d-flex justify-content-end justify-content-sm-md-start p-0 flex-md-row mt-sm-md-3"
+    >
+      <button
+        type="button"
+        class="btn fw-bold red-on-hover mb-2 mb-md-0"
+        style="background-color: #f2f2f2; width: 216px; height: 48px"
+        (click)="updateCart()"
+      >
+        Update Cart
+      </button>
+      <button
+        type="button"
+        class="btn fw-bold ms-2 red-on-hover"
+        style="background-color: #f2f2f2; width: 216px; height: 48px"
+        (click)="clearCart()"
+      >
+        Clear Cart
+      </button>
+    </div>
+  </div>
 </div>

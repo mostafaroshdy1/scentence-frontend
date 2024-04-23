@@ -1,0 +1,93 @@
+@media (max-width: 768px) {
+    .responsive-font {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mt-sm-md-3 {
+        margin-top: 1rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .justify-content-sm-md-start {
+        justify-content: start !important;
+    }
+}
+
+.red-on-hover:hover {
+    background-color: #E32A53 !important;
+    color: white !important;
+}
+.counter-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .counter-border {
+    border: 1px solid #ced4da;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+  }
+  
+  .counter-button {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+  }
+  
+  .counter-value {
+    margin: 0 10px;
+  }
+  
+  .add-to-cart {
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  
+    border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    -ms-border-radius: 0px !important;
+    -o-border-radius: 0px !important;
+  
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #e32a53;
+    border: none;
+  }
+  
+  .wishlist-border {
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    -ms-border-radius: 0px !important;
+    -o-border-radius: 0px !important;
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+  }
+  
+  .wishlist-border:hover {
+    color: #e32a53;
+  }
+  .wishlist-border i {
+    font-weight: normal !important;
+  }
+  
