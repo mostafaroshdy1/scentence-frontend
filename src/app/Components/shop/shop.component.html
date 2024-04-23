@@ -1,0 +1,47 @@
+<app-banner></app-banner>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 d-none d-lg-block">
+      <app-filter-search-bar></app-filter-search-bar>
+    </div>
+    <div class="col-lg-3 d-lg-none d-block">
+      <button
+        type="button"
+        id="leftModalButton"
+        class="d-lg-none"
+        data-bs-toggle="modal"
+        data-bs-target="#leftModal"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div class="col-lg-9 col-md-12">
+      <app-displayed-products></app-displayed-products>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="leftModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="leftModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-left" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-filter-search-bar></app-filter-search-bar>
+      </div>
+    </div>
+  </div>
+</div>

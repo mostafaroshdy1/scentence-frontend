@@ -1,0 +1,104 @@
+<app-banner></app-banner>
+<div class="container mt-5">
+  <div
+    *ngIf="error"
+    class="alert alert-danger mt-3"
+    role="alert"
+    [innerHTML]="error"
+  ></div>
+
+  <h2 class="display-5 text-center" *ngIf="!isEdit">Add Product</h2>
+  <h2 class="display-5 text-center" *ngIf="isEdit">Edit Product</h2>
+  <form [formGroup]="productForm">
+    <div class="form-group mt-2 mb-3">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        placeholder="Enter product title"
+        formControlName="title"
+      />
+    </div>
+    <div class="form-group mt-2 mb-3">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        rows="3"
+        placeholder="Enter product description"
+        formControlName="description"
+      ></textarea>
+    </div>
+    <div class="form-group mt-2 mb-3">
+      <label for="price">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        placeholder="Enter product price"
+        formControlName="price"
+      />
+    </div>
+    <div class="form-group mt-2 mb-3">
+      <label for="stock">Stock</label>
+      <input
+        type="number"
+        class="form-control"
+        id="stock"
+        placeholder="Enter product stock"
+        formControlName="stock"
+      />
+    </div>
+    <div class="form-group mt-2 mb-3">
+      <label for="category">Category</label>
+      <select class="form-control" id="category" formControlName="category">
+        <option [ngValue]="null" selected disabled>Choose One</option>
+        <option value="women">women</option>
+        <option value="men">men</option>
+        <option value="kids">kids</option>
+      </select>
+    </div>
+    <div class="form-group mt-2 mb-3">
+      <label for="images">Images (up to 4)</label>
+      <input
+        class="form-control"
+        type="file"
+        id="images"
+        accept="image/*"
+        multiple
+        (change)="addImage($event)"
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn add-product-btn mb-3"
+      [disabled]="loading"
+      (click)="addProduct()"
+      *ngIf="!isEdit"
+    >
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      Add Product
+    </button>
+    <button
+      type="submit"
+      class="btn add-product-btn mb-5"
+      [disabled]="loading"
+      (click)="editProduct()"
+      *ngIf="isEdit"
+    >
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      Edit Product
+    </button>
+  </form>
+</div>
