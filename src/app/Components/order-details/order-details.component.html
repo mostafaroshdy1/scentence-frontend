@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container details">
+      <div class="row">
+        <div
+          class="col-lg-4 col-md-12"
+          style="background-color: black; height: 100vh"
+        ></div>
+        <div class="col-lg-8 col-md-12">
+          <div class="container my-5 d-flex justify-content-center">
+            <div class="card card-1 p-4">
+              <div class="card-body">
+                <div class="row justify-content-between mb-3">
+                  <div class="col-auto">
+                    <h2 class="color-1 mb-0 change-color">Order Details</h2>
+                  </div>
+                  <div class="col-auto text-muted mt-1">
+                    <h4>Order ID: {{ order.order.orderId }}</h4>
+                  </div>
+                </div>
+                <div
+                  class="row"
+                  *ngFor="
+                    let product of order.products;
+                    trackBy: order.products.title
+                  "
+                >
+                  <div class="col">
+                    <div class="card products mb-3">
+                      <div class="row g-0">
+                        <div
+                          class="col-lg-4 col-md-3 col-sm-4 col-4 justify-content-center align-items-center d-flex"
+                        >
+                          <img
+                            src="{{ product.image }}"
+                            class="img-fluid"
+                            alt="..."
+                          />
+                        </div>
+                        <div
+                          class="col-lg-8 col-md-9 col-sm-8 col-8 d-flex justify-content-center align-items-center"
+                        >
+                          <div class="card-body">
+                            <div class="media">
+                              <div
+                                class="media-body my-auto col-lg-12 col-md-12 col-sm-12 col-12"
+                              >
+                                <div class="row my-auto">
+                                  <div
+                                    class="col-lg-7 col-md-7 col-sm-7 col-12 text-sm-start text-start"
+                                  >
+                                    <h5 class="title">
+                                      <b>{{ product.title }}</b>
+                                    </h5>
+                                  </div>
+                                  <div
+                                    class="col-lg-5 col-md-5 col-sm-5 col-12 text-sm-start text-start price mt-lg-4 mt-md-4 mt-sm-4"
+                                  >
+                                    <b>Egp {{ product.price }}</b>
+                                  </div>
+                                  <div
+                                    class="col-lg-6 col-md-6 col-sm-6 col-12 text-sm-start text-start qty text-muted"
+                                  >
+                                    Qty:{{
+                                      order.order.products[product._id].quantity
+                                    }}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-4 details-1">
+                  <div class="col-12">
+                    <h5 class="mb-3 text-dark">Order Info</h5>
+                  </div>
+
+                  <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+                    <p class="mb-3">
+                      <i class="fa-solid fa-calendar-days mr-2"></i
+                      >{{ order.order.createdAt }}
+                    </p>
+                    <p class="mb-3">
+                      <i class="fa-solid fa-location-dot mr-2"></i
+                      >{{ order.order.building }} {{ order.order.street }}
+                      {{ order.order.Area }} {{ order.order.city }}
+                    </p>
+                    <p class="mb-3">
+                      <i class="fa-solid fa-money-bill mr-2"></i
+                      >{{ order.order.paymentMethod }}
+                    </p>
+                    <p class="mb-3">
+                      <i class="fa-solid fa-phone mr-2"></i
+                      >{{
+                        order.order.secondPhone
+                          ? order.order.secondPhone
+                          : "Not mentioned"
+                      }}
+                    </p>
+                  </div>
+
+                  <div
+                    class="col-lg-5 col-md-5 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3"
+                  >
+                    <div class="row justify-content-between">
+                      <div class="text-lg-right text-md-right text-sm-left col">
+                        <p class="mb-3 my-right"><b>Total</b></p>
+                      </div>
+                      <div class="col-auto">
+                        <p class="mb-3">EGP {{ order.order.total }}</p>
+                      </div>
+                    </div>
+                    <div class="row justify-content-between">
+                      <div
+                        class="flex-sm-col text-md-right text-lg-right text-sm-left col"
+                      >
+                        <p class="mb-3 my-right"><b>Discount</b></p>
+                      </div>
+                      <div class="flex-sm-col col-auto">
+                        <p class="mb-3">EGP 0.00</p>
+                      </div>
+                    </div>
+                    <div class="row justify-content-between">
+                      <div
+                        class="flex-sm-col text-md-right text-lg-right text-sm-left col"
+                      >
+                        <p class="mb-3 my-right"><b>Delivery Charges</b></p>
+                      </div>
+                      <div class="flex-sm-col col-auto">
+                        <p class="mb-3">Free</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tracking">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                      <ul id="progressbar" class="text-center">
+                        <li
+                          [ngClass]="{ active: currentStatusIndex >= 0 }"
+                          id="step1"
+                          class="step0"
+                        >
+                          <span>Pending</span>
+                        </li>
+                        <li
+                          [ngClass]="{ active: currentStatusIndex >= 1 }"
+                          id="step2"
+                          class="step0"
+                        >
+                          <span>Accepted</span>
+                        </li>
+                        <li
+                          [ngClass]="{ active: currentStatusIndex >= 2 }"
+                          id="step3"
+                          class="step0"
+                        >
+                          <span>On Way</span>
+                        </li>
+                        <li
+                          [ngClass]="{ active: currentStatusIndex >= 3 }"
+                          id="step4"
+                          class="step0"
+                        >
+                          <span>Delivered</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
