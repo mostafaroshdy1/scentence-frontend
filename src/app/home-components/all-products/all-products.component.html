@@ -1,0 +1,18 @@
+<div class="mt-8 p-8 text-center">
+	<h2 class="text-4xl font-bold mb-2">All Products</h2>
+	<p class="max-w-xl mx-auto text-gray-500">
+		Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+		classical
+	</p>
+	<div class="flex justify-center items-center gap-8 flex-wrap mt-8 filter-btns">
+		<button type="button" class="btn-gray uppercase active" (click)="changeProduct($event, 'new')">
+			New Products
+		</button>
+		<button type="button" class="btn-gray uppercase" (click)="changeProduct($event, 'popular')">
+			popular items
+		</button>
+		<button type="button" class="btn-gray uppercase" (click)="changeProduct($event, 'trend')">
+			Trending Item
+		</button>
+	</div>
+</div>
