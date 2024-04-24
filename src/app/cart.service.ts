@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 export class CartService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  private url = 'http://localhost:3000/cart/';
+  private url = `${environment.apiUrl}/cart`;
 
   getCart() {
     const jwtToken = localStorage.getItem('token');

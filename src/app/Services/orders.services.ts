@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class OrdersService {
   constructor(private readonly http: HttpClient) {}
 
-  private readonly URL_DB = 'http://localhost:3000/orders';
+  private readonly URL_DB = `${environment.apiUrl}/orders`;
 
   getUserOrders() {
     const token = localStorage.getItem('token');

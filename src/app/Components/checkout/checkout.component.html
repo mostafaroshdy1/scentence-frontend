@@ -224,20 +224,24 @@
           <h5 class="card-title mb-3">Summary</h5>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Total price:</p>
-            <p class="mb-2">{{ cart.total }} EGP</p>
+            <p class="mb-2">
+              {{ cart.total | currency : "USD" : "symbol" : "1.2-2" }}
+            </p>
           </div>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Discount:</p>
-            <p class="mb-2 text-danger">- 00.00 EGP</p>
+            <p class="mb-2 text-danger">- $00.00</p>
           </div>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Shipping cost:</p>
-            <p class="mb-2">+ 00.00 EGP</p>
+            <p class="mb-2">+ $00.00</p>
           </div>
           <hr />
           <div class="d-flex justify-content-between">
             <p class="mb-2">Total price:</p>
-            <p class="mb-2 fw-bold">00.00 EGP</p>
+            <p class="mb-2 fw-bold">
+              {{ cart.total | currency : "USD" : "symbol" : "1.2-2" }}
+            </p>
           </div>
 
           <div class="input-group mt-3 mb-4">
@@ -272,7 +276,10 @@
                   {{ item.name }}
                 </p>
                 <div class="price text-muted">
-                  Total: {{ item.price * item.qty }} EGP
+                  Total:{{
+                    item.price * item.qty
+                      | currency : "USD" : "symbol" : "1.2-2"
+                  }}
                 </div>
               </div>
             </div>
