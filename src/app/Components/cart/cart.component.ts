@@ -74,6 +74,9 @@ export class CartComponent {
   }
   deleteItem(id: string) {
     this.cart = this.cart.filter((item: any) => item.productId != id);
+    if (this.cart.length === 0) {
+      this.isHidden = true;
+    }
   }
 }
 
