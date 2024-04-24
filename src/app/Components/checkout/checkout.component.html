@@ -1,0 +1,292 @@
+<section class="bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-8 col-lg-8 mb-4">
+        <!-- Checkout -->
+        <div class="card shadow-0 border">
+          <form [formGroup]="regForm">
+            <div class="p-4">
+              <h2 class="card-title mb-3">Checkout</h2>
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <p class="mb-0">Second Phone number (Optional)</p>
+                  <div class="form-outline">
+                    <input
+                      formControlName="secondPhone"
+                      type="text"
+                      id="secondPhone"
+                      name="secondPhone"
+                      class="form-control"
+                      [class.is-invalid]="!secPhoneValid"
+                    />
+                    @if(!secPhoneValid){
+                    <div class="alert alert-danger" id="secPhoneError">
+                      Provide correct format
+                    </div>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <h5 class="card-title mb-3">Address info</h5>
+              <div class="row">
+                <div class="col-sm-4 mb-3">
+                  <p class="mb-0">City</p>
+                  <div class="form-outline">
+                    <input
+                      formControlName="city"
+                      type="text"
+                      id="city"
+                      name="city"
+                      class="form-control"
+                      [class.is-invalid]="!cityValid"
+                    />
+                    @if(!cityValid){
+                    <div class="alert alert-danger" id="cityError">
+                      City is required
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="col-sm-4 mb-3">
+                  <p class="mb-0">Area</p>
+                  <div class="form-outline">
+                    <input
+                      formControlName="Area"
+                      type="text"
+                      id="Area"
+                      name="Area"
+                      class="form-control"
+                      [class.is-invalid]="!areaValid"
+                    />
+                    @if(!areaValid){
+                    <div class="alert alert-danger" id="areaError">
+                      Area is required
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="col-sm-4 col-6 mb-3">
+                  <p class="mb-0">Street</p>
+                  <div class="form-outline">
+                    <input
+                      formControlName="street"
+                      type="text"
+                      id="street"
+                      name="street"
+                      class="form-control"
+                      [class.is-invalid]="!streetValid"
+                    />
+                    @if(!streetValid){
+                    <div class="alert alert-danger" id="streetError">
+                      Street is required
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="col-sm-4 col-6 mb-3">
+                  <p class="mb-0">Building</p>
+                  <div class="form-outline">
+                    <input
+                      formControlName="building"
+                      type="number"
+                      id="building"
+                      name="building"
+                      class="form-control"
+                      [class.is-invalid]="!buildingValid"
+                    />
+                    @if(!buildingValid){
+                    <div class="alert alert-danger" id="buildingError">
+                      Building is required
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="col-sm-4 mb-3">
+                  <p class="mb-0">Floor</p>
+                  <div class="form-outline">
+                    <input
+                      formControlName="floor"
+                      type="number"
+                      id="floor"
+                      name="floor"
+                      class="form-control"
+                      [class.is-invalid]="!floorValid"
+                    />
+                    @if(!floorValid){
+                    <div class="alert alert-danger" id="floorError">
+                      Floor is required
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="col-sm-4 mb-3">
+                  <p class="mb-0">Apartment</p>
+                  <div class="form-outline">
+                    <input
+                      formControlName="apartment"
+                      type="number"
+                      id="apartment"
+                      name="apartment"
+                      class="form-control"
+                      [class.is-invalid]="!apartmentValid"
+                    />
+                    @if(!apartmentValid){
+                    <div class="alert alert-danger" id="apartmentError">
+                      Apartment is required
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <p class="mb-0">Extra Details</p>
+                  <div class="form-outline">
+                    <textarea
+                      formControlName="extra"
+                      class="form-control"
+                      id="extra"
+                      name="extra"
+                      rows="2"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="my-4" />
+              <div class="row mb-3">
+                <h5 class="card-title mb-3">Payment method</h5>
+                <div class="col-lg-6 mb-3">
+                  <div class="form-check h-100 border rounded-3">
+                    <div class="p-3">
+                      <input
+                        formControlName="paymentMethod"
+                        class="form-check-input"
+                        name="paymentMethod"
+                        type="radio"
+                        id="flexRadioDefault1"
+                        value="cash"
+                      />
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Cash on delivery
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 mb-3">
+                  <div class="form-check h-100 border rounded-3">
+                    <div class="p-3">
+                      <input
+                        formControlName="paymentMethod"
+                        class="form-check-input"
+                        name="paymentMethod"
+                        type="radio"
+                        id="flexRadioDefault2"
+                        value="credit"
+                      />
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Credit Card
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              @if(!paymentMethodValid){
+              <div class="alert alert-danger" id="paymentMethodError">
+                Payment Method is required
+              </div>
+              }
+
+              <div class="text-center mybtn mb-2">
+                <button
+                  (click)="submitForm()"
+                  class="btn btn-black shadow-0 border"
+                >
+                  Continue
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Checkout -->
+      </div>
+      <div
+        class="col-xl-4 col-lg-4 d-flex justify-content-center justify-content-lg-end"
+      >
+        <div class="ms-lg-4 mt-4 mt-lg-0" style="max-width: 320px">
+          <h5 class="card-title mb-3">Summary</h5>
+          <div class="d-flex justify-content-between">
+            <p class="mb-2">Total price:</p>
+            <p class="mb-2">
+              {{ cart.total | currency : "USD" : "symbol" : "1.2-2" }}
+            </p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="mb-2">Discount:</p>
+            <p class="mb-2 text-danger">- $00.00</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="mb-2">Shipping cost:</p>
+            <p class="mb-2">+ $00.00</p>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between">
+            <p class="mb-2">Total price:</p>
+            <p class="mb-2 fw-bold">
+              {{ cart.total | currency : "USD" : "symbol" : "1.2-2" }}
+            </p>
+          </div>
+
+          <div class="input-group mt-3 mb-4">
+            <input
+              type="text"
+              class="form-control border"
+              name=""
+              placeholder="Promo code"
+            />
+            <button class="btn btn-black border">Apply</button>
+          </div>
+
+          <hr />
+          <h5 class="card-title mb-3">Cart Items</h5>
+          <div class="scrollable-div">
+            @for(item of cart; track item.productId){
+            <div class="d-flex align-items-center mb-4 mt-3">
+              <div class="me-3 position-relative">
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary"
+                >
+                  {{ item.qty }}
+                </span>
+                <img
+                  src="{{ item.img }}"
+                  style="height: 96px; width: 96x"
+                  class="img-sm rounded border"
+                />
+              </div>
+              <div class="">
+                <p href="#" class="nav-link">
+                  {{ item.name }}
+                </p>
+                <div class="price text-muted">
+                  Total:{{
+                    item.price * item.qty
+                      | currency : "USD" : "symbol" : "1.2-2"
+                  }}
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
