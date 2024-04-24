@@ -1,0 +1,57 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.prof {
+  background-color: black;
+  height: 100vh;
+}
+.o-id {
+  text-align: left;
+}
+.text {
+  text-align: left;
+  font-size: 0.9rem;
+}
+.btn-success {
+  background-color: #00ba00;
+  border: none;
+}
+.btn-alert {
+  background-color: #f44336;
+  border: none;
+}
+.btn-warning {
+  color: white;
+}
+.state {
+  color: white;
+  border-radius: 50px;
+}
+.accepted {
+  background-color: #00ba00;
+}
+.rejected {
+  background-color: #f44336;
+}
+.pending {
+  background-color: #e49542;
+}
+.delivered {
+  background-color: #44bfd7;
+}
+.canceled {
+  background-color: rgb(0, 0, 0);
+}
+.on-way {
+  background-color: #fdd941;
+}
+a {
+  text-decoration: none;
+}
