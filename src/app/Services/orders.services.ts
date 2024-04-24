@@ -43,4 +43,9 @@ export class OrdersService {
     console.log(this.URL_DB, requestData, { headers });
     return this.http.post<any>(this.URL_DB, requestData, { headers });
   }
+  reOrder(id: any) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.URL_DB}/reOrder/${id}`, {}, { headers });
+  }
 }
