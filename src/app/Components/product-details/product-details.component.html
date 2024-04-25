@@ -1,0 +1,176 @@
+<app-banner> </app-banner>
+@if(productDetails){
+<div class="container">
+  <div class="row product-details-container justify-content-center">
+    <div class="col-lg-6 col-11 large-img-container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="large-image-container">
+            <img
+              [src]="mainImage"
+              alt="{{ productDetails.title }}"
+              class="img-fluid mx-auto d-block large-image"
+            />
+          </div>
+        </div>
+        <div
+          class="col-4 d-md-block d-none small-img-container align-items-center"
+        >
+          <div class="row">
+            <div class="col-12">
+              <div class="small-images-container">
+                <img
+                  *ngFor="let img of productDetails.image"
+                  [src]="img"
+                  alt="{{ productDetails.title }}"
+                  class="img-fluid mx-auto d-block small-image mb-2"
+                  (click)="mainImage = img"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12 product-details">
+      <h2 class="fs-2">{{ productDetails.title }}</h2>
+      <p class="lead mt-2">{{ productDetails.description }}</p>
+      <p class="price">${{ productDetails.price }}</p>
+      <p *ngIf="productDetails.stock > 0" class="fs-5">
+        <strong> In Stock: </strong> {{ productDetails.stock }}
+      </p>
+      <p *ngIf="productDetails.stock == 0" class="fs-5">
+        <strong> Out of Stock </strong>
+      </p>
+      <p class="fs-5">
+        <strong>Category: </strong> {{ productDetails.category }}
+      </p>
+      <div class="star-rating mb-4">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+
+      <div class="mt-3 counter-container" *ngIf="!isAdmin">
+        <div class="counter-border">
+          <button
+            class="btn counter-button"
+            [disabled]="productDetails.stock == 0"
+            (click)="decrement()"
+          >
+            -
+          </button>
+          <span class="counter-value">{{ countValue }}</span>
+          <button
+            class="btn counter-button"
+            [disabled]="productDetails.stock == 0"
+            (click)="increment()"
+          >
+            +
+          </button>
+        </div>
+        <button
+          class="ms-2 btn btn-primary add-to-cart"
+          [disabled]="productDetails.stock == 0"
+        >
+          Add to Cart
+        </button>
+        <button
+          [disabled]="productDetails.stock == 0"
+          class="ms-2 btn wishlist-border"
+        >
+          <i class="far fa-heart fs-5"></i>
+        </button>
+      </div>
+
+      <button
+        class="btn w-50 mt-4 buy-now-btn"
+        [disabled]="productDetails.stock == 0"
+        *ngIf="!isAdmin"
+      >
+        Buy Now
+      </button>
+      <div class="admin-btns mt-2" *ngIf="isAdmin">
+        <a
+          routerLink="/admin/products/edit/{{ productDetails._id }}"
+          class="btn edit-delete-btn ms-2"
+        >
+          Edit
+        </a>
+        <button
+          class="btn edit-delete-btn ms-2"
+          (click)="deleteProduct(productDetails)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+
+    <div class="row desc-section">
+      <div class="col-lg-8 col-12">
+        <div class="navigation-menu mt-5">
+          <div class="d-flex">
+            <a
+              (click)="showDescription()"
+              [ngClass]="{ active: currentComponent === 'description' }"
+              class="nav-link pe-4"
+              >Description</a
+            >
+            <a
+              (click)="showShippingPolicy()"
+              [ngClass]="{ active: currentComponent === 'shipping-policy' }"
+              class="nav-link pe-4"
+              >Shipping Policy</a
+            >
+          </div>
+          <div *ngIf="currentComponent === 'description'">
+            <app-description-for-product></app-description-for-product>
+          </div>
+
+          <div *ngIf="currentComponent === 'reviews'">
+            <app-reviews></app-reviews>
+          </div>
+
+          <div *ngIf="currentComponent === 'shipping-policy'">
+            <app-shipping-policy></app-shipping-policy>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-12 prod-image">
+        <img
+          src="{{ productDetails.image[0] }}"
+          class="w-100 img-fluid"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <!-- Related products -->
+    <ng-container *ngIf="allProducts && allProducts.length >= 3">
+      <div class="row mt-md-0 mt-4">
+        <div class="col-12 text-center">
+          <p class="display-5">Related products</p>
+          <p class="d-block m-auto mb-4 lead">
+            Contrary to popular belief, Lorem Ipsum is not simply random text.
+            It has roots in a piece of classical
+          </p>
+        </div>
+        @for (product of allProducts.slice(0, 3); track product._id) {
+        <div class="col-md-4 mt-4 one-product-component">
+          <app-one-product [product]="product"></app-one-product>
+        </div>
+        }
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+}@else{
+<div class="d-flex justify-content-center mt-5">
+  <div class="spinner-border" role="status"></div>
+</div>
+}
