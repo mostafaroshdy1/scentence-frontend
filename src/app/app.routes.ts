@@ -61,10 +61,11 @@ export const routes: Routes = [
           },
         ],
       },
-       { path: 'orders', component: OrdersHistoryComponent },
-  { path: 'orders/:id', component: OrderDetailsComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'checkout', component: CheckoutComponent },
     ],
   },
 
+  { path: 'orders', component: OrdersHistoryComponent },
+  { path: 'orders/:id', component: OrderDetailsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
+];

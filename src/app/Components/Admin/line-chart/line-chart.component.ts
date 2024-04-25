@@ -26,6 +26,8 @@ export class LineChartComponent implements OnInit, OnDestroy {
   fetchData(): void {
     this.apiService.countNumberOfProducts().subscribe((productData: any) => {
       this.apiService.countUsers().subscribe((userData: any) => {
+        console.log(userData);
+
         console.log('count User ' + userData.count[0].users);
         this.userCount = userData.count[0].users;
         this.apiService.countNumberOfProducts().subscribe((orderData: any) => {
