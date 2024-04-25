@@ -2,7 +2,7 @@ import { CommonModule, NgForOf } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { OrdersService } from '../../Services/orders.services';
+import { OrdersService } from '../../Services/orders.service';
 
 @Component({
   selector: 'app-order-details',
@@ -25,7 +25,7 @@ export class OrderDetailsComponent {
   order: any;
   date: any;
   time: any;
-  
+
   ngOnInit() {
     console.log(this.route);
     this.orderService
@@ -36,7 +36,9 @@ export class OrderDetailsComponent {
           this.date = new Date(this.order.order.createdAt).toLocaleDateString();
           this.time = new Date(this.order.order.createdAt).toLocaleTimeString();
           this.order.order.createdAt = this.date + ' ' + this.time;
-          this.currentStatusIndex = this.getCurrentStatusIndex(this.order.order.status);
+          this.currentStatusIndex = this.getCurrentStatusIndex(
+            this.order.order.status
+          );
           console.log(this.order.order.status);
           console.log(this.order.products);
         },
@@ -44,7 +46,5 @@ export class OrderDetailsComponent {
           console.error(error);
         },
       });
-    
   }
-  
 }
