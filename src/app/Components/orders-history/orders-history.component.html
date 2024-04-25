@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 prof"></div>
+        <div class="col-lg-8 orders">
+          <div
+            class="col-lg-10 mt-3 mx-auto"
+            *ngFor="let order of Orders; trackBy: trackById"
+          >
+            <div class="card mb-3 p-4">
+              <div class="row no-gutters">
+                <div
+                  class="col-lg-2 d-flex align-items-center justify-content-center"
+                >
+                  @if(order.status === 'accepted'){
+                  <img
+                    src="assets/images/check.png"
+                    class="card-img img-fluid"
+                    style="max-width: 100px"
+                    alt="..."
+                  />
+                  } @else if(order.status === 'rejected'){
+                  <img
+                    src="assets/images/close.png"
+                    class="card-img img-fluid"
+                    style="max-width: 100px"
+                    alt="..."
+                  />
+                  } @else if(order.status === 'pending'){
+                  <img
+                    src="assets/images/clock.png"
+                    class="card-img img-fluid"
+                    style="max-width: 100px"
+                    alt="..."
+                  />
+                  } @else if(order.status === 'delivered'){
+                  <img
+                    src="assets/images/delivered.png"
+                    class="card-img img-fluid"
+                    style="max-width: 100px"
+                    alt="..."
+                  />
+                  } @else if(order.status === 'cancelled'){
+                  <img
+                    src="assets/images/cancel.png"
+                    class="card-img img-fluid"
+                    style="max-width: 100px"
+                    alt="..."
+                  />
+                  } @else if(order.status === 'on way'){
+                  <img
+                    src="assets/images/box-car.png"
+                    class="card-img img-fluid"
+                    style="max-width: 100px"
+                    alt="..."
+                  />
+                  }
+                </div>
+                <div class="col-lg-7">
+                  <div class="card-body ml-2">
+                    <a [routerLink]="['/orders', order._id]"
+                      ><h5 class="card-title o-id ml-2 mb-2">
+                        Order #{{ order.orderId }}
+                      </h5></a
+                    >
+                    <h6 class="text-muted ml-2 mb-2">
+                      {{ order.createdAt }}
+                    </h6>
+                    <div class="d-flex align-items-center mb-2">
+                      <i class="fa-solid fa-location-dot ml-2"></i>
+                      <p class="text ml-1 mb-0">
+                        {{ order.building }} {{ order.street }}
+                        {{ order.Area }} {{ order.city }}
+                      </p>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                      <i class="fa-solid fa-sack-dollar ml-2"></i>
+                      <p class="text ml-1 mb-0">Total: {{ order.total }} EGP</p>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                      <i class="fa-solid fa-money-bill ml-2"></i>
+                      <p class="text ml-1 mb-0">{{ order.paymentMethod }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-lg-3 d-flex flex-column align-items-center justify-content-center status"
+                >
+                  <div
+                    class="d-flex flex-wrap l-col align-items-center justify-content-center"
+                  >
+                    @if(order.status === 'accepted'){
+                    <div
+                      class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 accepted state"
+                    >
+                      <p class="m-auto">Accepted</p>
+                    </div>
+                    <div class="mb-3">
+                      <button
+                        [routerLink]="['/orders', order._id]"
+                        class="btn btn-primary"
+                      >
+                        <i class="fa-solid fa-eye mr-1"></i>View
+                      </button>
+                    </div>
+                    } @else if(order.status === 'rejected'){
+                    <div
+                      class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 rejected state"
+                    >
+                      <p class="m-auto">Rejected</p>
+                    </div>
+                    <div class="mb-3">
+                      <button (click)="reOrder(order._id)" class="btn btn-dark">
+                        <i class="fa-solid fa-repeat mr-1"></i>Reorder
+                      </button>
+                    </div>
+                    } @else if(order.status === 'pending'){
+                    <div
+                      class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 pending state"
+                    >
+                      <p class="m-auto">Pending</p>
+                    </div>
+                    <div class="mb-3">
+                      <button
+                        (click)="cancelOrder(order._id)"
+                        class="btn btn-secondary"
+                      >
+                        <i class="fa-solid fa-ban mr-1"></i>Cancel
+                      </button>
+                    </div>
+                    } @else if(order.status === 'delivered'){
+                    <div
+                      class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 delivered state"
+                    >
+                      <p class="m-auto">Delivered</p>
+                    </div>
+                    <div class="mb-3">
+                      <button (click)="reOrder(order._id)" class="btn btn-dark">
+                        <i class="fa-solid fa-repeat mr-1"></i>Reorder
+                      </button>
+                    </div>
+                    } @else if(order.status === 'cancelled'){
+                    <div
+                      class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 canceled state"
+                    >
+                      <p class="m-auto">Canceled</p>
+                    </div>
+                    <div class="mb-3">
+                      <button (click)="reOrder(order._id)" class="btn btn-dark">
+                        <i class="fa-solid fa-repeat mr-1"></i>Reorder
+                      </button>
+                    </div>
+                    }@else if(order.status === 'on way'){
+                    <div
+                      class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 on-way state"
+                    >
+                      <p class="m-auto">On the way</p>
+                    </div>
+                    <div class="mb-3">
+                      <button
+                        [routerLink]="['/orders', order._id]"
+                        class="btn btn-primary"
+                      >
+                        <i class="fa-solid fa-eye mr-1"></i>View
+                      </button>
+                    </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
