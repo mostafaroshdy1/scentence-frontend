@@ -1,4 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -9,6 +13,29 @@ import { throwError } from 'rxjs';
 export class ApiAdminService {
   constructor(private readonly http: HttpClient) {}
   private readonly url = 'http://localhost:3000/products/';
+  private readonly users_Url = 'http://localhost:3000/user/';
+
+  private getTokenHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split(' ')[1]));
+      if (decodedToken && decodedToken.role === 'admin') {
+        console.log('User is admin');
+        localStorage.setItem('role', 'admin');
+      } else {
+        console.log('User is not admin.');
+      }
+      return new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      });
+    } else {
+      console.log('Token not found.');
+      return new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+    }
+  }
 
   getAllProducts() {
     return this.http.get(this.url);
@@ -19,9 +46,11 @@ export class ApiAdminService {
   }
 
   createProduct(product: any) {
-    return this.http.post(this.url, product).pipe(
+    return this.http
+      .post(this.url, product)
+      .pipe
       // catchError(this.handleError)
-    );
+      ();
   }
 
   updateProductById(id: string, product: any) {
@@ -36,6 +65,29 @@ export class ApiAdminService {
     return this.http.get(this.url + 'count');
   }
 
+  getAllUsers() {
+    // return this.http.get(this.users_Url);
+    return this.http.get(this.users_Url, { headers: this.getTokenHeaders() });
+  }
+
+  getUserById(id: string) {
+    // return this.http.get(this.users_Url + id);
+    return this.http.get(this.users_Url + id, {
+      headers: this.getTokenHeaders(),
+    });
+  }
+
+  deleteUserById(id: number) {
+    // return this.http.delete(this.users_Url + id );
+    return this.http.delete(this.users_Url + id, {
+      headers: this.getTokenHeaders(),
+    });
+  }
+
+  countUsers() {
+    return this.http.get(this.users_Url + 'count');
+  }
+
   // private handleError(error: HttpErrorResponse) {
   //   if (error.error instanceof ErrorEvent) {
   //     console.error('An error occurred:', error.error.message);
@@ -46,5 +98,4 @@ export class ApiAdminService {
   //   }
   //   return throwError('Something bad happened; please try again later.');
   // }
-
 }

@@ -10,10 +10,7 @@
       <div class="sidebar-brand">Dashboard</div>
       <ul class="sidebar-menu">
         <li class="sidebar-menu-item">
-          <a
-            class="text-decoration-none text-light"
-            routerLink="/admin/products"
-          >
+          <a class="text-decoration-none text-light" routerLink="/admin/users">
             Users
           </a>
         </li>
@@ -39,41 +36,34 @@
     </div>
     <div class="col-lg-9 main-content">
       <div class="row">
-        <div class="col-md-4 col-12 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Users</h5>
-              <p class="card-text">Total users: 1000</p>
-              <a href="#" class="btn btn-custom">View Details</a>
-            </div>
-          </div>
+        <div class="col-md-4 col-12 mb-3">
+          <app-admin-details-card
+            [title]="'Users'"
+            [total]="usersCount"
+            [link]="'/admin/users'"
+          ></app-admin-details-card>
         </div>
-        <div class="col-md-4 col-12 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Products</h5>
-              <p class="card-text">Total products: {{ productsCount }}</p>
-              <a routerLink="/admin/products" class="btn btn-custom"
-                >View Details</a
-              >
-            </div>
-          </div>
+        <div class="col-md-4 col-12 mb-3">
+          <app-admin-details-card
+            [title]="'Products'"
+            [total]="productsCount"
+            [link]="'/admin/products'"
+          ></app-admin-details-card>
         </div>
-        <div class="col-md-4 col-12 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Orders</h5>
-              <p class="card-text">Total orders: 2000</p>
-              <a href="#" class="btn btn-custom">View Details</a>
-            </div>
-          </div>
+        <div class="col-md-4 col-12 mb-3">
+          <app-admin-details-card
+            [title]="'Orders'"
+            [total]="2000"
+            [link]="'/admin/orders'"
+          ></app-admin-details-card>
         </div>
+
         <div class="col-12 mb-4">
           <app-line-chart></app-line-chart>
         </div>
-
       </div>
     </div>
+
     <app-add-icon></app-add-icon>
   </div>
 </div>

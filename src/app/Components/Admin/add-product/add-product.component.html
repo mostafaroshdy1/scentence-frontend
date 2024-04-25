@@ -7,9 +7,9 @@
     [innerHTML]="error"
   ></div>
 
-  <h2 class="display-5 text-center" *ngIf="!isEdit">Add Product</h2>
-  <h2 class="display-5 text-center" *ngIf="isEdit">Edit Product</h2>
-  <form [formGroup]="productForm">
+  <h2 class="display-5 text-center mb-3" *ngIf="!isEdit">Add Product</h2>
+  <h2 class="display-5 text-center mb-3" *ngIf="isEdit">Edit Product</h2>
+  <form [formGroup]="productForm" class="col-md-8 col-12 m-auto d-block">
     <div class="form-group mt-2 mb-3">
       <label for="title">Title</label>
       <input
