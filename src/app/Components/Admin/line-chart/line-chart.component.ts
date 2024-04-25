@@ -11,7 +11,7 @@ import { ApiAdminService } from '../../../Services/api-admin.service';
 export class LineChartComponent implements OnInit, OnDestroy {
   chartData: any;
   chart!: Chart;
-
+  userCount: any;
   constructor(private apiService: ApiAdminService) {}
 
   ngOnInit(): void {
@@ -25,7 +25,9 @@ export class LineChartComponent implements OnInit, OnDestroy {
 
   fetchData(): void {
     this.apiService.countNumberOfProducts().subscribe((productData: any) => {
-      this.apiService.countNumberOfProducts().subscribe((userData: any) => {
+      this.apiService.countUsers().subscribe((userData: any) => {
+        console.log('count User ' + userData.count[0].users);
+        this.userCount = userData.count[0].users;
         this.apiService.countNumberOfProducts().subscribe((orderData: any) => {
           this.chartData = {
             labels: Object.keys(productData),
@@ -40,9 +42,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
               },
               {
                 label: 'Users',
-                // will change later
-                // data: Object.values(userData),
-                data: Object.values('8'),
+                data: [this.userCount],
                 backgroundColor: '#f48fb1',
                 borderColor: '#f48fb1',
                 borderWidth: 1,
