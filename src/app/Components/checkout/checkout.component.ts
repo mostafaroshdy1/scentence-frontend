@@ -23,6 +23,8 @@ import { CartService } from '../../cart.service';
 export class CheckoutComponent {
   formData: any;
   cart: any;
+  promoData: any;
+  invalidPromo: boolean = false;
   constructor(
     private orderService: OrdersService,
     private cartService: CartService,
@@ -52,6 +54,9 @@ export class CheckoutComponent {
     apartment: new FormControl('', Validators.required),
     extra: new FormControl(''),
     paymentMethod: new FormControl('paymentMethod', Validators.required),
+  });
+  promoForm = new FormGroup({
+    promoCode: new FormControl(''),
   });
 
   get secPhoneValid() {
@@ -105,6 +110,8 @@ export class CheckoutComponent {
 
   submitForm() {
     this.formData = this.regForm.value;
+    //add total as property to formData
+    this.formData.total = this.cart.total;
     console.log(this.formData);
     this.orderService.createOrder(this.formData).subscribe({
       next: (data) => {
@@ -113,6 +120,21 @@ export class CheckoutComponent {
       },
       error: (error) => {
         console.error(error);
+      },
+    });
+  }
+  makeDiscount() {
+    this.promoData = this.promoForm.value;
+    this.orderService.makeDiscount(this.promoData).subscribe({
+      next: (data) => {
+        this.cart.discount = this.cart.total * data.discount;
+        this.cart.total = this.cart.total - this.cart.total * data.discount;
+        this.invalidPromo = false;
+      },
+      error: (error) => {
+        if (error.status == 400) {
+          this.invalidPromo = true;
+        }
       },
     });
   }

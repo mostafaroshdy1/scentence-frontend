@@ -38,9 +38,22 @@ export class OrdersService {
       secondPhone: formData.secondPhone,
       paymentMethod: formData.paymentMethod,
       extra: formData.extra,
+      total: formData.total,
     };
     console.log(requestData);
     console.log(this.URL_DB, requestData, { headers });
     return this.http.post<any>(this.URL_DB, requestData, { headers });
+  }
+  reOrder(id: any) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.URL_DB}/reOrder/${id}`, {}, { headers });
+  }
+  makeDiscount(promoData: any) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.URL_DB}/discount`, promoData, {
+      headers,
+    });
   }
 }
