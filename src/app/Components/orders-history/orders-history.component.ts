@@ -2,7 +2,7 @@ import { CommonModule, NgForOf } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { OrdersService } from '../../Services/orders.services';
+import { OrdersService } from '../../Services/orders.service';
 import { CartService } from '../../cart.service';
 
 @Component({
@@ -58,13 +58,14 @@ export class OrdersHistoryComponent implements OnInit {
   reOrder(id: any) {
     this.orderService.reOrder(id).subscribe({
       next: (data) => {
-        console.log(data);
         this.cartService.getCart().subscribe({
-          next: () => {
-            this.router.navigate(['/cart']);
+          next: (data: any) => {
+            setTimeout(() => {
+              this.router.navigate(['/cart']);
+            }, 1000);
           },
-          error: (error) => {
-            console.error(error);
+          error: (err: any) => {
+            console.log(err);
           },
         });
       },
