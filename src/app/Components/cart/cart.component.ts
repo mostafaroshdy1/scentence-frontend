@@ -39,6 +39,7 @@ export class CartComponent {
     this.cart = [];
     this.cartService.clearCart().subscribe(); // no need to handle response
     this.isHidden = true;
+    window.location.reload();
   }
   updateCart(cart: any, id: string) {
     this.cartService.updateCart(cart).subscribe(

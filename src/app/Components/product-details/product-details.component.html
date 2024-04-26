@@ -75,6 +75,7 @@
         <button
           class="ms-2 btn btn-primary add-to-cart"
           [disabled]="productDetails.stock == 0"
+          (click)="addToCart(productDetails._id, countValue)"
         >
           Add to Cart
         </button>

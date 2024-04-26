@@ -20,7 +20,7 @@
                   data-mdb-ripple-color="light"
                 >
                   <img
-                    src="{{ item.img }}"
+                    src="{{ item.img[0] }}"
                     class="w-100"
                     alt="Blue Jeans Jacket"
                   />
@@ -200,6 +200,7 @@
             </a>
 
             <a
+              [routerLink]="['/products']"
               class="btn btn-lg btn-block green-on-hover"
               style="background-color: #f2f2f2; height: 48px !important"
               >Continue Shopping</a

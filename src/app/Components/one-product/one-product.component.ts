@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationExtras, Router, RouterModule } from '@angular/router';
 import { ApiAdminService } from '../../Services/api-admin.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-one-product',
@@ -15,7 +16,11 @@ import { HttpClientModule } from '@angular/common/http';
 export class OneProductComponent {
   @Input() product: any;
   isAdmin = false;
-  constructor(private router: Router, private apiService: ApiAdminService) {
+  constructor(
+    private router: Router,
+    private apiService: ApiAdminService,
+    private cartService: CartService
+  ) {
     if (this.router.url.split('/')[1] == 'admin') {
       this.isAdmin = true;
     }
@@ -30,5 +35,10 @@ export class OneProductComponent {
         this.router.navigate(['/admin/products/']);
       },
     });
+  }
+
+  addToCart(productId: any, qt: any) {
+    this.cartService.addToCart(productId, qt).subscribe();
+    window.location.reload();
   }
 }

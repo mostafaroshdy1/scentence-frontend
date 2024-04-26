@@ -9,6 +9,7 @@ import { ShippingPolicyComponent } from '../about-product-details/shipping-polic
 import { OneProductComponent } from '../one-product/one-product.component';
 import { ApiProductsService } from '../../Services/api-products.service';
 import { ProductsService } from '../../Services/products.service';
+import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -28,7 +29,11 @@ import { ProductsService } from '../../Services/products.service';
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent {
-  constructor(private apiService: ProductsService, private router: Router) {}
+  constructor(
+    private apiService: ProductsService,
+    private router: Router,
+    private cartService: CartService
+  ) {}
   productDetails: any;
   allProducts: any;
   result: any;
@@ -114,5 +119,10 @@ export class ProductDetailsComponent {
         this.router.navigate(['/admin/products/']);
       },
     });
+  }
+
+  addToCart(productId: any, qt: any) {
+    this.cartService.addToCart(productId, qt).subscribe();
+    window.location.reload();
   }
 }

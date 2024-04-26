@@ -58,7 +58,7 @@
 }
 
 .rating i {
-  color: #e7a415;
+  color: gold;
   padding: 2px;
 }
 
@@ -98,19 +98,24 @@
   color: #1b1a1a;
 }
 
+.cart-btn,
+.wishList-btn {
+  margin: 0px 6px;
+}
+
 .wishList-btn:hover i,
 .cart-btn:hover i {
   color: #e32a53;
 }
 
-.edit-delete-btn{
+.edit-delete-btn {
   background-color: #cc5a73;
   border-color: #cc5a73;
-  color:#fff;
+  color: #fff;
 }
 
-.edit-delete-btn:hover{
+.edit-delete-btn:hover {
   background-color: white;
   border-color: #e32a53;
-  color:black;
+  color: black;
 }
