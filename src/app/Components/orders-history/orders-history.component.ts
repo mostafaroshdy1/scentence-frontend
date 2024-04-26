@@ -3,7 +3,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { OrdersService } from '../../Services/orders.service';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../Services/cart.service';
 
 @Component({
   selector: 'app-orders-history',
