@@ -24,11 +24,22 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private apiService: ApiAdminService, private router: Router) {}
   productsCount = 0;
   usersCount = 0;
+  ordersCount = 0;
   ngOnInit(): void {
     this.apiService.getAllProducts().subscribe({
       next: (data: any) => {
         for (const prod of data.products) {
           this.productsCount += 1;
+        }
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+    this.apiService.getAllOrders().subscribe({
+      next: (data: any) => {
+        for (const order of data) {
+          this.ordersCount += 1;
         }
       },
       error: (error: any) => {

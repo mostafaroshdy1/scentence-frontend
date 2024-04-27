@@ -14,6 +14,7 @@ export class ApiAdminService {
   constructor(private readonly http: HttpClient) {}
   private readonly url = 'http://localhost:3000/products/';
   private readonly users_Url = 'http://localhost:3000/user/';
+  private readonly orders_Url = 'http://localhost:3000/orders/';
 
   private getTokenHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
@@ -86,6 +87,9 @@ export class ApiAdminService {
 
   countUsers() {
     return this.http.get(this.users_Url + 'count');
+  }
+  getAllOrders() {
+    return this.http.get<any>(`${this.orders_Url}/allOrders`);
   }
 
   // private handleError(error: HttpErrorResponse) {
