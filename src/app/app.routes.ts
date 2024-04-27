@@ -61,6 +61,21 @@ export const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'orders',
+        children: [
+          {
+            path: '',
+            canActivate: [AuthGuardService],
+            component: OrdersHistoryComponent,
+          },
+          {
+            path: ':id',
+            canActivate: [AuthGuardService],
+            component: OrderDetailsComponent,
+          },
+        ],
+      },
     ],
   },
 

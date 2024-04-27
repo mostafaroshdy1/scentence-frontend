@@ -42,4 +42,7 @@ export class OrdersService {
   makeDiscount(promoData: any) {
     return this.http.post<any>(`${this.URL_DB}/discount`, promoData);
   }
+  updateOrderStatus(id: any, status: any) {
+    return this.http.put<any>(`${this.URL_DB}/${id}`, { status });
+  }
 }

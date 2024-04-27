@@ -46,7 +46,7 @@ body {
 .delivered {
   background-color: #44bfd7;
 }
-.canceled {
+.cancelled {
   background-color: rgb(0, 0, 0);
 }
 .on-way {

@@ -25,7 +25,7 @@
         <li class="sidebar-menu-item">
           <a
             class="text-decoration-none text-light"
-            routerLink="/admin/products"
+            routerLink="/admin/orders"
           >
             Orders
           </a>
@@ -53,7 +53,7 @@
         <div class="col-md-4 col-12 mb-3">
           <app-admin-details-card
             [title]="'Orders'"
-            [total]="2000"
+            [total]="ordersCount"
             [link]="'/admin/orders'"
           ></app-admin-details-card>
         </div>
