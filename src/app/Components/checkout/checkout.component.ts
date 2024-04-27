@@ -110,10 +110,8 @@ export class CheckoutComponent {
 
   submitForm() {
     this.formData = this.regForm.value;
-    //add total as property to formData
-    this.formData.total = this.cart.total;
-    console.log(this.formData);
-    this.orderService.createOrder(this.formData).subscribe({
+    this.promoData = this.promoForm.value;
+    this.orderService.createOrder(this.formData,this.promoData).subscribe({
       next: (data) => {
         window.location.href = data.redirectUrl;
       },
