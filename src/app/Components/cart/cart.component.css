@@ -62,3 +62,16 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.btn-custom {
+  width: 308px;
+  height: 42px;
+  background-color: #1f2125;
+  color: white;
+}
+
+@media (max-width: 576px) {
+  .btn-custom {
+    width: 200px; /* or whatever width you want on small screens */
+  }
+}
