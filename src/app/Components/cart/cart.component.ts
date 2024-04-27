@@ -1,5 +1,5 @@
 import { Component, Renderer2, ElementRef } from '@angular/core';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../Services/cart.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -24,7 +24,7 @@ export class CartComponent {
         this.total = this.cart.reduce((acc: number, item: any) => {
           return acc + item.price * item.qty;
         }, 0);
-        if (!this.cart) {
+        if (!this.cart || this.cart.length === 0) {
           this.isHidden = true;
         } else {
           this.isHidden = false;
@@ -50,6 +50,9 @@ export class CartComponent {
         const el = this.el.nativeElement.getElementsByClassName(`${id}`);
         el[0].classList.remove('d-block');
         el[0].classList.add('d-none');
+        if (this.cart.length === 0) {
+          this.isHidden = true;
+        }
       },
       (err: any) => {
         const el = this.el.nativeElement.getElementsByClassName(`${id}`);
@@ -73,10 +76,9 @@ export class CartComponent {
     this.updateCart(newCart, id);
   }
   deleteItem(id: string) {
-    this.cart = this.cart.filter((item: any) => item.productId != id);
-    if (this.cart.length === 0) {
-      this.isHidden = true;
-    }
+    console.log(id);
+    const newCart = this.cart.filter((item: any) => item.productId != id);
+    this.updateCart(newCart, id);
   }
 }
 

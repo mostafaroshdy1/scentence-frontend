@@ -230,7 +230,9 @@
           </div>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Discount:</p>
-            <p class="mb-2 text-danger">- $00.00</p>
+            <p class="mb-2 text-danger">
+              - ${{ cart.discount ? cart.discount : "00.00" }}
+            </p>
           </div>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Shipping cost:</p>
@@ -243,16 +245,28 @@
               {{ cart.total | currency : "USD" : "symbol" : "1.2-2" }}
             </p>
           </div>
-
-          <div class="input-group mt-3 mb-4">
-            <input
-              type="text"
-              class="form-control border"
-              name=""
-              placeholder="Promo code"
-            />
-            <button class="btn btn-black border">Apply</button>
-          </div>
+          <form [formGroup]="promoForm">
+            <div class="input-group mt-3">
+              <input
+                formControlName="promoCode"
+                id="promoCode"
+                type="text"
+                class="form-control border"
+                name="promoCode"
+                placeholder="Promo code"
+              />
+              <button (click)="makeDiscount()" class="btn btn-black border">
+                Apply
+              </button>
+            </div>
+            <div
+              *ngIf="invalidPromo"
+              class="alert alert-danger"
+              id="promoError"
+            >
+              Invalid promo code
+            </div>
+          </form>
 
           <hr />
           <h5 class="card-title mb-3">Cart Items</h5>

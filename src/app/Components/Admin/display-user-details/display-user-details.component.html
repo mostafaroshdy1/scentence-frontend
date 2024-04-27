@@ -1,0 +1,31 @@
+@if(user){
+
+<div class="user-details col-lg-4 col-md-6 col-12 mt-5 m-auto">
+  <div class="header">User Details</div>
+  <div class="user-info">
+    <div class="user-info-item">
+      <span class="label">Name:</span> {{ user.username }}
+    </div>
+    <div class="user-info-item">
+      <span class="label">Email:</span> {{ user.email }}
+    </div>
+    <div class="user-info-item">
+      <span class="label">Gender:</span> {{ user.gender }}
+    </div>
+    <div class="user-info-item">
+      <span class="label">Is Verified:</span> {{ user.verified ? "Yes" : "No" }}
+    </div>
+  </div>
+  <div class="btns">
+    <button class="back-button" (click)="goBackToDashboard()">
+      Back to Dashboard
+    </button>
+    <button class="delete-button" (click)="deleteUser(user._id)">Delete</button>
+  </div>
+</div>
+
+}@else {
+<div class="d-flex justify-content-center mt-5">
+  <div class="spinner-border" role="status"></div>
+</div>
+}

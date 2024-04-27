@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="admin-dashboard">
+    <div class="header">Manage Users</div>
+    <ul class="user-list">
+      <li *ngFor="let user of users" class="user">
+        <a routerLink="{{ user._id }}" class="text-dark text-decoration-none">
+          <span>{{ user.username }}</span>
+        </a>
+        <button class="delete-button" (click)="deleteUser(user._id)">
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
