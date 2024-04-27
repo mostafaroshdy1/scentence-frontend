@@ -10,7 +10,7 @@ import { OrdersService } from '../../Services/orders.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../Services/cart.service';
 
 @Component({
   selector: 'app-checkout',
