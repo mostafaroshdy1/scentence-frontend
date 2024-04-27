@@ -115,8 +115,7 @@ export class CheckoutComponent {
     console.log(this.formData);
     this.orderService.createOrder(this.formData).subscribe({
       next: (data) => {
-        console.log(data);
-        this.router.navigate(['/orders', data.order._id]);
+        window.location.href = data.redirectUrl;
       },
       error: (error) => {
         console.error(error);
