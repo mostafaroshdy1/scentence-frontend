@@ -45,14 +45,6 @@ export class AuthGuardService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    // let role = localStorage.getItem('role');
-    // if (role === 'admin') {
-    //   return true;
-    // } else {
-    //   this.router.navigate(['/login']);
-    //   return false;
-    // }
-
     let token = localStorage.getItem('token');
     if (token) {
       const decodedToken = this.decodeToken(token);

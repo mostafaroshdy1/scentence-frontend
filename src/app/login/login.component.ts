@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
   }
 
   private decodeToken(token: string): any {
+    console.log("token "+token);
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
+    console.log("decoded: ",decodedToken);
     return decodedToken;
   }
 

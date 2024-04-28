@@ -10,6 +10,10 @@
           Delete
         </button>
       </li>
+
+      <div *ngIf="users.length === 0" class="no-users-message">
+        No users found.
+      </div>
     </ul>
   </div>
 </div>

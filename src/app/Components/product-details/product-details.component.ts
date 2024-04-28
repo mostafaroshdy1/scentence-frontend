@@ -57,25 +57,18 @@ export class ProductDetailsComponent {
   // }
 
   ngOnInit(): void {
-    // Extract the product ID and admin indicator from the URL
     const segments = this.router.url.split('/');
     const productId = segments[2];
     const adminParam = segments[3];
 
-    // Check if there is a product ID in index 2
     if (productId) {
-      // If the admin parameter exists, set isAdmin to true
       this.isAdmin = !!adminParam;
-
-      // Fetch product details based on whether isAdmin is true or false
       if (this.isAdmin) {
         this.getProductDetailsForAdmin(productId);
       } else {
         this.getProductDetails(productId);
       }
     }
-
-    // Fetch all products
     this.getAllProducts();
   }
 
