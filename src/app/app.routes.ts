@@ -67,4 +67,4 @@ export const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
     ],
   },
-
+]
