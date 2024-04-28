@@ -9,6 +9,7 @@ import { ShippingPolicyComponent } from '../about-product-details/shipping-polic
 import { OneProductComponent } from '../one-product/one-product.component';
 import { ApiProductsService } from '../../Services/api-products.service';
 import { ProductsService } from '../../Services/products.service';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
 
 @Component({
   selector: 'app-product-details',
@@ -22,6 +23,7 @@ import { ProductsService } from '../../Services/products.service';
     ReviewsComponent,
     ShippingPolicyComponent,
     OneProductComponent,
+    StarRatingComponent,
   ],
   providers: [ProductsService],
   templateUrl: './product-details.component.html',
@@ -37,23 +39,50 @@ export class ProductDetailsComponent {
   style = '';
   isAdmin = false;
   currentComponent: string = 'description';
-  ngOnInit(): void {
-    if (this.router.url.split('/')[2]) {
-      this.getProductDetails();
-    }
-    if (this.router.url.split('/')[3]) {
-      this.getProductDetailsForAdmin();
-      this.isAdmin = true;
-    }
+  // ngOnInit(): void {
+  //   if (this.router.url.split('/')[2]) {
+  //     this.getProductDetails();
+  //   }
+  //   if (this.router.url.split('/')[3]) {
+  //     this.getProductDetailsForAdmin();
+  //     this.isAdmin = true;
+  //   }
 
+  //   this.apiService.getAllProducts().subscribe({
+  //     next: (data: any) => {
+  //       this.allProducts = data.products;
+  //     },
+  //     error: (error: any) => {
+  //       console.log(error);
+  //     },
+  //   });
+  // }
+
+  ngOnInit(): void {
+    const segments = this.router.url.split('/');
+    const productId = segments[2];
+    const adminParam = segments[3];
+
+    if (productId) {
+      this.isAdmin = !!adminParam;
+      if (this.isAdmin) {
+        this.getProductDetailsForAdmin(productId);
+      } else {
+        this.getProductDetails(productId);
+      }
+    }
+    this.getAllProducts();
+  }
+
+  getAllProducts() {
     this.apiService.getAllProducts().subscribe({
-      next: (data: any) => {
-        this.allProducts = data.products;
-      },
-      error: (error: any) => {
-        console.log(error);
-      },
-    });
+          next: (data: any) => {
+            this.allProducts = data.products;
+          },
+          error: (error: any) => {
+            console.log(error);
+          },
+        });
   }
 
   filterImages(images: string[]): string[] {
@@ -82,8 +111,8 @@ export class ProductDetailsComponent {
     this.currentComponent = 'shipping-policy';
   }
 
-  getProductDetails() {
-    this.apiService.getProductById(this.router.url.split('/')[2]).subscribe({
+  getProductDetails(productId:string) {
+    this.apiService.getProductById(productId).subscribe({
       next: (data: any) => {
         this.productDetails = data;
         this.mainImage = this.productDetails.image[0];
@@ -94,8 +123,8 @@ export class ProductDetailsComponent {
     });
   }
 
-  getProductDetailsForAdmin() {
-    this.apiService.getProductById(this.router.url.split('/')[3]).subscribe({
+  getProductDetailsForAdmin(productId:string) {
+    this.apiService.getProductById(productId).subscribe({
       next: (data: any) => {
         this.productDetails = data;
         this.mainImage = this.productDetails.image[0];

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { getAllProductsDto } from '../Models/get-all-products.dto';
+import { environment } from '../../environments/environment';
 
 @Injectable({
 	providedIn: 'root',
@@ -9,7 +10,7 @@ import { getAllProductsDto } from '../Models/get-all-products.dto';
 export class ProductsService {
 	constructor(private readonly http: HttpClient) {}
 
-	private readonly URL_DB = 'http://localhost:3000/products';
+	private readonly URL_DB = `${environment.apiUrl}/products`;
 
 	getAllProducts(
 		page: number = 1,
@@ -51,5 +52,11 @@ export class ProductsService {
 	}
 	getCategoryProductCounts(): Observable<any> {
 		return this.http.get<any>(this.URL_DB + '/categoryCount');
+	}
+	addRating(productId: any, rating: any) {
+		return this.http.post(this.URL_DB + '/rating', { productId, rating });
+	}
+	getProductRating(productId: any) {
+		return this.http.get<any>(`${this.URL_DB}/rating/${productId}`);
 	}
 }

@@ -23,10 +23,7 @@
           </a>
         </li>
         <li class="sidebar-menu-item">
-          <a
-            class="text-decoration-none text-light"
-            routerLink="/admin/orders"
-          >
+          <a class="text-decoration-none text-light" routerLink="/admin/orders">
             Orders
           </a>
         </li>
@@ -59,7 +56,9 @@
         </div>
 
         <div class="col-12 mb-4">
-          <app-line-chart></app-line-chart>
+          <app-line-chart
+            (chartDataReady)="onChartDataReady($event)"
+          ></app-line-chart>
         </div>
       </div>
     </div>

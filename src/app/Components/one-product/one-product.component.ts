@@ -1,13 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { ApiAdminService } from '../../Services/api-admin.service';
 import { HttpClientModule } from '@angular/common/http';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
 
 @Component({
   selector: 'app-one-product',
   standalone: true,
-  imports: [CommonModule, RouterModule, HttpClientModule],
+  imports: [CommonModule, RouterModule, HttpClientModule, StarRatingComponent],
   providers: [ApiAdminService],
   templateUrl: './one-product.component.html',
   styleUrl: './one-product.component.css',
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class OneProductComponent {
   @Input() product: any;
   isAdmin = false;
+
   constructor(private router: Router, private apiService: ApiAdminService) {
     if (this.router.url.split('/')[1] == 'admin') {
       this.isAdmin = true;

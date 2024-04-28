@@ -15,7 +15,7 @@ export class AdminDetailsCardComponent implements OnInit {
   @Input() title!: string;
   @Input() link!: string;
   @Input() total!: number;
-  
+
   constructor(private apiService: ApiAdminService, private router: Router) {}
   productsCount = 0;
   usersCount = 0;
@@ -31,14 +31,14 @@ export class AdminDetailsCardComponent implements OnInit {
       },
     });
 
-    this.apiService.countUsers().subscribe({
-      next: (data: any) => {
-        this.usersCount = data.count;
-      },
-      error: (error: any) => {
-        console.log(error);
-      },
-    });
+    // this.apiService.countUsers().subscribe({
+    //   next: (data: any) => {
+    //     this.usersCount = data.count;
+    //   },
+    //   error: (error: any) => {
+    //     console.log(error);
+    //   },
+    // });
 
     if (this.title === 'Products') {
       this.productsCount = this.total;

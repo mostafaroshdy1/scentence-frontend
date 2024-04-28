@@ -21,7 +21,7 @@ export class OrdersService {
   cancelOrder(id: any) {
     return this.http.put<any>(`${this.URL_DB}/cancel/${id}`, {});
   }
-  createOrder(formData: any) {
+  createOrder(formData: any,promoData: any) {
     const requestData = {
       apartment: formData.apartment,
       floor: formData.floor,
@@ -32,7 +32,7 @@ export class OrdersService {
       secondPhone: formData.secondPhone,
       paymentMethod: formData.paymentMethod,
       extra: formData.extra,
-      total: formData.total,
+      promoCode: promoData.promoCode,
     };
     return this.http.post<any>(this.URL_DB, requestData);
   }
