@@ -52,4 +52,10 @@ export class ProductsService {
 	getCategoryProductCounts(): Observable<any> {
 		return this.http.get<any>(this.URL_DB + '/categoryCount');
 	}
+	addRating(productId: any, rating: any) {
+		return this.http.post(this.URL_DB + '/rating', { productId, rating });
+	}
+	getProductRating(productId: any) {
+		return this.http.get<any>(`${this.URL_DB}/rating/${productId}`);
+	}
 }

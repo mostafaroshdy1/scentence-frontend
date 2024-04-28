@@ -1,0 +1,26 @@
+.fa-star {
+  font-size: 28px;
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.fa-star.active,
+.fa-star:hover {
+  color: yellow;
+}
+.star-rating2 {
+  display: inline-block;
+}
+.star-ratings {
+  display: inline-block;
+}
+
+.star-ratings .fas.fa-star {
+  font-size: 28px;
+  color: #ddd;
+}
+
+.star-ratings .fas.fa-star.yellow {
+  color: yellow; 
+}

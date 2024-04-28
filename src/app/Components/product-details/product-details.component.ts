@@ -9,6 +9,7 @@ import { ShippingPolicyComponent } from '../about-product-details/shipping-polic
 import { OneProductComponent } from '../one-product/one-product.component';
 import { ApiProductsService } from '../../Services/api-products.service';
 import { ProductsService } from '../../Services/products.service';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
 
 @Component({
   selector: 'app-product-details',
@@ -22,6 +23,7 @@ import { ProductsService } from '../../Services/products.service';
     ReviewsComponent,
     ShippingPolicyComponent,
     OneProductComponent,
+    StarRatingComponent,
   ],
   providers: [ProductsService],
   templateUrl: './product-details.component.html',
