@@ -37,23 +37,57 @@ export class ProductDetailsComponent {
   style = '';
   isAdmin = false;
   currentComponent: string = 'description';
+  // ngOnInit(): void {
+  //   if (this.router.url.split('/')[2]) {
+  //     this.getProductDetails();
+  //   }
+  //   if (this.router.url.split('/')[3]) {
+  //     this.getProductDetailsForAdmin();
+  //     this.isAdmin = true;
+  //   }
+
+  //   this.apiService.getAllProducts().subscribe({
+  //     next: (data: any) => {
+  //       this.allProducts = data.products;
+  //     },
+  //     error: (error: any) => {
+  //       console.log(error);
+  //     },
+  //   });
+  // }
+
   ngOnInit(): void {
-    if (this.router.url.split('/')[2]) {
-      this.getProductDetails();
-    }
-    if (this.router.url.split('/')[3]) {
-      this.getProductDetailsForAdmin();
-      this.isAdmin = true;
+    // Extract the product ID and admin indicator from the URL
+    const segments = this.router.url.split('/');
+    const productId = segments[2];
+    const adminParam = segments[3];
+
+    // Check if there is a product ID in index 2
+    if (productId) {
+      // If the admin parameter exists, set isAdmin to true
+      this.isAdmin = !!adminParam;
+
+      // Fetch product details based on whether isAdmin is true or false
+      if (this.isAdmin) {
+        this.getProductDetailsForAdmin(productId);
+      } else {
+        this.getProductDetails(productId);
+      }
     }
 
+    // Fetch all products
+    this.getAllProducts();
+  }
+
+  getAllProducts() {
     this.apiService.getAllProducts().subscribe({
-      next: (data: any) => {
-        this.allProducts = data.products;
-      },
-      error: (error: any) => {
-        console.log(error);
-      },
-    });
+          next: (data: any) => {
+            this.allProducts = data.products;
+          },
+          error: (error: any) => {
+            console.log(error);
+          },
+        });
   }
 
   filterImages(images: string[]): string[] {
@@ -82,8 +116,8 @@ export class ProductDetailsComponent {
     this.currentComponent = 'shipping-policy';
   }
 
-  getProductDetails() {
-    this.apiService.getProductById(this.router.url.split('/')[2]).subscribe({
+  getProductDetails(productId:string) {
+    this.apiService.getProductById(productId).subscribe({
       next: (data: any) => {
         this.productDetails = data;
         this.mainImage = this.productDetails.image[0];
@@ -94,8 +128,8 @@ export class ProductDetailsComponent {
     });
   }
 
-  getProductDetailsForAdmin() {
-    this.apiService.getProductById(this.router.url.split('/')[3]).subscribe({
+  getProductDetailsForAdmin(productId:string) {
+    this.apiService.getProductById(productId).subscribe({
       next: (data: any) => {
         this.productDetails = data;
         this.mainImage = this.productDetails.image[0];
