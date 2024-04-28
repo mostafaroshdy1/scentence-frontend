@@ -1,7 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { WishListService } from '../../Services/wishList.service';
 import { CurrencyPipe } from '@angular/common';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../Services/cart.service';
 
 @Component({
   selector: 'app-wish-list',

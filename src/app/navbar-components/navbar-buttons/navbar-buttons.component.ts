@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { SearchComponent } from '../../search/search.component';
 import { SettingsComponent } from '../settings/settings.component';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../Services/cart.service';
 import { Router } from '@angular/router';
 
 @Component({

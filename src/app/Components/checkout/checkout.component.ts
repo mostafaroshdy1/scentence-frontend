@@ -6,11 +6,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { OrdersService } from '../../Services/orders.services';
+import { OrdersService } from '../../Services/orders.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../Services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -110,13 +110,10 @@ export class CheckoutComponent {
 
   submitForm() {
     this.formData = this.regForm.value;
-    //add total as property to formData
-    this.formData.total = this.cart.total;
-    console.log(this.formData);
-    this.orderService.createOrder(this.formData).subscribe({
+    this.promoData = this.promoForm.value;
+    this.orderService.createOrder(this.formData,this.promoData).subscribe({
       next: (data) => {
-        console.log(data);
-        this.router.navigate(['/orders', data.order._id]);
+        window.location.href = data.redirectUrl;
       },
       error: (error) => {
         console.error(error);

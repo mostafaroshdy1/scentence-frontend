@@ -37,3 +37,9 @@
 .delete-button:hover {
   background-color: #cc5a73bd;
 }
+
+.no-users-message{
+  font-size: 20px;
+  margin-top: 20px;
+  text-align:center;
+}

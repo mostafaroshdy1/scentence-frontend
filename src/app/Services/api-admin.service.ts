@@ -4,31 +4,35 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, shareReplay } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiAdminService {
   constructor(private readonly http: HttpClient) {}
-  private readonly url = 'http://localhost:3000/products/';
-  private readonly users_Url = 'http://localhost:3000/user/';
+  private readonly url = `${environment.apiUrl}/products/`;
+  private readonly users_Url = `${environment.apiUrl}/user/`;
+  private readonly orders_Url = `${environment.apiUrl}/orders/`;
 
   private getTokenHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
     if (token) {
-      const decodedToken = JSON.parse(atob(token.split(' ')[1]));
-      if (decodedToken && decodedToken.role === 'admin') {
-        console.log('User is admin');
-        localStorage.setItem('role', 'admin');
+      const tokenParts = token.split(' ');
+      if (tokenParts.length === 2 && tokenParts[0] === 'Bearer') {
+        const decodedToken = JSON.parse(atob(tokenParts[1]));
+        return new HttpHeaders({
+          Authorization: `Bearer ${tokenParts[1]}`,
+          'Content-Type': 'application/json',
+        });
       } else {
-        console.log('User is not admin.');
+        console.log('Invalid token format.');
+        return new HttpHeaders({
+          'Content-Type': 'application/json',
+        });
       }
-      return new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      });
     } else {
       console.log('Token not found.');
       return new HttpHeaders({
@@ -66,7 +70,6 @@ export class ApiAdminService {
   }
 
   getAllUsers() {
-    // return this.http.get(this.users_Url);
     return this.http.get(this.users_Url, { headers: this.getTokenHeaders() });
   }
 
@@ -85,7 +88,19 @@ export class ApiAdminService {
   }
 
   countUsers() {
-    return this.http.get(this.users_Url + 'count');
+    return this.http.get(this.users_Url + 'count').pipe(
+      catchError((error) => {
+        console.error('user count error :', error);
+        return throwError('Error occurred while fetching user count');
+      }),
+    );
+  }
+  getAllOrders() {
+    return this.http.get<any>(`${this.orders_Url}/allOrders`);
+  }
+
+  countOrders(){
+    return this.http.get(this.orders_Url + 'count');
   }
 
   // private handleError(error: HttpErrorResponse) {

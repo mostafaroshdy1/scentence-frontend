@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationExtras, Router, RouterModule } from '@angular/router';
 import { ApiAdminService } from '../../Services/api-admin.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../Services/cart.service';
 import { WishListService } from '../../Services/wishList.service';
 import { CartAndWishListModule } from '../../../Modules/cart-and-wishlist.module';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
 
 @Component({
   selector: 'app-one-product',
@@ -15,6 +16,7 @@ import { CartAndWishListModule } from '../../../Modules/cart-and-wishlist.module
     RouterModule,
     HttpClientModule,
     CartAndWishListModule,
+    StarRatingComponent
   ],
   providers: [ApiAdminService],
   templateUrl: './one-product.component.html',

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CartService } from '../app/cart.service';
+import { CartService } from '../app/Services/cart.service';
 import { WishListService } from '../app/Services/wishList.service';
 
 @NgModule({

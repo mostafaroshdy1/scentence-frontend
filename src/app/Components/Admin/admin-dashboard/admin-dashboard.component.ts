@@ -24,6 +24,8 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private apiService: ApiAdminService, private router: Router) {}
   productsCount = 0;
   usersCount = 0;
+  ordersCount = 0;
+
   ngOnInit(): void {
     this.apiService.getAllProducts().subscribe({
       next: (data: any) => {
@@ -35,15 +37,21 @@ export class AdminDashboardComponent implements OnInit {
         console.log(error);
       },
     });
-
-    this.apiService.countUsers().subscribe({
+    this.apiService.getAllOrders().subscribe({
       next: (data: any) => {
-        this.usersCount = data.count[0].users;
-        console.log(this.usersCount);
+        for (const order of data) {
+          this.ordersCount += 1;
+        }
       },
       error: (error: any) => {
         console.log(error);
       },
     });
+  }
+
+  onChartDataReady(data: any): void {
+    this.productsCount = data.productsCount;
+    this.usersCount = data.usersCount;
+    // orders here
   }
 }

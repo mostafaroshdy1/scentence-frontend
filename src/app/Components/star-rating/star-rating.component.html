@@ -1,0 +1,17 @@
+<div class="star-rating2" *ngIf="set == true">
+  <span
+    class="fas fa-star"
+    *ngFor="let star of [1, 2, 3, 4, 5]"
+    (click)="rate(star)"
+    (mouseenter)="highlightStars(star)"
+    (mouseleave)="resetStars()"
+  >
+  </span>
+</div>
+<div class="star-ratings" *ngIf="show == true">
+  <span
+    class="fas fa-star"
+    [class.yellow]="index <= prodRating"
+    *ngFor="let index of [1, 2, 3, 4, 5]"
+  ></span>
+</div>

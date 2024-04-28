@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { ApiAdminService } from '../../../Services/api-admin.service';
 
@@ -9,6 +9,8 @@ import { ApiAdminService } from '../../../Services/api-admin.service';
   styleUrls: ['./line-chart.component.css'],
 })
 export class LineChartComponent implements OnInit, OnDestroy {
+  @Output() chartDataReady = new EventEmitter<any>();
+  Data: any;
   chartData: any;
   chart!: Chart;
   userCount: any;
@@ -27,10 +29,16 @@ export class LineChartComponent implements OnInit, OnDestroy {
     this.apiService.countNumberOfProducts().subscribe((productData: any) => {
       this.apiService.countUsers().subscribe((userData: any) => {
         console.log(userData);
-
-        console.log('count User ' + userData.count[0].users);
-        this.userCount = userData.count[0].users;
-        this.apiService.countNumberOfProducts().subscribe((orderData: any) => {
+        console.log(productData);
+        const userCount = userData.count && userData.count.length > 0 ? userData.count[0].users : 0;
+        console.log('count User ' + userCount);
+        this.userCount = userCount;
+        this.apiService.countOrders().subscribe((orderData: any) => {
+          this.Data = {
+            productsCount: productData.count,
+            usersCount: this.userCount,
+            ordersCount: orderData.count,
+          };
           this.chartData = {
             labels: Object.keys(productData),
             datasets: [
@@ -53,8 +61,8 @@ export class LineChartComponent implements OnInit, OnDestroy {
               {
                 label: 'Orders',
                 // will change later
-                data: Object.values('9'),
-                // data: Object.values(orderData),
+                // data: Object.values('9'),
+                data: Object.values(orderData),
                 backgroundColor: '#80cbc4',
                 borderColor: '#80cbc4',
                 borderWidth: 1,
@@ -62,6 +70,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
               },
             ],
           };
+          this.chartDataReady.emit(this.Data);
           this.renderChart();
         });
       });
