@@ -30,9 +30,9 @@ export class LineChartComponent implements OnInit, OnDestroy {
       this.apiService.countUsers().subscribe((userData: any) => {
         console.log(userData);
         console.log(productData);
-
-        console.log('count User ' + userData.count[0].users);
-        this.userCount = userData.count[0].users;
+        const userCount = userData.count && userData.count.length > 0 ? userData.count[0].users : 0;
+        console.log('count User ' + userCount);
+        this.userCount = userCount;
         this.apiService.countNumberOfProducts().subscribe((orderData: any) => {
           this.Data = {
             productsCount: productData.count,
