@@ -10,6 +10,8 @@ import { OneProductComponent } from '../one-product/one-product.component';
 import { ApiProductsService } from '../../Services/api-products.service';
 import { ProductsService } from '../../Services/products.service';
 import { CartService } from '../../cart.service';
+import { WishListService } from '../../Services/wishList.service';
+import { CartAndWishListModule } from '../../../Modules/cart-and-wishlist.module';
 
 @Component({
   selector: 'app-product-details',
@@ -23,6 +25,7 @@ import { CartService } from '../../cart.service';
     ReviewsComponent,
     ShippingPolicyComponent,
     OneProductComponent,
+    CartAndWishListModule,
   ],
   providers: [ProductsService],
   templateUrl: './product-details.component.html',
@@ -32,8 +35,11 @@ export class ProductDetailsComponent {
   constructor(
     private apiService: ProductsService,
     private router: Router,
+    private wishListService: WishListService,
     private cartService: CartService
-  ) {}
+  ) {
+    CartAndWishListModule.initialize(cartService, wishListService);
+  }
   productDetails: any;
   allProducts: any;
   result: any;
@@ -42,6 +48,9 @@ export class ProductDetailsComponent {
   style = '';
   isAdmin = false;
   currentComponent: string = 'description';
+  wishList: any[] = [];
+  isIncluded: boolean = false;
+
   ngOnInit(): void {
     if (this.router.url.split('/')[2]) {
       this.getProductDetails();
@@ -54,6 +63,23 @@ export class ProductDetailsComponent {
     this.apiService.getAllProducts().subscribe({
       next: (data: any) => {
         this.allProducts = data.products;
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+
+    this.wishListService.getWishList().subscribe({
+      next: (data: any[]) => {
+        this.wishList = data;
+
+        if (this.wishList) {
+          const productId = this.productDetails._id.toString();
+
+          this.isIncluded = this.wishList
+            .map((item) => item.productId)
+            .includes(productId);
+        }
       },
       error: (error: any) => {
         console.log(error);
@@ -110,6 +136,7 @@ export class ProductDetailsComponent {
       },
     });
   }
+
   deleteProduct(product: any) {
     this.apiService.deleteProductById(product._id).subscribe({
       next: (data) => {
@@ -122,7 +149,14 @@ export class ProductDetailsComponent {
   }
 
   addToCart(productId: any, qt: any) {
-    this.cartService.addToCart(productId, qt).subscribe();
-    window.location.reload();
+    CartAndWishListModule.addToCart(productId, qt);
+  }
+
+  addToWishList(productId: any) {
+    CartAndWishListModule.addToWishList(productId);
+  }
+
+  removeFromWishList(productId: any) {
+    CartAndWishListModule.removeFromWishList(productId, this.wishList);
   }
 }

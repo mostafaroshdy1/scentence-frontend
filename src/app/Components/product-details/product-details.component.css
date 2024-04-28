@@ -124,6 +124,14 @@
   font-weight: normal !important;
 }
 
+.remove-wishlist-border i {
+  color: #e32a53;
+}
+
+.remove-wishlist-border i:hover {
+  color: #000000;
+}
+
 .buy-now-btn {
   background-color: #f8dc68;
   color: #000;
@@ -236,14 +244,14 @@
   align-items: center;
 }
 
-.edit-delete-btn{
+.edit-delete-btn {
   background-color: #cc5a73;
   border-color: #cc5a73;
-  color:#fff;
+  color: #fff;
 }
 
-.edit-delete-btn:hover{
+.edit-delete-btn:hover {
   background-color: white;
   border-color: #e32a53;
-  color:black;
+  color: black;
 }

@@ -4,11 +4,18 @@ import { NavigationExtras, Router, RouterModule } from '@angular/router';
 import { ApiAdminService } from '../../Services/api-admin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CartService } from '../../cart.service';
+import { WishListService } from '../../Services/wishList.service';
+import { CartAndWishListModule } from '../../../Modules/cart-and-wishlist.module';
 
 @Component({
   selector: 'app-one-product',
   standalone: true,
-  imports: [CommonModule, RouterModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    CartAndWishListModule,
+  ],
   providers: [ApiAdminService],
   templateUrl: './one-product.component.html',
   styleUrl: './one-product.component.css',
@@ -16,14 +23,38 @@ import { CartService } from '../../cart.service';
 export class OneProductComponent {
   @Input() product: any;
   isAdmin = false;
+  wishList: any[] = [];
+  isIncluded: boolean = false;
   constructor(
     private router: Router,
     private apiService: ApiAdminService,
-    private cartService: CartService
+    private cartService: CartService,
+    private wishListService: WishListService
   ) {
+    CartAndWishListModule.initialize(cartService, wishListService);
+
     if (this.router.url.split('/')[1] == 'admin') {
       this.isAdmin = true;
     }
+  }
+
+  ngOnInit(): void {
+    this.wishListService.getWishList().subscribe({
+      next: (data: any[]) => {
+        this.wishList = data;
+
+        if (this.wishList) {
+          const productId = this.product._id.toString();
+
+          this.isIncluded = this.wishList
+            .map((item) => item.productId)
+            .includes(productId);
+        }
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
   }
 
   deleteProduct(product: any) {
@@ -38,7 +69,14 @@ export class OneProductComponent {
   }
 
   addToCart(productId: any, qt: any) {
-    this.cartService.addToCart(productId, qt).subscribe();
-    window.location.reload();
+    CartAndWishListModule.addToCart(productId, qt);
+  }
+
+  addToWishList(productId: any) {
+    CartAndWishListModule.addToWishList(productId);
+  }
+
+  removeFromWishList(productId: any) {
+    CartAndWishListModule.removeFromWishList(productId, this.wishList);
   }
 }
