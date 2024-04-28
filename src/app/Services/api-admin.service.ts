@@ -4,17 +4,18 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, shareReplay } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiAdminService {
   constructor(private readonly http: HttpClient) {}
-  private readonly url = 'http://localhost:3000/products/';
-  private readonly users_Url = 'http://localhost:3000/user/';
-  private readonly orders_Url = 'http://localhost:3000/orders/';
+  private readonly url = `${environment.apiUrl}/products/`;
+  private readonly users_Url = `${environment.apiUrl}/user/`;
+  private readonly orders_Url = `${environment.apiUrl}/orders/`;
 
   private getTokenHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
@@ -86,7 +87,12 @@ export class ApiAdminService {
   }
 
   countUsers() {
-    return this.http.get(this.users_Url + 'count');
+    return this.http.get(this.users_Url + 'count').pipe(
+      catchError((error) => {
+        console.error('user count error :', error);
+        return throwError('Error occurred while fetching user count');
+      }),
+    );
   }
   getAllOrders() {
     return this.http.get<any>(`${this.orders_Url}/allOrders`);

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { ApiAdminService } from '../../../Services/api-admin.service';
 
@@ -9,6 +9,8 @@ import { ApiAdminService } from '../../../Services/api-admin.service';
   styleUrls: ['./line-chart.component.css'],
 })
 export class LineChartComponent implements OnInit, OnDestroy {
+  @Output() chartDataReady = new EventEmitter<any>();
+  Data: any;
   chartData: any;
   chart!: Chart;
   userCount: any;
@@ -27,10 +29,16 @@ export class LineChartComponent implements OnInit, OnDestroy {
     this.apiService.countNumberOfProducts().subscribe((productData: any) => {
       this.apiService.countUsers().subscribe((userData: any) => {
         console.log(userData);
+        console.log(productData);
 
         console.log('count User ' + userData.count[0].users);
         this.userCount = userData.count[0].users;
         this.apiService.countNumberOfProducts().subscribe((orderData: any) => {
+          this.Data = {
+            productsCount: productData.count,
+            usersCount: this.userCount,
+            // add orders count
+          };
           this.chartData = {
             labels: Object.keys(productData),
             datasets: [
@@ -62,6 +70,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
               },
             ],
           };
+          this.chartDataReady.emit(this.Data);
           this.renderChart();
         });
       });
