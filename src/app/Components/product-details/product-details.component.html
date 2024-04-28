@@ -36,14 +36,14 @@
     <div class="col-lg-6 col-md-12 product-details">
       <h2 class="fs-2">{{ productDetails.title }}</h2>
       <p class="lead mt-2">{{ productDetails.description }}</p>
-      <p class="price">${{ productDetails.price }}</p>
-      <p *ngIf="productDetails.stock > 0" class="fs-5">
+      <p class="price mb-3">${{ productDetails.price }}</p>
+      <p *ngIf="productDetails.stock > 0" class="fs-5 mb-3">
         <strong> In Stock: </strong> {{ productDetails.stock }}
       </p>
       <p *ngIf="productDetails.stock == 0" class="fs-5">
         <strong> Out of Stock </strong>
       </p>
-      <p class="fs-5">
+      <p class="fs-5 mb-3">
         <strong>Category: </strong> {{ productDetails.category }}
       </p>
 
@@ -160,9 +160,11 @@
           </p>
         </div>
         @for (product of allProducts.slice(0, 3); track product._id) {
-        <div class="col-md-4 mt-4 one-product-component">
-          <app-one-product [product]="product"></app-one-product>
-        </div>
+          <div class="col-md-4 mt-4 one-product-component">
+              <a routerLink="/products/{{ product._id }}">
+                <app-one-product [product]="product"></app-one-product>
+              </a>
+            </div>
         }
       </div>
     </ng-container>
