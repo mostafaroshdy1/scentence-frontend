@@ -33,15 +33,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      const decodedToken = this.decodeToken(token);
-      localStorage.setItem('role', decodedToken.role);
-      if (decodedToken.role === 'admin') {
-        this.router.navigate(['/admin']);
-      } else {
-        this.router.navigate(['/products']);
-      }
+      this.handleToken(token);
     }
   }
+
   private decodeToken(token: string): any {
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
     return decodedToken;
@@ -67,15 +62,8 @@ export class LoginComponent implements OnInit {
       const { email, password } = this.checkForm.value;
       this.authService.login(email, password).subscribe({
         next: (response) => {
-          console.log('Login successful:', response);
           localStorage.setItem('token', response.token);
-          const decodedToken = this.decodeToken(response.token);
-          localStorage.setItem('role', decodedToken.role);
-          if (decodedToken.role === 'admin') {
-            this.router.navigate(['/admin']);
-          } else {
-            this.router.navigate(['/products']);
-          }
+          this.handleToken(response.token);
         },
         error: (error) => {
           console.error('Login failed:', error);
@@ -83,6 +71,15 @@ export class LoginComponent implements OnInit {
       });
     } else {
       console.log('Form is invalid');
+    }
+  }
+
+  private handleToken(token: string): void {
+    const decodedToken = this.decodeToken(token);
+    if (decodedToken.role === 'user') {
+      this.router.navigate(['/products']);
+    } else {
+      this.router.navigate(['/admin']);
     }
   }
 

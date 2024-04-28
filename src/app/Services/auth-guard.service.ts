@@ -12,14 +12,24 @@ import {
 export class AdminAuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
+  decodeToken(token: string): any {
+    const decodedToken = JSON.parse(atob(token.split('.')[1]));
+    return decodedToken;
+  }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let role = localStorage.getItem('role');
-    if (role === 'admin') {
-      this.router.navigate(['/admin']);
-      return false;
-    } else {
-      return true;
+    let token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.decodeToken(token);
+      if (decodedToken.role === 'admin') {
+        this.router.navigate(['/admin']);
+        return false;
+      }
     }
+    this.router.navigate(['/login'], {
+      queryParams: { returnUrl: state.url },
+    });
+    return false;
   }
 }
 
@@ -29,13 +39,30 @@ export class AdminAuthGuard implements CanActivate {
 export class AuthGuardService implements CanActivate {
   constructor(private router: Router) {}
 
+  decodeToken(token: string): any {
+    const decodedToken = JSON.parse(atob(token.split('.')[1]));
+    return decodedToken;
+  }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let role = localStorage.getItem('role');
-    if (role === 'admin') {
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-      return false;
+    // let role = localStorage.getItem('role');
+    // if (role === 'admin') {
+    //   return true;
+    // } else {
+    //   this.router.navigate(['/login']);
+    //   return false;
+    // }
+
+    let token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.decodeToken(token);
+      if (decodedToken.role === 'admin') {
+        return true;
+      }
     }
+    this.router.navigate(['/login'], {
+      queryParams: { returnUrl: state.url },
+    });
+    return false;
   }
 }
