@@ -20,17 +20,19 @@ export class ApiAdminService {
   private getTokenHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
     if (token) {
-      const decodedToken = JSON.parse(atob(token.split(' ')[1]));
-      if (decodedToken && decodedToken.role === 'admin') {
-        console.log('User is admin');
-        localStorage.setItem('role', 'admin');
+      const tokenParts = token.split(' ');
+      if (tokenParts.length === 2 && tokenParts[0] === 'Bearer') {
+        const decodedToken = JSON.parse(atob(tokenParts[1]));
+        return new HttpHeaders({
+          Authorization: `Bearer ${tokenParts[1]}`,
+          'Content-Type': 'application/json',
+        });
       } else {
-        console.log('User is not admin.');
+        console.log('Invalid token format.');
+        return new HttpHeaders({
+          'Content-Type': 'application/json',
+        });
       }
-      return new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      });
     } else {
       console.log('Token not found.');
       return new HttpHeaders({
@@ -68,7 +70,6 @@ export class ApiAdminService {
   }
 
   getAllUsers() {
-    // return this.http.get(this.users_Url);
     return this.http.get(this.users_Url, { headers: this.getTokenHeaders() });
   }
 
