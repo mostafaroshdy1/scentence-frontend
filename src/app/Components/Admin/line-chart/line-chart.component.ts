@@ -33,11 +33,11 @@ export class LineChartComponent implements OnInit, OnDestroy {
         const userCount = userData.count && userData.count.length > 0 ? userData.count[0].users : 0;
         console.log('count User ' + userCount);
         this.userCount = userCount;
-        this.apiService.countNumberOfProducts().subscribe((orderData: any) => {
+        this.apiService.countOrders().subscribe((orderData: any) => {
           this.Data = {
             productsCount: productData.count,
             usersCount: this.userCount,
-            // add orders count
+            ordersCount: orderData.count,
           };
           this.chartData = {
             labels: Object.keys(productData),
@@ -61,8 +61,8 @@ export class LineChartComponent implements OnInit, OnDestroy {
               {
                 label: 'Orders',
                 // will change later
-                data: Object.values('9'),
-                // data: Object.values(orderData),
+                // data: Object.values('9'),
+                data: Object.values(orderData),
                 backgroundColor: '#80cbc4',
                 borderColor: '#80cbc4',
                 borderWidth: 1,
