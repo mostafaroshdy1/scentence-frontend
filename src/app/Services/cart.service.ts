@@ -16,11 +16,6 @@ export class CartService {
     return this.http.post<any>(`${this.url}`, { productId, qty });
   }
   getCart() {
-    const jwtToken = localStorage.getItem('token');
-    if (!jwtToken) {
-      this.router.navigate(['/login']);
-      // throw new Error('invalid Token');
-    }
     return this.http.get(this.url);
   }
   clearCart() {

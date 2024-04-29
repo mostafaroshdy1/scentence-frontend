@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule],
+  imports: [ReactiveFormsModule, HttpClientModule, RouterModule],
   providers: [AuthService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(email, password).subscribe({
         next: (response) => {
           console.log('Login successful:', response);
-          localStorage.setItem('token', `Bearer ${response.token}`);
+          localStorage.setItem('token', `${response.token}`);
           const decodedToken = this.decodeToken(response.token);
           //           localStorage.setItem('role', decodedToken.role);
           localStorage.setItem('id', decodedToken.id);

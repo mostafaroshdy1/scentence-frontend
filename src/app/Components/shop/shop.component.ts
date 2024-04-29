@@ -21,7 +21,7 @@ export class ShopComponent implements OnInit {
   filterModalVisible = false;
   constructor(private router: Router) {}
   ngOnInit(): void {
-    const jwt = localStorage.getItem('jwt');
+    const jwt = localStorage.getItem('token');
     if (!jwt) {
       this.router.navigate(['/login']);
     }
