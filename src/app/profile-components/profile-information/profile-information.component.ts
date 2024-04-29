@@ -59,7 +59,7 @@ export class ProfileInformationComponent implements OnInit {
 				this.profileInfoService.updateEmail(email).subscribe({
 					next: (data: any) => {
 						console.log(data);
-						localStorage.setItem('token', `Bearer ${data.token}`);
+						localStorage.setItem('token', `${data.token}`);
 						const { id, email, role } = jwtDecode.jwtDecode<any>(data.token);
 						console.log(id, email, role);
 						localStorage.setItem('id', id);

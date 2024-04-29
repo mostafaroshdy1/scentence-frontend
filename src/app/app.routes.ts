@@ -35,7 +35,11 @@ export const routes: Routes = [
       },
       {
         path: 'orders',
-        component: ProfileInformationComponent,
+        component: OrdersHistoryComponent,
+      },
+      {
+        path: 'orders/:id',
+        component: OrderDetailsComponent,
       },
     ],
   },
@@ -107,8 +111,8 @@ export const routes: Routes = [
   // TODO: add the error component
   // { path: '**', component: ErrorComponent },
 
-  { path: 'orders', component: OrdersHistoryComponent },
-  { path: 'orders/:id', component: OrderDetailsComponent },
+  { path: 'orders', redirectTo: 'profile/orders' },
+  { path: 'orders/:id', redirectTo: 'profile/orders/:id' },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'wishlist', component: WishListComponent },

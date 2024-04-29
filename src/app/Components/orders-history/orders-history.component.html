@@ -1,6 +1,5 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-4 prof" *ngIf="!isAdmin"></div>
     <div class="col-lg-12 orders">
       <div
         class="col-lg-10 mt-3 mx-auto"
@@ -64,7 +63,9 @@
             </div>
             <div class="col-lg-7">
               <div class="card-body ml-2">
-                <a [routerLink]="['/orders', order._id]" *ngIf="!isAdmin"
+                <a
+                  [routerLink]="['/profile/orders', order._id]"
+                  *ngIf="!isAdmin"
                   ><h5 class="card-title o-id ml-2 mb-2">
                     Order #{{ order.orderId }}
                   </h5></a
@@ -109,7 +110,7 @@
                 </div>
                 <div class="mb-3">
                   <button
-                    [routerLink]="['/orders', order._id]"
+                    [routerLink]="['/profile/orders', order._id]"
                     class="btn btn-primary"
                   >
                     <i class="fa-solid fa-eye mr-1"></i>View
@@ -170,7 +171,7 @@
                 </div>
                 <div class="mb-3">
                   <button
-                    [routerLink]="['/orders', order._id]"
+                    [routerLink]="['/profile/orders', order._id]"
                     class="btn btn-primary"
                   >
                     <i class="fa-solid fa-eye mr-1"></i>View
@@ -190,7 +191,7 @@
                   <p class="m-auto">{{ order.status }}</p>
                 </div>
                 <div class="mb-3">
-                  <div class="dropdown">
+                  <div class="dropup">
                     <button
                       class="btn btn-secondary dropdown-toggle"
                       type="button"

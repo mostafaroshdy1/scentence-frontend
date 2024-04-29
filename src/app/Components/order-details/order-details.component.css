@@ -219,3 +219,6 @@ hr {
 .rejected {
   background-color: #f44336;
 }
+.dropup .dropdown-menu {
+  bottom: 100%;
+}
