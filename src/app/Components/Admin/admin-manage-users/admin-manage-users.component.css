@@ -1,0 +1,39 @@
+.admin-dashboard {
+  padding: 20px;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.user-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.user span {
+  margin-right: 10px;
+}
+
+.delete-button {
+  background-color: #cc5a73;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #cc5a73bd;
+}
