@@ -8,7 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -38,9 +38,9 @@ export class LoginComponent implements OnInit {
   }
 
   private decodeToken(token: string): any {
-    console.log("token "+token);
+    console.log('token ' + token);
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
-    console.log("decoded: ",decodedToken);
+    console.log('decoded: ', decodedToken);
     return decodedToken;
   }
 
@@ -53,14 +53,14 @@ export class LoginComponent implements OnInit {
           console.log('Login successful:', response);
           localStorage.setItem('token', `Bearer ${response.token}`);
           const decodedToken = this.decodeToken(response.token);
-//           localStorage.setItem('role', decodedToken.role);
+          //           localStorage.setItem('role', decodedToken.role);
           localStorage.setItem('id', decodedToken.id);
           localStorage.setItem('email', decodedToken.email);
-//           if (decodedToken.role === 'admin') {
-//             this.router.navigate(['/admin']);
-//           } else {
-//             this.router.navigate(['/products']);
-//           }
+          //           if (decodedToken.role === 'admin') {
+          //             this.router.navigate(['/admin']);
+          //           } else {
+          //             this.router.navigate(['/products']);
+          //           }
           this.handleToken(response.token);
         },
         error: (error) => {

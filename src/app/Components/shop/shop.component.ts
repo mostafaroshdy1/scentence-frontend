@@ -3,6 +3,7 @@ import { BannerComponent } from '../banner/banner.component';
 import { FilterSearchBarComponent } from '../filter-search-bar/filter-search-bar.component';
 import { DisplayedProductsComponent } from '../displayed-products/displayed-products.component';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -18,8 +19,12 @@ import { CommonModule } from '@angular/common';
 })
 export class ShopComponent implements OnInit {
   filterModalVisible = false;
-
+  constructor(private router: Router) {}
   ngOnInit(): void {
+    const jwt = localStorage.getItem('jwt');
+    if (!jwt) {
+      this.router.navigate(['/login']);
+    }
     const closeFilterModal = document.querySelector('.close') as HTMLElement;
     window.addEventListener('click', (event) => {
       if (event.target === closeFilterModal) {
