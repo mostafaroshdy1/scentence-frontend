@@ -47,7 +47,6 @@ export class CartComponent {
     this.cart = [];
     this.cartService.clearCart().subscribe(); // no need to handle response
     this.isHidden = true;
-    window.location.reload();
   }
   updateCart(cart: any, id: string) {
     this.cartService.updateCart(cart).subscribe(
@@ -81,7 +80,10 @@ export class CartComponent {
   increaseQty(id: string) {
     const newCart = deepCopy(this.cart);
     const item = newCart.find((item: any) => item.productId == id);
+
     item.qty++;
+    console.log(item);
+
     this.updateCart(newCart, id);
   }
   deleteItem(id: string) {
