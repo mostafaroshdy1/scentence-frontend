@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar-components/navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent} from './signup/signup.component';
@@ -24,7 +24,16 @@ import { OrderDetailsComponent } from './Components/order-details/order-details.
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-	title = 'ecommerce';
+  shouldShowNavbar: boolean = true;
+
+  constructor(private router: Router) {
+    if(this.router.url.split('/')[1] === 'admin'){
+      this.shouldShowNavbar = false;
+    }
+    else{
+      this.shouldShowNavbar = true;
+    }
+  }
 }
 
 
