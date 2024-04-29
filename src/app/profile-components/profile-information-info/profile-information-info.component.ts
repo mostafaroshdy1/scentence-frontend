@@ -10,13 +10,14 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProfileInformationService } from '../../Services/profile-information.service';
+import { ModalModule, ModalService } from '@developer-partners/ngx-modal-dialog';
 import * as jwtDecode from 'jwt-decode';
 
 @Component({
 	selector: 'app-profile-information-info',
 	standalone: true,
-	imports: [ReactiveFormsModule, HttpClientModule],
-	providers: [ProfileInformationService],
+	imports: [ReactiveFormsModule, HttpClientModule, ModalModule],
+	providers: [ProfileInformationService, ModalService],
 	templateUrl: './profile-information-info.component.html',
 	styleUrl: './profile-information-info.component.css',
 })
@@ -24,10 +25,15 @@ export class ProfileInformationInfoComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private profileInfoService: ProfileInformationService,
+		private modalService: ModalService,
 	) {}
 
 	userInfo!: any;
 	imageUrl!: string;
+	message = {
+		status: 'bg-green-500',
+		text: 'User Updated Successfully',
+	};
 	ngOnInit(): void {
 		this.profileInfoService.getProfileInformation().subscribe({
 			next: (data) => {
@@ -70,12 +76,23 @@ export class ProfileInformationInfoComponent implements OnInit {
 			if (photo) {
 				formData.append('image', photo);
 			}
+			const messageElement = document.querySelector('[data-message]');
+			messageElement?.classList.remove('translate-x-[1500px]');
 			this.profileInfoService.updateProfileInformation(formData).subscribe({
 				next: (data: any) => {
 					console.log(data);
+					this.message.status = 'bg-green-500';
+					this.message.text = 'User Updated Successfully';
 				},
 				error: (err) => {
 					console.log(err);
+					this.message.status = 'bg-red-500';
+					this.message.text = 'error in updating user informatino';
+				},
+				complete: () => {
+					setTimeout(() => {
+						messageElement?.classList.add('translate-x-[1500px]');
+					}, 2000);
 				},
 			});
 		}
@@ -103,6 +120,8 @@ export class ProfileInformationInfoComponent implements OnInit {
 		if (photo) {
 			this.previewImage(photo);
 		}
+
+		this.modalService.show(ProfileInformationInfoComponent, { title: 'Profile' });
 	}
 	previewImage(file: File) {
 		const reader = new FileReader();
