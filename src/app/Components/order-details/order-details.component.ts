@@ -25,7 +25,7 @@ export class OrderDetailsComponent {
   order: any;
   date: any;
   time: any;
-
+  discount:any;
   ngOnInit() {
     console.log(this.route);
     this.orderService
@@ -39,6 +39,7 @@ export class OrderDetailsComponent {
           this.currentStatusIndex = this.getCurrentStatusIndex(
             this.order.order.status
           );
+          this.discount=(((this.order.order.total-30)/(1-this.order.order.discount)))*this.order.order.discount;
           console.log(this.order.order.status);
           console.log(this.order.products);
         },
