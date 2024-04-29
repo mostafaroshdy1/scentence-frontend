@@ -47,11 +47,16 @@ export class AdminDashboardComponent implements OnInit {
         console.log(error);
       },
     });
-  }
 
-  onChartDataReady(data: any): void {
-    this.productsCount = data.productsCount;
-    this.usersCount = data.usersCount;
-    // orders here
+    this.apiService.countUsers().subscribe({
+      next: (data: any) => {
+        console.log(data.count[0].users);
+        this.usersCount=data.count[0].users;
+        // console.log(this.usersCount);
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
   }
 }
