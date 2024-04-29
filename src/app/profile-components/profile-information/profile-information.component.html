@@ -1,0 +1,48 @@
+<div class="bg-[#f3f3f3] p-8 h-full">
+	<h2 class="text-xl font-extrabold capitalize mb-2">Email</h2>
+	<form class="mt-4 space-y-4" (submit)="checkData($event)" [formGroup]="checkForm">
+		<div class="">
+			<!-- placeholder="{{ userInfo.email }}" -->
+			<input
+				type="email"
+				name="email"
+				class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+				formControlName="email"
+			/>
+			@if (!emailValid && emailChanged) {
+				<p class="text-red-500 text-sm mt-2">please enter a valid email</p>
+			}
+		</div>
+		<h2 class="text-xl font-extrabold capitalize mt-4">Password</h2>
+		<div class="space-y-4">
+			<input
+				type="password"
+				name="password"
+				placeholder="New Password"
+				class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+				formControlName="password"
+			/>
+			<input
+				type="password"
+				name="password"
+				placeholder="Confirm Password"
+				class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+				formControlName="confirmPassword"
+			/>
+			@if (!passwordValid && passwordChanged) {
+				<p class="text-red-500 text-sm mt-2">The password must be at least 6 characters</p>
+			}
+
+			@if (checkForm.errors?.['passwordMismatch']) {
+				<p class="text-red-500 text-sm mt-2">The passwords don't match</p>
+			}
+		</div>
+
+		<button
+			class="px-4 py-2 bg-gray-800 text-white transition duration-500 hover:bg-gray-600 ml-auto w-fit block"
+			type="submit"
+		>
+			Save
+		</button>
+	</form>
+</div>

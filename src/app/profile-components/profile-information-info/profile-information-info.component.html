@@ -1,0 +1,99 @@
+<div class="bg-[#f3f3f3] p-8 h-full overflow-hidden">
+	<div
+		class="size-28 mx-auto mt-4 border-4 border-[#212529] rounded-full flex justify-center items-center bg-white shadow-sm shadow-[#4d5257] overflow-hidden"
+	>
+		@if (imageUrl) {
+			<img class="size-28 object-cover" src="{{ imageUrl }}" alt="" />
+		} @else {
+			<img
+				class="size-28 object-cover"
+				src="https://static.vecteezy.com/system/resources/thumbnails/020/911/746/small/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png"
+				alt=""
+			/>
+		}
+	</div>
+	<div
+		class="mt-4 {{
+			message.status
+		}} p-4 text-white border-l-8 border-white text-xl font-bold transition duration-700 translate-x-[1500px]"
+		data-message
+	>
+		{{ message.text }}
+	</div>
+	<form
+		class="mt-4 space-y-4"
+		(submit)="checkData($event)"
+		[formGroup]="checkForm"
+		enctype="multipart/form-data"
+	>
+		<h2 class="text-xl font-extrabold capitalize mb-2">Full Name</h2>
+		<div class="">
+			<input
+				type="text"
+				name="name"
+				class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+				placeholder=""
+				formControlName="fullName"
+			/>
+			@if (!fullNameValid && fullNameChanged) {
+				<p class="text-red-500 text-sm mt-2">please enter at least 3 characters</p>
+			}
+		</div>
+		<h2 class="text-xl font-extrabold capitalize mb-2">User Name</h2>
+		<div class="">
+			<input
+				type="text"
+				name="name"
+				class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+				placeholder=""
+				formControlName="username"
+			/>
+			@if (!usernameValid && usernameChanged) {
+				<p class="text-red-500 text-sm mt-2">please enter at least 3 characters</p>
+			}
+		</div>
+		<h2 class="text-xl font-extrabold capitalize mt-4">Birth Date</h2>
+		<div class="space-y-4">
+			<input
+				type="date"
+				name="date"
+				class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+				formControlName="birthDate"
+			/>
+		</div>
+
+		<h2 class="text-xl font-extrabold capitalize mt-4">Photo</h2>
+		<div class="flex w-full bg-grey-lighter">
+			<label
+				class="w-48 flex flex-col items-center p-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer transition duration-500 hover:text-rose-500"
+			>
+				<svg
+					class="w-8 h-8"
+					fill="currentColor"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 20 20"
+				>
+					<path
+						d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+					/>
+				</svg>
+				<span class="mt-2 text-base leading-normal">Select a file</span>
+				<input
+					type="file"
+					class="hidden"
+					name="photo"
+					formControlName="photo"
+					(change)="selectFile($event)"
+					data-photo
+				/>
+			</label>
+		</div>
+
+		<button
+			class="px-4 py-2 bg-gray-800 text-white transition duration-500 hover:bg-gray-600 ml-auto w-fit block"
+			type="submit"
+		>
+			Save
+		</button>
+	</form>
+</div>

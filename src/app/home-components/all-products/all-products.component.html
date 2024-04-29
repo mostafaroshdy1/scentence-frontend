@@ -1,0 +1,14 @@
+<div class="mt-8 p-8 text-center">
+	<app-header-paragraph [text]="text"></app-header-paragraph>
+	<div class="flex justify-center items-center gap-8 flex-wrap mt-8 filter-btns">
+		<button type="button" class="btn-gray uppercase active" (click)="changeProduct($event, 'new')">
+			New Products
+		</button>
+		<button type="button" class="btn-gray uppercase" (click)="changeProduct($event, 'popular')">
+			popular items
+		</button>
+		<button type="button" class="btn-gray uppercase" (click)="changeProduct($event, 'trend')">
+			Trending Item
+		</button>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<div class="min-h-[calc(100vh-90px)] w-48 bg-[#212529] text-white fixed shadow-lg">
+	<div class="h-1/5 bg-[#4d5257] p-8 flex justify-center items-center flex-col gap-2">
+		<div
+			class="size-20 border-4 border-[#212529] rounded-full flex justify-center items-center bg-white shadow-sm shadow-[#4d5257] overflow-hidden"
+		>
+			@if (userInfo?.image) {
+				<img class="size-20 object-cover" src="{{ userInfo.image }}" alt="" />
+			} @else {
+				<img
+					class="size-20 object-cover"
+					src="https://static.vecteezy.com/system/resources/thumbnails/020/911/746/small/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png"
+					alt=""
+				/>
+			}
+		</div>
+		<h3>
+			@if (userInfo?.username) {
+				{{ userInfo.username }}
+			} @else {
+				User Name
+			}
+		</h3>
+	</div>
+	<div class="text-sm">
+		<h2 class="px-4 mt-4 text-gray-400">Account Settings</h2>
+		<ul data-sidebar-links>
+			@for (sidebarItem of sidebarItems; track sidebarItem.routerLink) {
+				<li
+					class="cursor-pointer p-4 border-b border-gray-500 hover:bg-[#4d5257] transition duration-500 {{
+						sidebarItem.active ? activeClass : ''
+					}}"
+					(click)="changeActiveClass($event)"
+					routerLink="{{ sidebarItem.routerLink }}"
+				>
+					<a>{{ sidebarItem.name }}</a>
+				</li>
+			}
+		</ul>
+	</div>
+</div>

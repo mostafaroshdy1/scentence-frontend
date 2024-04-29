@@ -40,7 +40,7 @@ export class SignupComponent {
 			this.authService.signup(this.checkForm.value).subscribe(
 				(response) => {
 					console.log('Signup successful:', response);
-					this.authService.setToken(response.token);
+          this.router.navigate(['/login'])
 				},
 				(error) => {
 					console.error('Signup failed:', error);

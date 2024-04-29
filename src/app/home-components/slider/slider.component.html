@@ -1,0 +1,39 @@
+<div
+	class="container min-h-[calc(100vh-72px)] bg-blue-200 relative flex justify-center items-center slider-container overflow-hidden"
+	(mouseenter)="displayBtns('show')"
+	(mouseleave)="displayBtns('hide')"
+>
+	<button
+		type="button"
+		class="group size-14 rounded-full bg-white hover:bg-rose-500 transition duration-500 absolute top-1/2 -translate-y-1/2 left-8 z-50 slider-btn"
+		(click)="changeComponent('decrease')"
+	>
+		<fa-icon
+			[icon]="icons.arrowLeftIcon"
+			class="text-black text-xl group-hover:text-white duration-500"
+		></fa-icon>
+	</button>
+	<button
+		type="button"
+		class="group size-14 rounded-full bg-white hover:bg-rose-500 transition duration-500 absolute top-1/2 -translate-y-1/2 right-8 z-50 slider-btn"
+		(click)="changeComponent('increase')"
+	>
+		<fa-icon
+			[icon]="icons.arrowRightIcon"
+			class="text-black text-xl font-thin group-hover:text-white duration-500"
+		></fa-icon>
+	</button>
+
+	<div class="flex flex-col md:flex-row justify-center items-center">
+		<div class="w-full md:w-1/2 transition duration-[1.5s] left p-8 space-y-6">
+			<h2 class="text-3xl lg:text-5xl font-bold">{{ headers[eleIndex] }}</h2>
+			<p class="text-sm">
+				{{ paragraphs[eleIndex] }}
+			</p>
+			<button type="button" class="btn-outline">Shop Now</button>
+		</div>
+		<div class="w-1/2 transition duration-[1.5s] right">
+			<img src="{{ imgs[eleIndex] }}" alt="" />
+		</div>
+	</div>
+</div>
