@@ -27,11 +27,13 @@ export class ProfileInformationInfoComponent implements OnInit {
 	) {}
 
 	userInfo!: any;
+	imageUrl!: string;
 	ngOnInit(): void {
 		this.profileInfoService.getProfileInformation().subscribe({
 			next: (data) => {
 				this.userInfo = data;
 				this.userInfo = this.userInfo.User;
+				this.imageUrl = this.userInfo.image;
 				const fullName = this.userInfo?.fullName ? this.userInfo.fullName : '';
 				const username = this.userInfo?.username ? this.userInfo.username : '';
 				let birthDate = this.userInfo?.birthDate ? this.userInfo.birthDate : '';
@@ -56,23 +58,26 @@ export class ProfileInformationInfoComponent implements OnInit {
 	checkData(e: Event) {
 		e.preventDefault();
 		if (this.checkForm.valid) {
-			const { fullName, username, birthDate } = this.checkForm.value;
-			let photo = document.querySelector('[data-photo]') as HTMLFormElement;
+			// const { fullName, username, birthDate, photo } = this.checkForm.value;
+			let photo: any = document.querySelector('[data-photo]');
 			photo = photo['files'][0];
-			console.log(fullName, username, birthDate, photo);
+			const checkFormData: any = this.checkForm.value;
+			const formData = new FormData();
 
-			if (fullName && username && birthDate) {
-				this.profileInfoService
-					.updateProfileInformation(fullName, username, birthDate, photo)
-					.subscribe({
-						next: (data: any) => {
-							console.log(data);
-						},
-						error: (err) => {
-							console.log(err);
-						},
-					});
+			Object.keys(checkFormData).forEach((key) => {
+				formData.append(key, checkFormData[key]);
+			});
+			if (photo) {
+				formData.append('image', photo);
 			}
+			this.profileInfoService.updateProfileInformation(formData).subscribe({
+				next: (data: any) => {
+					console.log(data);
+				},
+				error: (err) => {
+					console.log(err);
+				},
+			});
 		}
 	}
 
@@ -91,5 +96,20 @@ export class ProfileInformationInfoComponent implements OnInit {
 	}
 	get usernameValid(): boolean {
 		return this.checkForm.controls.username.valid;
+	}
+
+	selectFile(e: any) {
+		const photo = e.target.files[0];
+		if (photo) {
+			this.previewImage(photo);
+		}
+	}
+	previewImage(file: File) {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onloadend = () => {
+			this.imageUrl = reader.result as string; // Cast result to string
+			console.log(this.imageUrl);
+		};
 	}
 }

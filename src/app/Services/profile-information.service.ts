@@ -48,21 +48,12 @@ export class ProfileInformationService {
 		);
 	}
 
-	updateProfileInformation(
-		fullName: string,
-		username: string,
-		birthDate: string,
-		image: HTMLFormElement,
-	) {
+	updateProfileInformation(form: any) {
 		//TODO: remove the header when merge
-		return this.http.put(
-			`${this.URL}/profile`,
-			{ fullName, username, birthDate, image },
-			{
-				headers: {
-					Authorization: this.token,
-				},
+		return this.http.put(`${this.URL}/profile`, form, {
+			headers: {
+				Authorization: this.token,
 			},
-		);
+		});
 	}
 }

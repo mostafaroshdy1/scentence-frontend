@@ -2,8 +2,8 @@
 	<div
 		class="size-28 mx-auto mt-4 border-4 border-[#212529] rounded-full flex justify-center items-center bg-white shadow-sm shadow-[#4d5257] overflow-hidden"
 	>
-		@if (userInfo?.image) {
-			<img class="size-28 object-cover" src="{{ userInfo.image }}" alt="" />
+		@if (imageUrl) {
+			<img class="size-28 object-cover" src="{{ imageUrl }}" alt="" />
 		} @else {
 			<img
 				class="size-28 object-cover"
@@ -70,7 +70,14 @@
 					/>
 				</svg>
 				<span class="mt-2 text-base leading-normal">Select a file</span>
-				<input type="file" class="hidden" name="photo" formControlName="photo" data-photo />
+				<input
+					type="file"
+					class="hidden"
+					name="photo"
+					formControlName="photo"
+					(change)="selectFile($event)"
+					data-photo
+				/>
 			</label>
 		</div>
 
