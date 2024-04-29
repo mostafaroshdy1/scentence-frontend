@@ -15,7 +15,7 @@ export class NavbarLinksComponent {
     { name: 'home', link: '/' },
     { name: 'shop', link: '/shop' },
     { name: 'product', link: '/products' },
-    { name: 'blog', link: '/blog' },
+    { name: 'Wish list', link: '/wishlist' },
     { name: 'about us', link: '/about-us' },
     { name: 'contact', link: '/contact' },
   ];

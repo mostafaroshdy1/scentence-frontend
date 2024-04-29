@@ -16,8 +16,16 @@ export class CartComponent {
   cart: any;
   total: number = 0;
   isHidden: boolean = true;
-  constructor(private cartService: CartService, private el: ElementRef) {}
+  constructor(
+    private cartService: CartService,
+    private el: ElementRef,
+    private router: Router
+  ) {}
   ngOnInit() {
+    const jwtToken = localStorage.getItem('token');
+    if (!jwtToken) {
+      this.router.navigate(['/login']);
+    }
     this.cartService.getCart().subscribe({
       next: (data: any) => {
         this.cart = data;

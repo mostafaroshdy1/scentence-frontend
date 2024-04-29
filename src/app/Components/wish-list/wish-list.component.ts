@@ -2,11 +2,11 @@ import { Component, ElementRef } from '@angular/core';
 import { WishListService } from '../../Services/wishList.service';
 import { CurrencyPipe } from '@angular/common';
 import { CartService } from '../../Services/cart.service';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-wish-list',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterModule],
   providers: [WishListService],
   templateUrl: './wish-list.component.html',
   styleUrl: './wish-list.component.css',

@@ -19,11 +19,7 @@
                   class="bg-image hover-overlay hover-zoom ripple rounded"
                   data-mdb-ripple-color="light"
                 >
-                  <img
-                    src="{{ item.img[0] }}"
-                    class="w-100"
-                    alt="Blue Jeans Jacket"
-                  />
+                  <img src="{{ item.img }}" class="w-100" alt="item" />
                   <a href="#!">
                     <div
                       class="mask"
@@ -185,7 +181,7 @@
                 </div>
                 <span
                   ><strong>{{
-                    (total+30) | currency : "USD" : "symbol" : "1.2-2"
+                    total + 30 | currency : "USD" : "symbol" : "1.2-2"
                   }}</strong></span
                 >
               </li>
@@ -219,7 +215,10 @@
         class="card-body d-flex flex-column justify-content-center align-items-center"
       >
         <p class="card-text">Your cart is currently empty.</p>
-        <a href="/shop" class="btn red-on-hover mt-3 btn-custom"
+        <a
+          routerLink="/products"
+          href="/shop"
+          class="btn red-on-hover mt-3 btn-custom"
           >Continue Shopping</a
         >
       </div>
