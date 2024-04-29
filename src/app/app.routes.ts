@@ -19,6 +19,7 @@ import { OrderDetailsComponent } from './Components/order-details/order-details.
 import { OrdersHistoryComponent } from './Components/orders-history/orders-history.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 export const routes: Routes = [
@@ -38,9 +39,13 @@ export const routes: Routes = [
 			},
 		],
 	},
-{
+  {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
   },
   {
     path: 'products',

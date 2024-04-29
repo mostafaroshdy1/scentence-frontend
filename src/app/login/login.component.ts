@@ -49,28 +49,16 @@ export class LoginComponent implements OnInit {
 
   checkData(e: Event) {
     e.preventDefault();
-
-    // console.log(
-    // 	this.checkForm.controls.email.dirty,
-    // 	this.checkForm.controls.email.touched,
-    // 	this.checkForm.controls.password,
-    // );
-
-    // if (this.emailValid && this.passwordValid) {
-    // 	console.log('Valid data');
-    // 	// this.router.navigate(['/']);
-    // } else {
-    // 	console.log('Invalid data');
-    // }
-
     if (this.checkForm.valid) {
       const { email, password } = this.checkForm.value;
       this.authService.login(email, password).subscribe({
         next: (response) => {
           console.log('Login successful:', response);
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('token', `Bearer ${response.token}`);
           const decodedToken = this.decodeToken(response.token);
           localStorage.setItem('role', decodedToken.role);
+          localStorage.setItem('id', decodedToken.id);
+          localStorage.setItem('email', decodedToken.email);
           if (decodedToken.role === 'admin') {
             this.router.navigate(['/admin']);
           } else {
