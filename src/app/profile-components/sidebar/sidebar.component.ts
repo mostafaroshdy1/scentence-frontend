@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IconDefinition, faUserMd } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-sidebar',
@@ -10,16 +9,25 @@ import { IconDefinition, faUserMd } from '@fortawesome/free-solid-svg-icons';
 	templateUrl: './sidebar.component.html',
 	styleUrl: './sidebar.component.css',
 })
-export class SidebarComponent {
-	email: IconDefinition = faUserMd;
+export class SidebarComponent implements OnInit {
+	constructor(private route: ActivatedRoute) {}
+	routeLink?: string;
+	sidebarItems!: any;
+	ngOnInit(): void {
+		this.routeLink = this.route.snapshot.firstChild?.url.join('/');
+		this.sidebarItems = [
+			{
+				name: 'Email & Passwords',
+				routerLink: '/profile/email',
+				active: this.routeLink === 'email',
+			},
+			{ name: 'Information', routerLink: '/profile/info', active: this.routeLink === 'info' },
+			{ name: 'Orders', routerLink: '/profile/orders', active: this.routeLink === 'orders' },
+		];
+	}
+
 	activeClass: string = 'bg-[#4d5257]';
 	@Input() userInfo!: any;
-
-	sidebarItems = [
-		{ name: 'Email & Passwords', routerLink: '/profile/email', active: true },
-		{ name: 'Information', routerLink: '/profile/info' },
-		{ name: 'Orders', routerLink: '/profile/orders' },
-	];
 
 	changeActiveClass(e: Event) {
 		e.stopPropagation();
