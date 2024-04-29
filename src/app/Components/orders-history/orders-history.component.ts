@@ -82,20 +82,11 @@ export class OrdersHistoryComponent implements OnInit {
   }
   reOrder(id: any) {
     this.orderService.reOrder(id).subscribe({
-      next: (data) => {
-        this.cartService.getCart().subscribe({
-          next: (data: any) => {
-            setTimeout(() => {
-              this.router.navigate(['/cart']);
-            }, 1000);
-          },
-          error: (err: any) => {
-            console.log(err);
-          },
-        });
+      complete: () => {
+        this.router.navigate(['/cart']);
       },
-      error: (error) => {
-        console.error(error);
+      error: (err: any) => {
+        console.log(err);
       },
     });
   }
