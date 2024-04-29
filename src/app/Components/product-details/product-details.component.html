@@ -36,22 +36,22 @@
     <div class="col-lg-6 col-md-12 product-details">
       <h2 class="fs-2">{{ productDetails.title }}</h2>
       <p class="lead mt-2">{{ productDetails.description }}</p>
-      <p class="price">${{ productDetails.price }}</p>
-      <p *ngIf="productDetails.stock > 0" class="fs-5">
+      <p class="price mb-3">${{ productDetails.price }}</p>
+      <p *ngIf="productDetails.stock > 0" class="fs-5 mb-3">
         <strong> In Stock: </strong> {{ productDetails.stock }}
       </p>
       <p *ngIf="productDetails.stock == 0" class="fs-5">
         <strong> Out of Stock </strong>
       </p>
-      <p class="fs-5">
+      <p class="fs-5 mb-3">
         <strong>Category: </strong> {{ productDetails.category }}
       </p>
-      <div class="star-rating mb-4">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="far fa-star"></i>
+
+      <div class="rating" *ngIf="!isAdmin">
+        <app-star-rating
+          [productId]="productDetails._id"
+          [set]="true"
+        ></app-star-rating>
       </div>
 
       <div class="mt-3 counter-container" *ngIf="!isAdmin">
@@ -75,15 +75,26 @@
         <button
           class="ms-2 btn btn-primary add-to-cart"
           [disabled]="productDetails.stock == 0"
+          (click)="addToCart(productDetails._id, countValue)"
         >
           Add to Cart
         </button>
+
+        @if(!isIncluded){
         <button
-          [disabled]="productDetails.stock == 0"
           class="ms-2 btn wishlist-border"
+          (click)="addToWishList(productDetails._id)"
         >
           <i class="far fa-heart fs-5"></i>
         </button>
+        } @else {
+        <button
+          class="ms-2 btn remove-wishlist-border"
+          (click)="removeFromWishList(productDetails._id)"
+        >
+          <i class="fas fa-heart fs-5"></i>
+        </button>
+        }
       </div>
 
       <button
@@ -160,9 +171,11 @@
           </p>
         </div>
         @for (product of allProducts.slice(0, 3); track product._id) {
-        <div class="col-md-4 mt-4 one-product-component">
-          <app-one-product [product]="product"></app-one-product>
-        </div>
+          <div class="col-md-4 mt-4 one-product-component">
+              <a routerLink="/products/{{ product._id }}">
+                <app-one-product [product]="product"></app-one-product>
+              </a>
+            </div>
         }
       </div>
     </ng-container>

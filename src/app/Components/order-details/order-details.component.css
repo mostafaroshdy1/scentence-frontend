@@ -208,3 +208,14 @@ hr {
 .sq {
   height: 100%;
 }
+.state {
+  color: white;
+  border-radius: 50px;
+  height: 30px;
+}
+.cancelled {
+  background-color: rgb(0, 0, 0);
+}
+.rejected {
+  background-color: #f44336;
+}

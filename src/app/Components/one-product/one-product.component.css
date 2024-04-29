@@ -58,7 +58,7 @@
 }
 
 .rating i {
-  color: #e7a415;
+  color: gold;
   padding: 2px;
 }
 
@@ -66,8 +66,8 @@
   display: none;
   position: absolute;
   margin: auto;
-  top: 75%;
-  left: 35%;
+  top: 80%;
+  left: 33%;
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 30px;
@@ -88,6 +88,7 @@
 
 .cart-btn,
 .wishList-btn,
+.remove-wishlist-btn,
 .wishList-btn i,
 .cart-btn i {
   border: none;
@@ -98,19 +99,33 @@
   color: #1b1a1a;
 }
 
+.cart-btn,
+.wishList-btn,
+.remove-wishlist-btn {
+  margin: 4px 8px;
+}
+
 .wishList-btn:hover i,
 .cart-btn:hover i {
   color: #e32a53;
 }
 
-.edit-delete-btn{
-  background-color: #cc5a73;
-  border-color: #cc5a73;
-  color:#fff;
+.remove-wishlist-btn i {
+  color: #e32a53;
 }
 
-.edit-delete-btn:hover{
+.remove-wishlist-btn:hover i {
+  color: #000000;
+}
+
+.edit-delete-btn {
+  background-color: #cc5a73;
+  border-color: #cc5a73;
+  color: #fff;
+}
+
+.edit-delete-btn:hover {
   background-color: white;
   border-color: #e32a53;
-  color:black;
+  color: black;
 }

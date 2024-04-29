@@ -5,24 +5,33 @@
       alt="{{ product.title }}"
       class="product-image img-fluid w-100"
     />
-    <div class="product-popup">
-      <button class="wishList-btn">
-        <i class="far fa-heart fa-fw fa-border"></i>
+    <div class="product-popup" *ngIf="!isAdmin">
+      @if(!isIncluded){
+      <button class="wishList-btn" (click)="addToWishList(product._id)">
+        <i class="far fa-heart fa-fw"></i>
       </button>
-      <button class="cart-btn">
-        <i class="fas fa-shopping-cart fa-fw fa-border"></i>
+      } @else {
+      <button
+        class="remove-wishlist-btn"
+        (click)="removeFromWishList(product._id)"
+      >
+        <i class="fas fa-heart fa-fw"></i>
+      </button>
+      }
+      <button class="cart-btn" (click)="addToCart(product._id, 1)">
+        <i class="fas fa-shopping-cart fa-fw"></i>
       </button>
     </div>
   </div>
   <div class="card-body">
     <h1 class="product-title">{{ product.title }}</h1>
     <p class="product-price">${{ product.price }}</p>
+
     <div class="rating" *ngIf="!isAdmin">
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star-half-alt"></i>
-      <i class="far fa-star"></i>
+      <app-star-rating
+        [productId]="product._id"
+        [show]="true"
+      ></app-star-rating>
     </div>
     <!-- admin btns -->
     <div class="admin-btns mt-2" *ngIf="isAdmin">

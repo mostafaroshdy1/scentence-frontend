@@ -20,7 +20,7 @@ import { OrdersHistoryComponent } from './Components/orders-history/orders-histo
 import { CartComponent } from './Components/cart/cart.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { SignupComponent } from './signup/signup.component';
-
+import { WishListComponent } from './Components/wish-list/wish-list.component';
 
 export const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -87,13 +87,30 @@ export const routes: Routes = [
           },
         ],
       },
-       { path: 'orders', component: OrdersHistoryComponent },
-  { path: 'orders/:id', component: OrderDetailsComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'checkout', component: CheckoutComponent },
+      {
+        path: 'orders',
+        children: [
+          {
+            path: '',
+            canActivate: [AuthGuardService],
+            component: OrdersHistoryComponent,
+          },
+          {
+            path: ':id',
+            canActivate: [AuthGuardService],
+            component: OrderDetailsComponent,
+          },
+        ],
+      },
     ],
   },
 	// TODO: add the error component
 	// { path: '**', component: ErrorComponent },
 ];
 
+  { path: 'orders', component: OrdersHistoryComponent },
+  { path: 'orders/:id', component: OrderDetailsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'wishlist', component: WishListComponent },
+];
