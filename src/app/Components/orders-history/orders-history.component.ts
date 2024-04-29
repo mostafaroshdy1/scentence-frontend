@@ -6,7 +6,6 @@ import { OrdersService } from '../../Services/orders.service';
 import { CartService } from '../../Services/cart.service';
 import { ApiAdminService } from '../../Services/api-admin.service';
 
-
 @Component({
   selector: 'app-orders-history',
   standalone: true,
@@ -74,7 +73,7 @@ export class OrdersHistoryComponent implements OnInit {
     this.orderService.cancelOrder(id).subscribe({
       next: (data) => {
         this.loadOrders();
-        this.router.navigate(['/orders']);
+        this.router.navigate(['/profile/orders']);
       },
       error: (error) => {
         console.error(error);

@@ -55,3 +55,6 @@ body {
 a {
   text-decoration: none;
 }
+.dropup .dropdown-menu {
+  bottom: 100%;
+}

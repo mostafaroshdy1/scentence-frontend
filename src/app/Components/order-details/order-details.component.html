@@ -26,13 +26,13 @@
                 </div>
                 @if (order.order.status === "cancelled"){
                 <div class="d-flex justify-content-end">
-                  <div class="mb-3 col-3 cancelled state d-flex">
+                  <div class="mb-3 col-2 cancelled state d-flex">
                     <p class="m-auto status">Cancelled</p>
                   </div>
                 </div>
                 } @else if (order.order.status === "rejected"){
                 <div class="d-flex justify-content-end">
-                  <div class="mb-3 col-3 rejected state d-flex">
+                  <div class="mb-3 col-2 rejected state d-flex">
                     <p class="m-auto status">Rejected</p>
                   </div>
                 </div>
@@ -196,7 +196,7 @@
                 </div>
                 <div class="mt-5 d-flex justify-content-center">
                   @if(isAdmin){
-                  <div class="dropdown">
+                  <div class="dropup">
                     <button
                       class="btn btn-secondary dropdown-toggle"
                       type="button"
