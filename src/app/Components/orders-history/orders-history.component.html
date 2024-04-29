@@ -63,7 +63,9 @@
             </div>
             <div class="col-lg-7">
               <div class="card-body ml-2">
-                <a [routerLink]="['/profile/orders', order._id]" *ngIf="!isAdmin"
+                <a
+                  [routerLink]="['/profile/orders', order._id]"
+                  *ngIf="!isAdmin"
                   ><h5 class="card-title o-id ml-2 mb-2">
                     Order #{{ order.orderId }}
                   </h5></a
@@ -189,7 +191,7 @@
                   <p class="m-auto">{{ order.status }}</p>
                 </div>
                 <div class="mb-3">
-                  <div class="dropdown">
+                  <div class="dropup">
                     <button
                       class="btn btn-secondary dropdown-toggle"
                       type="button"

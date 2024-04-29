@@ -112,7 +112,7 @@ export const routes: Routes = [
   // { path: '**', component: ErrorComponent },
 
   { path: 'orders', redirectTo: 'profile/orders' },
-  { path: 'orders/:id', component: OrderDetailsComponent },
+  { path: 'orders/:id', redirectTo: 'profile/orders/:id' },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'wishlist', component: WishListComponent },
