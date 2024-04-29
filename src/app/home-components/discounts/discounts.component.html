@@ -1,0 +1,9 @@
+<div class="container mt-14">
+	<div class="flex flex-col lg:flex-row gap-8 w-full justify-center">
+		@for (img of imgs; track img) {
+			<a routerLink="" class="cursor-pointer">
+				<app-image-zoomin [img]="img"></app-image-zoomin>
+			</a>
+		}
+	</div>
+</div>

@@ -40,7 +40,6 @@ export class OrdersHistoryComponent implements OnInit {
 
   loadOrders() {
     if (!this.isAdmin) {
-      console.log('get all orders l222');
       this.orderService.getUserOrders().subscribe({
         next: (data) => {
           this.Orders = data;
@@ -57,7 +56,6 @@ export class OrdersHistoryComponent implements OnInit {
     } else {
       this.adminService.getAllOrders().subscribe({
         next: (data) => {
-          console.log('get all orders admin');
           this.Orders = data;
           for (let i = 0; i < this.Orders.length; i++) {
             this.date = new Date(this.Orders[i].createdAt).toLocaleDateString();

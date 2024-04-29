@@ -99,6 +99,10 @@ export class ApiAdminService {
     return this.http.get<any>(`${this.orders_Url}/allOrders`);
   }
 
+  countOrders(){
+    return this.http.get(this.orders_Url + 'count');
+  }
+
   // private handleError(error: HttpErrorResponse) {
   //   if (error.error instanceof ErrorEvent) {
   //     console.error('An error occurred:', error.error.message);

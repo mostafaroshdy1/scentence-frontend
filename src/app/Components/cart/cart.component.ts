@@ -16,8 +16,16 @@ export class CartComponent {
   cart: any;
   total: number = 0;
   isHidden: boolean = true;
-  constructor(private cartService: CartService, private el: ElementRef) {}
+  constructor(
+    private cartService: CartService,
+    private el: ElementRef,
+    private router: Router
+  ) {}
   ngOnInit() {
+    const jwtToken = localStorage.getItem('token');
+    if (!jwtToken) {
+      this.router.navigate(['/login']);
+    }
     this.cartService.getCart().subscribe({
       next: (data: any) => {
         this.cart = data;
@@ -39,6 +47,7 @@ export class CartComponent {
     this.cart = [];
     this.cartService.clearCart().subscribe(); // no need to handle response
     this.isHidden = true;
+    window.location.reload();
   }
   updateCart(cart: any, id: string) {
     this.cartService.updateCart(cart).subscribe(

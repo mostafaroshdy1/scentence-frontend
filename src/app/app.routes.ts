@@ -1,4 +1,8 @@
 import { Routes } from '@angular/router';
+import { HomeComponent } from './home-components/home/home.component';
+import { ProfileComponent } from './profile-components/profile/profile.component';
+import { ProfileInformationComponent } from './profile-components/profile-information/profile-information.component';
+import { ProfileInformationInfoComponent } from './profile-components/profile-information-info/profile-information-info.component';
 import { ShopComponent } from './Components/shop/shop.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { AdminDashboardComponent } from './Components/Admin/admin-dashboard/admin-dashboard.component';
@@ -15,11 +19,33 @@ import { OrderDetailsComponent } from './Components/order-details/order-details.
 import { OrdersHistoryComponent } from './Components/orders-history/orders-history.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { SignupComponent } from './signup/signup.component';
+import { WishListComponent } from './Components/wish-list/wish-list.component';
 
 export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    children: [
+      { path: 'email', component: ProfileInformationComponent },
+      {
+        path: 'info',
+        component: ProfileInformationInfoComponent,
+      },
+      {
+        path: 'orders',
+        component: ProfileInformationComponent,
+      },
+    ],
+  },
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
   },
   {
     path: 'products',
@@ -78,9 +104,12 @@ export const routes: Routes = [
       },
     ],
   },
+  // TODO: add the error component
+  // { path: '**', component: ErrorComponent },
 
   { path: 'orders', component: OrdersHistoryComponent },
   { path: 'orders/:id', component: OrderDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'wishlist', component: WishListComponent },
 ];

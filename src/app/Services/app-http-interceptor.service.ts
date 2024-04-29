@@ -22,7 +22,6 @@ export class AppHttpInterceptorService implements HttpInterceptor {
     const token: any = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `jwtbearetoken ${token}`,
-      // token
     });
     req = req.clone({ headers: headers });
     return next.handle(req);

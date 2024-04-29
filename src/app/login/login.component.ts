@@ -8,11 +8,11 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule],
+  imports: [ReactiveFormsModule, HttpClientModule, RouterModule],
   providers: [AuthService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -38,33 +38,29 @@ export class LoginComponent implements OnInit {
   }
 
   private decodeToken(token: string): any {
-    console.log("token "+token);
+    console.log('token ' + token);
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
-    console.log("decoded: ",decodedToken);
+    console.log('decoded: ', decodedToken);
     return decodedToken;
   }
 
   checkData(e: Event) {
     e.preventDefault();
-
-    // console.log(
-    // 	this.checkForm.controls.email.dirty,
-    // 	this.checkForm.controls.email.touched,
-    // 	this.checkForm.controls.password,
-    // );
-
-    // if (this.emailValid && this.passwordValid) {
-    // 	console.log('Valid data');
-    // 	// this.router.navigate(['/']);
-    // } else {
-    // 	console.log('Invalid data');
-    // }
-
     if (this.checkForm.valid) {
       const { email, password } = this.checkForm.value;
       this.authService.login(email, password).subscribe({
         next: (response) => {
-          localStorage.setItem('token', response.token);
+          console.log('Login successful:', response);
+          localStorage.setItem('token', `${response.token}`);
+          const decodedToken = this.decodeToken(response.token);
+          //           localStorage.setItem('role', decodedToken.role);
+          localStorage.setItem('id', decodedToken.id);
+          localStorage.setItem('email', decodedToken.email);
+          //           if (decodedToken.role === 'admin') {
+          //             this.router.navigate(['/admin']);
+          //           } else {
+          //             this.router.navigate(['/products']);
+          //           }
           this.handleToken(response.token);
         },
         error: (error) => {

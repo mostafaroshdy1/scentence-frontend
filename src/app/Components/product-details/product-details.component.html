@@ -75,15 +75,26 @@
         <button
           class="ms-2 btn btn-primary add-to-cart"
           [disabled]="productDetails.stock == 0"
+          (click)="addToCart(productDetails._id, countValue)"
         >
           Add to Cart
         </button>
+
+        @if(!isIncluded){
         <button
-          [disabled]="productDetails.stock == 0"
           class="ms-2 btn wishlist-border"
+          (click)="addToWishList(productDetails._id)"
         >
           <i class="far fa-heart fs-5"></i>
         </button>
+        } @else {
+        <button
+          class="ms-2 btn remove-wishlist-border"
+          (click)="removeFromWishList(productDetails._id)"
+        >
+          <i class="fas fa-heart fs-5"></i>
+        </button>
+        }
       </div>
 
       <button

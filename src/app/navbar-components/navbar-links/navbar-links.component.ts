@@ -3,23 +3,22 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { faCircleXmark, faBars } from '@fortawesome/free-solid-svg-icons';
 
-
 @Component({
-	selector: 'app-navbar-links',
-	standalone: true,
-	imports: [RouterModule, FontAwesomeModule],
-	templateUrl: './navbar-links.component.html',
-	styleUrl: './navbar-links.component.css',
+  selector: 'app-navbar-links',
+  standalone: true,
+  imports: [RouterModule, FontAwesomeModule],
+  templateUrl: './navbar-links.component.html',
+  styleUrl: './navbar-links.component.css',
 })
 export class NavbarLinksComponent {
-	links: any[] = [
-		{ name: 'home', link: '/' },
-		{ name: 'shop', link: '/shop' },
-		{ name: 'product', link: '/product' },
-		{ name: 'blog', link: '/blog' },
-		{ name: 'about us', link: '/about-us' },
-		{ name: 'contact', link: '/contact' },
-	];
+  links: any[] = [
+    { name: 'home', link: '/' },
+    { name: 'shop', link: '/shop' },
+    { name: 'product', link: '/products' },
+    { name: 'Wish list', link: '/wishlist' },
+    { name: 'about us', link: '/about-us' },
+    { name: 'contact', link: '/contact' },
+  ];
 
   closeIcon = faCircleXmark;
   barsIcon = faBars;
@@ -27,8 +26,7 @@ export class NavbarLinksComponent {
   navDisplay = 'hidden-display';
 
   changeNav() {
-		this.navDisplay = this.navDisplay === 'hidden-display' ? 'show-display' : 'hidden-display';
+    this.navDisplay =
+      this.navDisplay === 'hidden-display' ? 'show-display' : 'hidden-display';
   }
-
-
 }
