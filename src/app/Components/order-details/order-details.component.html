@@ -24,6 +24,19 @@
                     <h4>Order ID: {{ order.order.orderId }}</h4>
                   </div>
                 </div>
+                @if (order.order.status === "cancelled"){
+                <div class="d-flex justify-content-end">
+                  <div class="mb-3 col-3 cancelled state d-flex">
+                    <p class="m-auto status">Cancelled</p>
+                  </div>
+                </div>
+                } @else if (order.order.status === "rejected"){
+                <div class="d-flex justify-content-end">
+                  <div class="mb-3 col-3 rejected state d-flex">
+                    <p class="m-auto status">Rejected</p>
+                  </div>
+                </div>
+                }
                 <div
                   class="row"
                   *ngFor="
@@ -128,7 +141,9 @@
                         <p class="mb-3 my-right"><b>Discount</b></p>
                       </div>
                       <div class="flex-sm-col col-auto">
-                        <p class="mb-3">${{order.order.discount? discount : "00"}}.00</p>
+                        <p class="mb-3">
+                          ${{ order.order.discount ? discount : "00" }}.00
+                        </p>
                       </div>
                     </div>
                     <div class="row justify-content-between">
@@ -178,6 +193,99 @@
                       </ul>
                     </div>
                   </div>
+                </div>
+                <div class="mt-5 d-flex justify-content-center">
+                  @if(isAdmin){
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      (click)="toggleDropdown(order.order._id)"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Status
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      [class.show]="dropdownStates[order.order._id]"
+                      aria-labelledby="dropdownMenu2"
+                    >
+                      <button
+                        class="dropdown-item"
+                        (click)="updateStatus(order.order._id, 'accepted')"
+                        type="button"
+                      >
+                        Accepted
+                      </button>
+                      <button
+                        class="dropdown-item"
+                        (click)="updateStatus(order.order._id, 'rejected')"
+                        type="button"
+                      >
+                        Rejected
+                      </button>
+                      <button
+                        class="dropdown-item"
+                        (click)="updateStatus(order.order._id, 'on way')"
+                        type="button"
+                      >
+                        On way
+                      </button>
+                      <button
+                        class="dropdown-item"
+                        (click)="updateStatus(order.order._id, 'delivered')"
+                        type="button"
+                      >
+                        Delivered
+                      </button>
+                      <button
+                        class="dropdown-item"
+                        (click)="updateStatus(order.order._id, 'pending')"
+                        type="button"
+                      >
+                        Pending
+                      </button>
+                    </div>
+                  </div>
+                  } @else if(!isAdmin){ @if(order.order.status === 'rejected'){
+                  <div class="mb-3">
+                    <button
+                      (click)="reOrder(order.order._id)"
+                      class="btn btn-dark"
+                    >
+                      <i class="fa-solid fa-repeat mr-1"></i>Reorder
+                    </button>
+                  </div>
+                  } @else if(order.order.status === 'pending'){
+                  <div class="mb-3">
+                    <button
+                      (click)="cancelOrder(order.order._id)"
+                      class="btn btn-secondary"
+                    >
+                      <i class="fa-solid fa-ban mr-1"></i>Cancel
+                    </button>
+                  </div>
+                  } @else if(order.order.status === 'delivered'){
+                  <div class="mb-3">
+                    <button
+                      (click)="reOrder(order.order._id)"
+                      class="btn btn-dark"
+                    >
+                      <i class="fa-solid fa-repeat mr-1"></i>Reorder
+                    </button>
+                  </div>
+                  } @else if(order.order.status === 'cancelled'){
+                  <div class="mb-3">
+                    <button
+                      (click)="reOrder(order.order._id)"
+                      class="btn btn-dark"
+                    >
+                      <i class="fa-solid fa-repeat mr-1"></i>Reorder
+                    </button>
+                  </div>
+                  } }
                 </div>
               </div>
             </div>
