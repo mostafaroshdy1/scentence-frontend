@@ -17,34 +17,4 @@ export class AdminDetailsCardComponent {
   @Input() total!: number;
 
   constructor(private apiService: ApiAdminService, private router: Router) {}
-  // productsCount = 0;
-  // usersCount = 0;
-  // ngOnInit(): void {
-  //   this.apiService.getAllProducts().subscribe({
-  //     next: (data: any) => {
-  //       for (const prod of data.products) {
-  //         this.productsCount += 1;
-  //       }
-  //     },
-  //     error: (error: any) => {
-  //       console.log(error);
-  //     },
-  //   });
-
-  //   // this.apiService.countUsers().subscribe({
-  //   //   next: (data: any) => {
-  //   //     this.usersCount = data.count;
-  //   //   },
-  //   //   error: (error: any) => {
-  //   //     console.log(error);
-  //   //   },
-  //   // });
-
-  //   if (this.title === 'Products') {
-  //     this.productsCount = this.total;
-  //   } else if (this.title === 'Users') {
-  //     this.usersCount = this.total;
-  //   }
-  //   // else for orders
-  // }
 }

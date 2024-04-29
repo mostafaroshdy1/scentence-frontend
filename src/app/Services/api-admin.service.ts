@@ -90,7 +90,7 @@ export class ApiAdminService {
   countUsers() {
     return this.http.get(this.users_Url + 'count').pipe(
       catchError((error) => {
-        console.error('user count error :', error);
+        console.log('user count error :', error);
         return throwError('Error occurred while fetching user count');
       }),
     );
