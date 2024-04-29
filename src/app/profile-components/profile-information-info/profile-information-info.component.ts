@@ -10,14 +10,13 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProfileInformationService } from '../../Services/profile-information.service';
-import { ModalModule, ModalService } from '@developer-partners/ngx-modal-dialog';
 import * as jwtDecode from 'jwt-decode';
 
 @Component({
 	selector: 'app-profile-information-info',
 	standalone: true,
-	imports: [ReactiveFormsModule, HttpClientModule, ModalModule],
-	providers: [ProfileInformationService, ModalService],
+	imports: [ReactiveFormsModule, HttpClientModule],
+	providers: [ProfileInformationService],
 	templateUrl: './profile-information-info.component.html',
 	styleUrl: './profile-information-info.component.css',
 })
@@ -25,14 +24,13 @@ export class ProfileInformationInfoComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private profileInfoService: ProfileInformationService,
-		private modalService: ModalService,
 	) {}
 
 	userInfo!: any;
 	imageUrl!: string;
 	message = {
-		status: 'bg-green-500',
-		text: 'User Updated Successfully',
+		status: '',
+		text: '',
 	};
 	ngOnInit(): void {
 		this.profileInfoService.getProfileInformation().subscribe({
@@ -120,8 +118,6 @@ export class ProfileInformationInfoComponent implements OnInit {
 		if (photo) {
 			this.previewImage(photo);
 		}
-
-		this.modalService.show(ProfileInformationInfoComponent, { title: 'Profile' });
 	}
 	previewImage(file: File) {
 		const reader = new FileReader();
