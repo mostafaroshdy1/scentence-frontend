@@ -121,4 +121,18 @@ export class DisplayedProductsComponent {
   handleError(error: any): void {
     console.log('Error:', error);
   }
+
+  goToProduct(event: Event, productId: any): void {
+    const target = event.target as HTMLElement;
+    if (
+      !target.classList.contains('button') &&
+      !target.classList.contains('icon')
+    ) {
+      if (!this.isAdmin) {
+        this.router.navigate(['/products/', productId]);
+      } else if (this.isAdmin) {
+        this.router.navigate(['/admin/products/', productId]);
+      }
+    }
+  }
 }

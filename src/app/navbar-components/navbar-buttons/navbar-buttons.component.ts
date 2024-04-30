@@ -11,6 +11,8 @@ import { SearchComponent } from '../../search/search.component';
 import { SettingsComponent } from '../settings/settings.component';
 import { CartService } from '../../Services/cart.service';
 import { Router } from '@angular/router';
+import { cartCountService } from '../../Services/cart-count.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-navbar-buttons',
@@ -26,13 +28,32 @@ export class NavbarButtonsComponent {
   cartSize: number = 0;
   total: number = 0;
 
-  constructor(private cartService: CartService, private router: Router) {}
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private cartCountService: cartCountService
+  ) {}
 
   ngOnInit() {
-    this.cartService.getCart().subscribe({
+    this.cartService
+      .getCart()
+      .pipe(take(1))
+      .subscribe({
+        next: (data) => {
+          if (data) {
+            this.cart = data;
+            this.total = this.cart.reduce((acc: number, item: any) => {
+              return acc + item.price * item.qty;
+            }, 0);
+            this.cartSize = this.cart.length;
+          }
+        },
+      });
+    this.cartCountService.cartItems$.subscribe({
       next: (data) => {
         if (data) {
           this.cart = data;
+          console.log('cart:', this.cart);
           this.total = this.cart.reduce((acc: number, item: any) => {
             return acc + item.price * item.qty;
           }, 0);

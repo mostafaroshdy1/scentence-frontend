@@ -6,20 +6,22 @@
       class="product-image img-fluid w-100"
     />
     <div class="product-popup" *ngIf="!isAdmin">
-      @if(!isIncluded){
-      <button class="wishList-btn" (click)="addToWishList(product._id)">
-        <i class="far fa-heart fa-fw"></i>
-      </button>
-      } @else {
       <button
-        class="remove-wishlist-btn"
+        *ngIf="!isIncluded"
+        class="wishList-btn button"
+        (click)="addToWishList(product._id)"
+      >
+        <i class="far fa-heart fa-fw icon"></i>
+      </button>
+      <button
+        *ngIf="isIncluded"
+        class="remove-wishlist-btn button"
         (click)="removeFromWishList(product._id)"
       >
-        <i class="fas fa-heart fa-fw"></i>
+        <i class="fas fa-heart fa-fw icon"></i>
       </button>
-      }
-      <button class="cart-btn" (click)="addToCart(product._id, 1)">
-        <i class="fas fa-shopping-cart fa-fw"></i>
+      <button class="cart-btn button" (click)="addToCart(product._id, 1)">
+        <i class="fas fa-shopping-cart fa-fw icon"></i>
       </button>
     </div>
   </div>

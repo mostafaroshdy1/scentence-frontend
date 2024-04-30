@@ -3,6 +3,7 @@ import { CartService } from '../../Services/cart.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { cartCountService } from '../../Services/cart-count.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,7 +20,8 @@ export class CartComponent {
   constructor(
     private cartService: CartService,
     private el: ElementRef,
-    private router: Router
+    private router: Router,
+    private cartCountService: cartCountService
   ) {}
   ngOnInit() {
     const jwtToken = localStorage.getItem('token');
@@ -47,6 +49,7 @@ export class CartComponent {
     this.cart = [];
     this.cartService.clearCart().subscribe(); // no need to handle response
     this.isHidden = true;
+    this.cartCountService.clearCartItems();
   }
   updateCart(cart: any, id: string) {
     this.cartService.updateCart(cart).subscribe(
@@ -90,6 +93,7 @@ export class CartComponent {
     console.log(id);
     const newCart = this.cart.filter((item: any) => item.productId != id);
     this.updateCart(newCart, id);
+    this.cartCountService.setCartItems(newCart);
   }
 }
 

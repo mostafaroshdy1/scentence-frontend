@@ -5,19 +5,14 @@ import { ApiAdminService } from '../../Services/api-admin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CartService } from '../../Services/cart.service';
 import { WishListService } from '../../Services/wishList.service';
-import { CartAndWishListModule } from '../../../Modules/cart-and-wishlist.module';
 import { StarRatingComponent } from '../star-rating/star-rating.component';
+import { cartCountService } from '../../Services/cart-count.service';
+import { CartAndWishListService } from '../../Services/cart-and-wishlist.service';
 
 @Component({
   selector: 'app-one-product',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    HttpClientModule,
-    CartAndWishListModule,
-    StarRatingComponent
-  ],
+  imports: [CommonModule, RouterModule, HttpClientModule, StarRatingComponent],
   providers: [ApiAdminService],
   templateUrl: './one-product.component.html',
   styleUrl: './one-product.component.css',
@@ -31,10 +26,10 @@ export class OneProductComponent {
     private router: Router,
     private apiService: ApiAdminService,
     private cartService: CartService,
-    private wishListService: WishListService
+    private wishListService: WishListService,
+    private cartCountService: cartCountService,
+    private cartAndWishlistService: CartAndWishListService
   ) {
-    CartAndWishListModule.initialize(cartService, wishListService);
-
     if (this.router.url.split('/')[1] == 'admin') {
       this.isAdmin = true;
     }
@@ -71,14 +66,16 @@ export class OneProductComponent {
   }
 
   addToCart(productId: any, qt: any) {
-    CartAndWishListModule.addToCart(productId, qt);
+    this.cartAndWishlistService.addToCart(productId, qt);
   }
 
   addToWishList(productId: any) {
-    CartAndWishListModule.addToWishList(productId);
+    this.cartAndWishlistService.addToWishList(productId);
+    this.isIncluded = true;
   }
 
   removeFromWishList(productId: any) {
-    CartAndWishListModule.removeFromWishList(productId, this.wishList);
+    this.cartAndWishlistService.removeFromWishList(productId, this.wishList);
+    this.isIncluded = false;
   }
 }
