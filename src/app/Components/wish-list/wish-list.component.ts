@@ -3,6 +3,8 @@ import { WishListService } from '../../Services/wishList.service';
 import { CurrencyPipe } from '@angular/common';
 import { CartService } from '../../Services/cart.service';
 import { RouterModule } from '@angular/router';
+import { cartCountService } from '../../Services/cart-count.service';
+
 @Component({
   selector: 'app-wish-list',
   standalone: true,
@@ -16,7 +18,8 @@ export class WishListComponent {
   isHidden: boolean = true;
   constructor(
     private wishListService: WishListService,
-    private cartService: CartService
+    private cartService: CartService,
+    private cartCountService: cartCountService
   ) {}
 
   ngOnInit() {
@@ -39,7 +42,6 @@ export class WishListComponent {
     this.wishList = [];
     this.wishListService.clearWishList().subscribe();
     this.isHidden = true;
-    window.location.reload();
   }
 
   updateWishList(wishList: any) {
@@ -47,9 +49,6 @@ export class WishListComponent {
       next: (data: any) => {},
       error: (error: any) => {
         console.error('Error updating wishlist:', error);
-      },
-      complete: () => {
-        window.location.reload();
       },
     });
   }
@@ -97,6 +96,7 @@ export class WishListComponent {
     this.cartService.addToCart(productId, currentValue).subscribe({
       next: (data: any) => {
         this.deleteItem(productId);
+        this.cartCountService.setCartItems(data);
       },
       error: (error: any) => {
         console.error('Error adding to cart:', error);

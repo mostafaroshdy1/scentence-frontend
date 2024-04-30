@@ -4,7 +4,6 @@
 
 a,
 a:hover {
-	color: inherit !important;
 	text-decoration: none !important;
 }
 
@@ -20,6 +19,7 @@ h5,
 h6 {
 	font-size: inherit !important;
 }
+
 /* Tailwind directives */
 @tailwind base;
 @tailwind components;
@@ -73,6 +73,16 @@ h6 {
 
 	.btn-gray.active {
 		@apply bg-gray-900 text-white;
+	}
+
+	.arrow-up.show {
+		opacity: 1;
+		pointer-events: all;
+	}
+
+	.arrow-up.hide {
+		opacity: 0;
+		pointer-events: none;
 	}
 }
 

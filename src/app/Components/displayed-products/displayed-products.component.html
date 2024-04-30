@@ -27,30 +27,13 @@
   </div>
   <div class="row">
     @for (product of products; track product._id){
-    <a
-      routerLink="/products/{{ product._id }}"
-      class="text-decoration-none text-dark col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center"
-      *ngIf="!isAdmin"
+    <div
+      class="product col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center"
+      (click)="goToProduct($event, product._id)"
     >
-      <div
-        class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center"
-      >
-        <app-one-product [product]="product"></app-one-product>
-      </div>
-    </a>
-    <a
-      routerLink="{{ product._id }}"
-      class="text-decoration-none text-dark col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center"
-      *ngIf="isAdmin"
-    >
-      <div
-        class="col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center"
-      >
-        <app-one-product [product]="product"></app-one-product>
-      </div>
-    </a>
+      <app-one-product [product]="product"></app-one-product>
+    </div>
     }
-    <!-- </a> -->
   </div>
   <div class="row mt-5">
     <div class="col">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderParagraphComponent } from '../header-paragraph/header-paragraph.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProductsService } from '../../Services/products.service';
@@ -6,14 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { OneProductComponent } from '../../Components/one-product/one-product.component';
 
 @Component({
-	selector: 'app-all-products',
+	selector: 'app-new-arrivals',
 	standalone: true,
 	imports: [HeaderParagraphComponent, HttpClientModule, RouterModule, OneProductComponent],
 	providers: [ProductsService],
-	templateUrl: './all-products.component.html',
-	styleUrl: './all-products.component.css',
+	templateUrl: './new-arrivals.component.html',
+	styleUrl: './new-arrivals.component.css',
 })
-export class AllProductsComponent implements OnInit {
+export class NewArrivalsComponent {
 	constructor(
 		private productService: ProductsService,
 		private router: Router,
@@ -31,21 +31,10 @@ export class AllProductsComponent implements OnInit {
 	}
 
 	text: { header: string; paragraph: string } = {
-		header: 'All Products',
+		header: 'New Arrivals',
 		paragraph:
 			'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical',
 	};
-
-	changeProduct(e: Event, type: string) {
-		const productBtns: NodeListOf<HTMLElement> | null =
-			document.querySelectorAll('.filter-btns > button');
-		productBtns.forEach((btn: HTMLElement) => {
-			btn.classList.remove('active');
-		});
-
-		const currentElement = e.target as HTMLElement;
-		currentElement.classList.add('active');
-	}
 
 	goToProduct(event: Event, productId: any): void {
 		const target = event.target as HTMLElement;

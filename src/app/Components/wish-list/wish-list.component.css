@@ -66,3 +66,10 @@ input[type="number"] {
 .remove-border {
   border: none;
 }
+
+.btn-custom {
+  width: 308px;
+  height: 42px;
+  background-color: #1f2125;
+  color: white !important;
+}

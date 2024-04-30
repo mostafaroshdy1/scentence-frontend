@@ -80,21 +80,20 @@
           Add to Cart
         </button>
 
-        @if(!isIncluded){
         <button
+          *ngIf="!isIncluded"
           class="ms-2 btn wishlist-border"
           (click)="addToWishList(productDetails._id)"
         >
           <i class="far fa-heart fs-5"></i>
         </button>
-        } @else {
         <button
+          *ngIf="isIncluded"
           class="ms-2 btn remove-wishlist-border"
           (click)="removeFromWishList(productDetails._id)"
         >
           <i class="fas fa-heart fs-5"></i>
         </button>
-        }
       </div>
 
       <button
@@ -171,11 +170,11 @@
           </p>
         </div>
         @for (product of allProducts.slice(0, 3); track product._id) {
-          <div class="col-md-4 mt-4 one-product-component">
-              <a routerLink="/products/{{ product._id }}">
-                <app-one-product [product]="product"></app-one-product>
-              </a>
-            </div>
+        <div class="col-md-4 mt-4 one-product-component">
+          <a routerLink="/products/{{ product._id }}">
+            <app-one-product [product]="product"></app-one-product>
+          </a>
+        </div>
         }
       </div>
     </ng-container>

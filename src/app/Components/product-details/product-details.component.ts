@@ -11,8 +11,9 @@ import { ApiProductsService } from '../../Services/api-products.service';
 import { ProductsService } from '../../Services/products.service';
 import { CartService } from '../../Services/cart.service';
 import { WishListService } from '../../Services/wishList.service';
-import { CartAndWishListModule } from '../../../Modules/cart-and-wishlist.module';
 import { StarRatingComponent } from '../star-rating/star-rating.component';
+import { cartCountService } from '../../Services/cart-count.service';
+import { CartAndWishListService } from '../../Services/cart-and-wishlist.service';
 
 @Component({
   selector: 'app-product-details',
@@ -26,7 +27,6 @@ import { StarRatingComponent } from '../star-rating/star-rating.component';
     ReviewsComponent,
     ShippingPolicyComponent,
     OneProductComponent,
-    CartAndWishListModule,
     StarRatingComponent,
   ],
   providers: [ProductsService],
@@ -38,15 +38,15 @@ export class ProductDetailsComponent {
     private apiService: ProductsService,
     private router: Router,
     private wishListService: WishListService,
-    private cartService: CartService
-  ) {
-    CartAndWishListModule.initialize(cartService, wishListService);
-  }
+    private cartService: CartService,
+    private cartCountService: cartCountService,
+    private cartAndWishlistService: CartAndWishListService
+  ) {}
   productDetails: any;
   allProducts: any;
   result: any;
   mainImage = '';
-  countValue = 0;
+  countValue = 1;
   style = '';
   isAdmin = false;
   currentComponent: string = 'description';
@@ -125,13 +125,15 @@ export class ProductDetailsComponent {
   }
 
   decrement() {
-    if (this.countValue > 0) {
+    if (this.countValue > 1) {
       this.countValue--;
     }
   }
 
   increment() {
-    this.countValue++;
+    if (this.countValue < this.productDetails.stock) {
+      this.countValue++;
+    }
   }
 
   showDescription() {
@@ -182,14 +184,16 @@ export class ProductDetailsComponent {
   }
 
   addToCart(productId: any, qt: any) {
-    CartAndWishListModule.addToCart(productId, qt);
+    this.cartAndWishlistService.addToCart(productId, qt);
   }
 
   addToWishList(productId: any) {
-    CartAndWishListModule.addToWishList(productId);
+    this.cartAndWishlistService.addToWishList(productId);
+    this.isIncluded = true;
   }
 
   removeFromWishList(productId: any) {
-    CartAndWishListModule.removeFromWishList(productId, this.wishList);
+    this.cartAndWishlistService.removeFromWishList(productId, this.wishList);
+    this.isIncluded = false;
   }
 }
