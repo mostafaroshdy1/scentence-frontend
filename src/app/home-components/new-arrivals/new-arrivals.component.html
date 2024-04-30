@@ -1,0 +1,14 @@
+<div class="mt-8 p-8 text-center">
+	<app-header-paragraph [text]="text"></app-header-paragraph>
+</div>
+
+<div class="grid place-items-center grid-cols-3">
+	@for (product of products; track product._id) {
+		<div
+			class="product col-lg-4 col-md-6 col-12 d-flex justify-content-center align-items-center"
+			(click)="goToProduct($event, product._id)"
+		>
+			<app-one-product [product]="product"></app-one-product>
+		</div>
+	}
+</div>
