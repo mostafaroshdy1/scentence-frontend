@@ -27,6 +27,7 @@ export class NavbarButtonsComponent {
   cart: any = [];
   cartSize: number = 0;
   total: number = 0;
+  loggedIn: any;
 
   constructor(
     private cartService: CartService,
@@ -84,9 +85,25 @@ export class NavbarButtonsComponent {
     this.showSearch = 'hidden-item';
     this.showSettings =
       this.showSettings === 'hidden-item' ? 'show-item' : 'hidden-item';
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const decodedToken = JSON.parse(atob(token.split('.')[1]));
+          if (decodedToken && decodedToken.id) {
+            this.loggedIn = true;
+          }
+        } catch (e) {
+          console.error('Error decoding token:', e);
+        }
+      } else {
+        this.loggedIn = false;
+      }
   }
 
   goToCart() {
     this.router.navigate(['/cart']);
+  }
+  updateShowSettings(showForm: string) {
+    this.showSettings = showForm;
   }
 }

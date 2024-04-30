@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MessageSuccessComponent } from '../message-success/message-success.component';
 import { finalize } from 'rxjs';
+import { LogoutService } from '../Services/logout.service';
 @Component({
 	selector: 'app-login',
 	standalone: true,
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private authService: AuthService,
 		private router: Router,
+		private logoutService: LogoutService
 	) {}
 	checkForm = new FormGroup(
 		{
@@ -69,6 +71,7 @@ export class LoginComponent implements OnInit {
 						//           localStorage.setItem('role', decodedToken.role);
 						localStorage.setItem('id', decodedToken.id);
 						localStorage.setItem('email', decodedToken.email);
+						this.logoutService.setLogout(true);
 						//           if (decodedToken.role === 'admin') {
 						//             this.router.navigate(['/admin']);
 						//           } else {

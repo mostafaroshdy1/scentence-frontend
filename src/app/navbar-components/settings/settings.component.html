@@ -3,19 +3,22 @@
 		showForm
 	}}"
 >
-	<h4 class="text-lg mb-2 border-[#ccc] border-b py-2">Currency</h4>
+	<!-- <h4 class="text-lg mb-2 border-[#ccc] border-b py-2">Currency</h4>
 	<ul class="text-sm py-2 space-y-4">
 		<li class="hover cursor-pointer">USD - US Dollar</li>
 		<li class="hover cursor-pointer">EUR - Euro</li>
 		<li class="hover cursor-pointer">GBP - British Pound</li>
-	</ul>
+	</ul> -->
 	<h4 class="text-lg mb-2 border-[#ccc] border-b py-2">Account</h4>
 	<ul class="text-sm py-2 space-y-4">
-		<li class="hover cursor-pointer">
+		<li class="hover cursor-pointer" *ngIf="loggedIn==false" (click)="hideMenu()" [routerLink]="['/login']" >
 			<a>Login</a>
 		</li>
-		<li class="hover cursor-pointer">
+		<li class="hover cursor-pointer" *ngIf="loggedIn==false" (click)="hideMenu()" [routerLink]="['/signup']" >
 			<a>Create Account</a>
+		</li>
+		<li class="hover cursor-pointer" *ngIf="loggedIn==true" (click)="logout()">
+			<a>Logout</a>
 		</li>
 	</ul>
 </div>
