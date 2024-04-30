@@ -85,19 +85,19 @@ export class NavbarButtonsComponent {
     this.showSearch = 'hidden-item';
     this.showSettings =
       this.showSettings === 'hidden-item' ? 'show-item' : 'hidden-item';
-      const token = localStorage.getItem('token');
-      if (token) {
-        try {
-          const decodedToken = JSON.parse(atob(token.split('.')[1]));
-          if (decodedToken && decodedToken.id) {
-            this.loggedIn = true;
-          }
-        } catch (e) {
-          console.error('Error decoding token:', e);
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decodedToken = JSON.parse(atob(token.split('.')[1]));
+        if (decodedToken && decodedToken.id) {
+          this.loggedIn = true;
         }
-      } else {
-        this.loggedIn = false;
+      } catch (e) {
+        console.error('Error decoding token:', e);
       }
+    } else {
+      this.loggedIn = false;
+    }
   }
 
   goToCart() {

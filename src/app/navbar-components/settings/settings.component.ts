@@ -6,9 +6,9 @@ import { LogoutService } from '../../Services/logout.service';
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './settings.component.html',
-  styleUrl: './settings.component.css'
+  styleUrl: './settings.component.css',
 })
 export class SettingsComponent {
   @Input() showForm: any;

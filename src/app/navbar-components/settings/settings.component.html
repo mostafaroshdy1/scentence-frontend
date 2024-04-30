@@ -1,24 +1,32 @@
 <div
-	class="absolute -bottom-2 min-w-64 transition-all duration-500 bg-white shadow-sm p-4 translate-y-full -translate-x-full {{
-		showForm
-	}}"
+  class="absolute -bottom-2 min-w-64 transition-all duration-500 bg-white shadow-sm p-4 translate-y-full -translate-x-full {{
+    showForm
+  }}"
 >
-	<!-- <h4 class="text-lg mb-2 border-[#ccc] border-b py-2">Currency</h4>
-	<ul class="text-sm py-2 space-y-4">
-		<li class="hover cursor-pointer">USD - US Dollar</li>
-		<li class="hover cursor-pointer">EUR - Euro</li>
-		<li class="hover cursor-pointer">GBP - British Pound</li>
-	</ul> -->
-	<h4 class="text-lg mb-2 border-[#ccc] border-b py-2">Account</h4>
-	<ul class="text-sm py-2 space-y-4">
-		<li class="hover cursor-pointer" *ngIf="loggedIn==false" (click)="hideMenu()" [routerLink]="['/login']" >
-			<a>Login</a>
-		</li>
-		<li class="hover cursor-pointer" *ngIf="loggedIn==false" (click)="hideMenu()" [routerLink]="['/signup']" >
-			<a>Create Account</a>
-		</li>
-		<li class="hover cursor-pointer" *ngIf="loggedIn==true" (click)="logout()">
-			<a>Logout</a>
-		</li>
-	</ul>
+  <h4 class="text-lg mb-2 border-[#ccc] border-b py-2">Account</h4>
+  <ul class="text-sm py-2 space-y-4">
+    <li
+      class="hover cursor-pointer"
+      *ngIf="loggedIn == false"
+      (click)="hideMenu()"
+      [routerLink]="['/login']"
+    >
+      <a>Login</a>
+    </li>
+    <li
+      class="hover cursor-pointer"
+      *ngIf="loggedIn == false"
+      (click)="hideMenu()"
+      [routerLink]="['/signup']"
+    >
+      <a>Create Account</a>
+    </li>
+    <li
+      class="hover cursor-pointer"
+      *ngIf="loggedIn == true"
+      (click)="logout()"
+    >
+      <a>Logout</a>
+    </li>
+  </ul>
 </div>
