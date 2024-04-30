@@ -1,51 +1,82 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule, Validators,ValidatorFn ,AbstractControl} from '@angular/forms';
+import {
+	FormGroup,
+	FormControl,
+	ReactiveFormsModule,
+	Validators,
+	ValidatorFn,
+	AbstractControl,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import {CommonModule} from '@angular/common'
+import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
+import { MessageSuccessComponent } from '../message-success/message-success.component';
 
 @Component({
 	selector: 'app-signup',
-	imports: [ReactiveFormsModule,HttpClientModule,CommonModule],
+	imports: [ReactiveFormsModule, HttpClientModule, CommonModule, MessageSuccessComponent],
 	standalone: true,
-	providers:[AuthService],
+	providers: [AuthService],
 	templateUrl: './signup.component.html',
 	styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
-	constructor(private authService: AuthService, private router: Router) {}
+	constructor(
+		private authService: AuthService,
+		private router: Router,
+	) {}
+
+	message = {
+		status: '',
+		text: '',
+	};
 
 	checkForm = new FormGroup(
 		{
 			email: new FormControl('', [Validators.email, Validators.required]),
-			username: new FormControl('', [Validators.required,this.usernameValidator()]),
+			username: new FormControl('', [Validators.required, this.usernameValidator()]),
 			password: new FormControl('', [Validators.minLength(6), Validators.required]),
-			gender: new FormControl('', Validators.required)
+			gender: new FormControl('', Validators.required),
 		},
 		{ updateOn: 'change' },
 	);
 
 	usernameValidator(): ValidatorFn {
 		return (control: AbstractControl): { [key: string]: any } | null => {
-		  const usernamePattern = /^[a-zA-Z0-9]+$/; // Regular expression to match letters and numbers only
-		  const isValid = usernamePattern.test(control.value);
-		  return isValid ? null : { 'invalidUsername': { value: control.value } };
+			const usernamePattern = /^[a-zA-Z0-9]+$/; // Regular expression to match letters and numbers only
+			const isValid = usernamePattern.test(control.value);
+			return isValid ? null : { invalidUsername: { value: control.value } };
 		};
-	  }
+	}
 	checkData(e: Event) {
 		e.preventDefault();
-
+		const messageElement = document.querySelector('[data-message]');
+		messageElement?.classList.remove('translate-x-[1500px]');
 		if (this.checkForm.valid) {
-			this.authService.signup(this.checkForm.value).subscribe(
-				(response) => {
-					console.log('Signup successful:', response);
-          this.router.navigate(['/login'])
-				},
-				(error) => {
-					console.error('Signup failed:', error);
-				}
-			);
+			this.authService
+				.signup(this.checkForm.value)
+				.pipe(
+					finalize(() => {
+						setTimeout(() => {
+							messageElement?.classList.add('translate-x-[1500px]');
+						}, 2000);
+					}),
+				)
+				.subscribe(
+					(response) => {
+						console.log('Signup successful:', response);
+						this.router.navigate(['/login']);
+						this.message.status = 'success';
+						this.message.text = 'Signup Successed';
+					},
+					(error) => {
+						console.error('Signup failed:', error);
+						this.message.status = 'fail';
+						this.message.text = 'There is an error while signup';
+					},
+				);
 		} else {
 			console.log('Form is invalid');
 		}

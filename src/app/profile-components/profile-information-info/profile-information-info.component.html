@@ -1,4 +1,4 @@
-<div class="bg-[#f3f3f3] p-8 h-full overflow-hidden">
+<div class="bg-[#f3f3f3] p-4 overflow-hidden">
 	<div
 		class="size-28 mx-auto mt-4 border-4 border-[#212529] rounded-full flex justify-center items-center bg-white shadow-sm shadow-[#4d5257] overflow-hidden"
 	>
@@ -12,14 +12,7 @@
 			/>
 		}
 	</div>
-	<div
-		class="mt-4 {{
-			message.status
-		}} p-4 text-white border-l-8 border-white text-xl font-bold transition duration-700 translate-x-[1500px]"
-		data-message
-	>
-		{{ message.text }}
-	</div>
+	<app-message-success [message]="message"></app-message-success>
 	<form
 		class="mt-4 space-y-4"
 		(submit)="checkData($event)"

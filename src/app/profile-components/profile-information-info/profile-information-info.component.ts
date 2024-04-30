@@ -11,11 +11,12 @@ import {
 import { Router } from '@angular/router';
 import { ProfileInformationService } from '../../Services/profile-information.service';
 import * as jwtDecode from 'jwt-decode';
+import { MessageSuccessComponent } from '../../message-success/message-success.component';
 
 @Component({
 	selector: 'app-profile-information-info',
 	standalone: true,
-	imports: [ReactiveFormsModule, HttpClientModule],
+	imports: [ReactiveFormsModule, HttpClientModule, MessageSuccessComponent],
 	providers: [ProfileInformationService],
 	templateUrl: './profile-information-info.component.html',
 	styleUrl: './profile-information-info.component.css',
@@ -79,12 +80,12 @@ export class ProfileInformationInfoComponent implements OnInit {
 			this.profileInfoService.updateProfileInformation(formData).subscribe({
 				next: (data: any) => {
 					console.log(data);
-					this.message.status = 'bg-green-500';
+					this.message.status = 'success';
 					this.message.text = 'User Updated Successfully';
 				},
 				error: (err) => {
 					console.log(err);
-					this.message.status = 'bg-red-500';
+					this.message.status = 'fail';
 					this.message.text = 'error in updating user informatino';
 				},
 				complete: () => {

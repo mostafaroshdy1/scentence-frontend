@@ -1,52 +1,42 @@
 <div class="h-[calc(100vh-90px)] flex justify-center items-center">
-  <div class="bg-[#f3f3f3] p-8">
-    <h2 class="text-4xl font-extrabold capitalize text-center mb-4">Login</h2>
-    <p>Please login using account detail bellow.</p>
-
-    <form
-      class="mt-8 space-y-8"
-      (submit)="checkData($event)"
-      [formGroup]="checkForm"
-    >
-      <div class="">
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
-          formControlName="email"
-        />
-        @if (!emailValid && emailChanged) {
-        <p class="text-red-500 text-sm mt-2">please enter a valid email</p>
-        }
-      </div>
-      <div class="">
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
-          formControlName="password"
-        />
-        @if (!passwordValid && passwordChanged) {
-        <p class="text-red-500 text-sm mt-2">
-          The password must be at least 6 characters
-        </p>
-        }
-      </div>
-      <div
-        class="flex flex-col md:flex-row md:justify-between items-end md:items-center"
-      >
-        <button type="submit" class="btn-item">Sign In</button>
-        <div class="text-sm mt-2 md:mt-0">
-          <a class="hover-gray cursor-pointer">Forgot your password?</a>
-        </div>
-      </div>
-      <div>
-        <a class="hover-gray cursor-pointer text-sm" routerLink="/signup"
-          >Create account</a
-        >
-      </div>
-    </form>
-  </div>
+	<div class="bg-[#f3f3f3] p-8 overflow-hidden">
+		<h2 class="text-4xl font-extrabold capitalize text-center mb-4">Login</h2>
+		<p>Please login using account detail bellow.</p>
+		<app-message-success [message]="message"></app-message-success>
+		<form class="mt-8 space-y-8" (submit)="checkData($event)" [formGroup]="checkForm">
+			<div class="">
+				<input
+					type="email"
+					name="email"
+					placeholder="Email"
+					class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+					formControlName="email"
+				/>
+				@if (!emailValid && emailChanged) {
+					<p class="text-red-500 text-sm mt-2">please enter a valid email</p>
+				}
+			</div>
+			<div class="">
+				<input
+					type="password"
+					name="password"
+					placeholder="Password"
+					class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+					formControlName="password"
+				/>
+				@if (!passwordValid && passwordChanged) {
+					<p class="text-red-500 text-sm mt-2">The password must be at least 6 characters</p>
+				}
+			</div>
+			<div class="flex flex-col md:flex-row md:justify-between items-end md:items-center">
+				<button type="submit" class="btn-item">Sign In</button>
+				<div class="text-sm mt-2 md:mt-0">
+					<a class="hover-gray cursor-pointer">Forgot your password?</a>
+				</div>
+			</div>
+			<div>
+				<a class="hover-gray cursor-pointer text-sm" routerLink="/signup">Create account</a>
+			</div>
+		</form>
+	</div>
 </div>

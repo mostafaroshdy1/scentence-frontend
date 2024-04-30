@@ -76,13 +76,19 @@ h6 {
 	}
 
 	.arrow-up.show {
-		opacity: 1;
-		pointer-events: all;
+		@apply opacity-100 pointer-events-auto;
 	}
 
 	.arrow-up.hide {
-		opacity: 0;
-		pointer-events: none;
+		@apply opacity-0 pointer-events-none;
+	}
+
+	.message.success {
+		@apply bg-green-500;
+	}
+
+	.message.fail {
+		@apply bg-red-500;
 	}
 }
 

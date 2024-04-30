@@ -1,4 +1,5 @@
 <div class="bg-[#f3f3f3] p-8 h-full">
+	<app-message-success [message]="message"></app-message-success>
 	<h2 class="text-xl font-extrabold capitalize mb-2">Email</h2>
 	<form class="mt-4 space-y-4" (submit)="checkData($event)" [formGroup]="checkForm">
 		<div class="">

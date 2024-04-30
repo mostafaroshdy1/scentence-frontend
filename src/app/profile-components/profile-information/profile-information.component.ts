@@ -11,11 +11,12 @@ import {
 import { Router } from '@angular/router';
 import { ProfileInformationService } from '../../Services/profile-information.service';
 import * as jwtDecode from 'jwt-decode';
+import { MessageSuccessComponent } from '../../message-success/message-success.component';
 
 @Component({
 	selector: 'app-profile-information',
 	standalone: true,
-	imports: [ReactiveFormsModule, HttpClientModule],
+	imports: [ReactiveFormsModule, HttpClientModule, MessageSuccessComponent],
 	providers: [ProfileInformationService],
 	templateUrl: './profile-information.component.html',
 	styleUrl: './profile-information.component.css',
@@ -25,7 +26,10 @@ export class ProfileInformationComponent implements OnInit {
 		private router: Router,
 		private profileInfoService: ProfileInformationService,
 	) {}
-
+	message = {
+		status: '',
+		text: '',
+	};
 	userInfo!: any;
 	ngOnInit(): void {
 		this.profileInfoService.getProfileInformation().subscribe({
@@ -52,28 +56,52 @@ export class ProfileInformationComponent implements OnInit {
 	checkData(e: Event) {
 		e.preventDefault();
 		console.log(this.checkForm.errors, this.checkForm.valid);
+		const messageElement = document.querySelector('[data-message]');
+		messageElement?.classList.remove('translate-x-[1500px]');
 
 		if (this.checkForm.valid) {
 			const { email, password } = this.checkForm.value;
 			if (this.userInfo.email !== email && email) {
 				this.profileInfoService.updateEmail(email).subscribe({
 					next: (data: any) => {
-						console.log(data);
 						localStorage.setItem('token', `${data.token}`);
 						const { id, email, role } = jwtDecode.jwtDecode<any>(data.token);
-						console.log(id, email, role);
 						localStorage.setItem('id', id);
 						localStorage.setItem('email', email);
 						localStorage.setItem('role', role);
+						this.message.status = 'success';
+						this.message.text = 'Email Updated Successfully';
 					},
 					error: (err) => {
 						console.log(err);
+						this.message.status = 'fail';
+						this.message.text = 'error in updating user email';
+					},
+					complete: () => {
+						setTimeout(() => {
+							messageElement?.classList.add('translate-x-[1500px]');
+						}, 2000);
 					},
 				});
 			}
 
 			if (password) {
-				this.profileInfoService.updatePassword(password).subscribe();
+				this.profileInfoService.updatePassword(password).subscribe({
+					next: (data: any) => {
+						this.message.status = 'success';
+						this.message.text = 'Password Updated Successfully';
+					},
+					error: (err) => {
+						console.log(err);
+						this.message.status = 'fail';
+						this.message.text = 'error in updating user password';
+					},
+					complete: () => {
+						setTimeout(() => {
+							messageElement?.classList.add('translate-x-[1500px]');
+						}, 2000);
+					},
+				});
 			}
 		}
 	}

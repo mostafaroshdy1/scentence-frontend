@@ -1,6 +1,7 @@
 <div class="h-[calc(100vh-90px)] flex justify-center items-center">
-	<div class="bg-[#f3f3f3] p-8">
+	<div class="bg-[#f3f3f3] p-8 overflow-hidden">
 		<h2 class="text-4xl font-extrabold capitalize text-center mb-4">Register</h2>
+		<app-message-success [message]="message"></app-message-success>
 		<p>Please Register your account using the following data.</p>
 		<form class="mt-8 space-y-8" (submit)="checkData($event)" [formGroup]="checkForm">
 			<div>
