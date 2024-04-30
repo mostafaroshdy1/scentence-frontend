@@ -43,7 +43,7 @@ h6 {
 	}
 
 	.nav-links {
-		@apply flex flex-col lg:flex-row absolute lg:static right-0 top-0 bg-white lg:bg-transparent shadow-sm lg:shadow-none h-screen lg:h-auto min-w-44 lg:min-w-full z-50 p-4 lg:p-0 justify-center gap-10 transition duration-500;
+		@apply flex flex-col lg:flex-row fixed lg:static right-0 top-0 bg-white lg:bg-transparent shadow-sm lg:shadow-none h-screen lg:h-auto min-w-44 lg:min-w-full z-[100] !p-4 lg:p-0 justify-center gap-10 transition duration-500;
 	}
 
 	@media (max-width: 1024px) {
