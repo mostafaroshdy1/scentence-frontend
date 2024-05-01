@@ -1,5 +1,5 @@
 .container {
-  max-width: 600px;
+  /* max-width: 600px; */
   margin: 0 auto;
 }
 
@@ -89,4 +89,15 @@
   font-style: italic;
   color: #777;
   margin-top: 20px;
+}
+
+.manage-users{
+  margin-top: 100px!important;
+}
+
+.sidebar {
+  background-color: #343a40;
+  color: #ffffff;
+  height: 92vh;
+  padding-top: 20px;
 }

@@ -6,56 +6,31 @@ crossorigin="anonymous"
 />
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid ms-5">
-    <p class="navbar-brand">Admin Dashboard</p>
-  </div>
-</nav>
 
-<div class="container-fluid">
+<app-admin-navbar></app-admin-navbar>
+
+<div class="container-fluid ">
   <div class="row">
-    <div class="col-lg-3 sidebar">
-      <div class="sidebar-brand">Dashboard</div>
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item">
-          <a class="text-decoration-none text-light" routerLink="/admin/users">
-            Users
-          </a>
-        </li>
-        <li class="sidebar-menu-item">
-          <a
-            class="text-decoration-none text-light"
-            routerLink="/admin/products"
-          >
-            Products
-          </a>
-        </li>
-        <li class="sidebar-menu-item">
-          <a class="text-decoration-none text-light" routerLink="/admin/orders">
-            Orders
-          </a>
-        </li>
-        <li class="sidebar-menu-item">Settings</li>
-        <li class="sidebar-menu-item">Logout</li>
-      </ul>
+    <div class="col-lg-3 sidebar" style="height:100vh;">
+      <app-admin-sidebar></app-admin-sidebar>
     </div>
-    <div class="col-lg-9 main-content">
-      <div class="row">
-        <div class="col-md-4 col-12 mb-3">
+    <div class="col-lg-9 main-content mb-5">
+      <div class="row mb-5">
+        <div class="col-md-4 col-12 mb-3 mt-3">
           <app-admin-details-card
             [title]="'Users'"
             [total]="usersCount"
             [link]="'/admin/users'"
           ></app-admin-details-card>
         </div>
-        <div class="col-md-4 col-12 mb-3">
+        <div class="col-md-4 col-12 mb-3  mt-3">
           <app-admin-details-card
             [title]="'Products'"
             [total]="productsCount"
             [link]="'/admin/products'"
           ></app-admin-details-card>
         </div>
-        <div class="col-md-4 col-12 mb-3">
+        <div class="col-md-4 col-12 mb-3  mt-3">
           <app-admin-details-card
             [title]="'Orders'"
             [total]="ordersCount"

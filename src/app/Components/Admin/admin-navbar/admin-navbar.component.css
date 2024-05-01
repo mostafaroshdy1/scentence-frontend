@@ -1,0 +1,14 @@
+.navbar {
+  background-color: #343a40;
+}
+.navbar-brand {
+  color: #ffffff;
+  font-weight: bold;
+}
+.navbar-brand:hover {
+  color: #ffffff;
+}
+.container-fluid {
+  padding: 0;
+  overflow-x: hidden !important;
+}

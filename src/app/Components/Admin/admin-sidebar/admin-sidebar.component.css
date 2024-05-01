@@ -1,0 +1,32 @@
+.sidebar {
+  background-color: #343a40;
+  color: #ffffff;
+  height: 92vh;
+  padding-top: 20px;
+}
+.sidebar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 20px 0;
+  text-align: center;
+}
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-menu-item {
+  padding: 10px 20px;
+  border-bottom: 1px solid #4d5257;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.sidebar-menu-item:hover {
+  background-color: #4d5257;
+}
+.sidebar-menu-item:last-child {
+  border-bottom: none;
+}
+.main-content {
+  padding: 20px;
+}

@@ -17,29 +17,29 @@ export class ApiAdminService {
   private readonly users_Url = `${environment.apiUrl}/user/`;
   private readonly orders_Url = `${environment.apiUrl}/orders/`;
 
-  private getTokenHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const tokenParts = token.split(' ');
-      if (tokenParts.length === 2 && tokenParts[0] === 'Bearer') {
-        const decodedToken = JSON.parse(atob(tokenParts[1]));
-        return new HttpHeaders({
-          Authorization: `Bearer ${tokenParts[1]}`,
-          'Content-Type': 'application/json',
-        });
-      } else {
-        console.log('Invalid token format.');
-        return new HttpHeaders({
-          'Content-Type': 'application/json',
-        });
-      }
-    } else {
-      console.log('Token not found.');
-      return new HttpHeaders({
-        'Content-Type': 'application/json',
-      });
-    }
-  }
+  // private getTokenHeaders(): HttpHeaders {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     const tokenParts = token.split(' ');
+  //     if (tokenParts.length === 2 && tokenParts[0] === 'Bearer') {
+  //       const decodedToken = JSON.parse(atob(tokenParts[1]));
+  //       return new HttpHeaders({
+  //         Authorization: `Bearer ${tokenParts[1]}`,
+  //         'Content-Type': 'application/json',
+  //       });
+  //     } else {
+  //       console.log('Invalid token format.');
+  //       return new HttpHeaders({
+  //         'Content-Type': 'application/json',
+  //       });
+  //     }
+  //   } else {
+  //     console.log('Token not found.');
+  //     return new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //     });
+  //   }
+  // }
 
   getAllProducts() {
     return this.http.get(this.url);
@@ -70,21 +70,15 @@ export class ApiAdminService {
   }
 
   getAllUsers() {
-    return this.http.get(this.users_Url, { headers: this.getTokenHeaders() });
+    return this.http.get(this.users_Url);
   }
 
   getUserById(id: string) {
-    // return this.http.get(this.users_Url + id);
-    return this.http.get(this.users_Url + id, {
-      headers: this.getTokenHeaders(),
-    });
+    return this.http.get(this.users_Url + id);
   }
 
   deleteUserById(id: number) {
-    // return this.http.delete(this.users_Url + id );
-    return this.http.delete(this.users_Url + id, {
-      headers: this.getTokenHeaders(),
-    });
+    return this.http.delete(this.users_Url + id);
   }
 
   countUsers() {

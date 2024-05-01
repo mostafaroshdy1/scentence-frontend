@@ -5,6 +5,9 @@ import { ApiAdminService } from '../../../Services/api-admin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LineChartComponent } from '../line-chart/line-chart.component';
 import { AdminDetailsCardComponent } from '../admin-details-card/admin-details-card.component';
+import { SidebarComponent } from '../../../profile-components/sidebar/sidebar.component';
+import { AdminSidebarComponent } from '../admin-sidebar/admin-sidebar.component';
+import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -15,6 +18,8 @@ import { AdminDetailsCardComponent } from '../admin-details-card/admin-details-c
     HttpClientModule,
     LineChartComponent,
     AdminDetailsCardComponent,
+    AdminSidebarComponent,
+    AdminNavbarComponent
   ],
   providers: [ApiAdminService],
   templateUrl: './admin-dashboard.component.html',
