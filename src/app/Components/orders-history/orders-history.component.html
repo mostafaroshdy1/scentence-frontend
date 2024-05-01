@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 orders">
+      <div *ngIf="isAdmin" class="align-items-center d-flex justify-content-center mt-3">
+          <h2 class="pageTitle">Manage Orders</h2>
+      </div>
       <div
         class="col-lg-10 mt-3 mx-auto"
         *ngFor="let order of Orders; trackBy: trackById"

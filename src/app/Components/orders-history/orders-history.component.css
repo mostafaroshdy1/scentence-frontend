@@ -58,3 +58,7 @@ a {
 .dropup .dropdown-menu {
   bottom: 100%;
 }
+.pageTitle{
+  font-size: 30px !important;
+  font-weight: 600;
+}
