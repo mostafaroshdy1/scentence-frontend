@@ -10,6 +10,6 @@ export class ContactusService {
   constructor(private http: HttpClient) {}
 
   sendContactMessage(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/contact-us-email`, data);
+    return this.http.get<any>(`${this.baseUrl}/contact-us-email`, data);
   }
 }
