@@ -8,6 +8,7 @@ import { take } from 'rxjs';
   providedIn: 'root',
 })
 export class CartAndWishListService {
+  wishList: any[] = [];
   constructor(
     private cartService: CartService,
     private wishListService: WishListService,
@@ -33,11 +34,15 @@ export class CartAndWishListService {
     this.wishListService
       .addToWishList(productId)
       .pipe(take(1))
-      .subscribe(() => {});
+      .subscribe((data) => {
+        this.wishList = data;
+      });
   }
 
-  removeFromWishList(productId: any, wishList: any[]) {
-    const newWishList = wishList.filter((item) => item.productId !== productId);
+  removeFromWishList(productId: any) {
+    const newWishList = this.wishList.filter(
+      (item) => item.productId !== productId
+    );
     if (newWishList.length > 0) {
       this.wishListService.updateWishList(newWishList).subscribe({
         next: (data: any) => {},

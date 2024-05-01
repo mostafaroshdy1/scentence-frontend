@@ -75,7 +75,7 @@ export class OneProductComponent {
   }
 
   removeFromWishList(productId: any) {
-    this.cartAndWishlistService.removeFromWishList(productId, this.wishList);
+    this.cartAndWishlistService.removeFromWishList(productId);
     this.isIncluded = false;
   }
 }

@@ -1,0 +1,136 @@
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.heading {
+  font-size: 34px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.heading span {
+  color: #e32a53;
+}
+
+.welcome-heading span {
+  color: #e32a53;
+}
+
+P {
+  font-size: 16px;
+  color: #333;
+  font-weight: 400;
+}
+
+.slider {
+  background-color: #f0f9fb;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-item img {
+  max-width: 50%;
+}
+
+.carousel-caption {
+  text-align: center;
+}
+
+.carousel-inner img {
+  width: 200px;
+  height: 200px;
+}
+
+.carousel-inner p {
+  font-size: 16px;
+  color: #333;
+  font-weight: 400;
+}
+
+.signature {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.signature p {
+  margin-right: 150px;
+  margin-bottom: 6px;
+}
+
+.signature span {
+  margin-right: 50px;
+  margin-bottom: 6px;
+  font-family: "Christmas Friday", sans-serif;
+  font-size: 16px;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid rgba(87, 86, 86, 0.2);
+  box-shadow: 3px 4px 6px rgba(84, 84, 84, 0.2);
+  border-radius: 0%;
+}
+
+.info-popup {
+  width: 100%;
+  display: none;
+  position: absolute;
+  margin: auto;
+  top: 45%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255, 0.8);
+  padding: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0;
+  animation: slideInFromBottom 0.3s ease-in-out forwards;
+}
+
+.card:hover .info-popup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.linkedin-btn,
+.github-btn {
+  border: none;
+  background-color: transparent;
+  border: transparent;
+  display: flex;
+  justify-content: center;
+  color: #1b1a1a;
+  margin: 4px 10px;
+}
+
+.linkedin-btn:hover i,
+.github-btn:hover i {
+  color: #e32a53;
+}
+
+.fa-brands {
+  font-size: 22px;
+}
+
+@media (min-width: 1500px) {
+  .team {
+    padding: 0px 150px;
+  }
+}
+
+.name {
+  margin-bottom: 10px;
+}

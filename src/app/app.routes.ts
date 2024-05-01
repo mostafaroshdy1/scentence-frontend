@@ -22,6 +22,7 @@ import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { SignupComponent } from './signup/signup.component';
 import { WishListComponent } from './Components/wish-list/wish-list.component';
 import { ContactUsComponent } from './contactus/contactus.component';
+import { AboutUsComponent } from './Components/about-us/about-us.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -122,4 +123,5 @@ export const routes: Routes = [
     path: 'contactus',
     component: ContactUsComponent,
   },
+  { path: 'aboutus', component: AboutUsComponent },
 ];

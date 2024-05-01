@@ -79,7 +79,7 @@ export class ProductDetailsComponent {
         this.wishList = data;
 
         if (this.wishList) {
-          const productId = this.productDetails._id.toString();
+          const productId = this.productId.toString();
 
           this.isIncluded = this.wishList
             .map((item) => item.productId)
@@ -193,7 +193,7 @@ export class ProductDetailsComponent {
   }
 
   removeFromWishList(productId: any) {
-    this.cartAndWishlistService.removeFromWishList(productId, this.wishList);
+    this.cartAndWishlistService.removeFromWishList(productId);
     this.isIncluded = false;
   }
 }

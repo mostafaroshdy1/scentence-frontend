@@ -74,7 +74,7 @@ body {
 }
 
 .pagination .page-item.active a {
-  color: #eee;
+  color: #eee !important;
   background-color: #e32a53;
   box-shadow: none;
 }
