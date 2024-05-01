@@ -1,14 +1,39 @@
 <div class="container">
-  <div class="admin-dashboard">
+  <div class="admin-dashboard mt-5">
     <div class="header">Manage Users</div>
     <ul class="user-list">
       <li *ngFor="let user of users" class="user">
-        <a routerLink="{{ user._id }}" class="text-dark text-decoration-none">
-          <span>{{ user.username }}</span>
-        </a>
-        <button class="delete-button" (click)="deleteUser(user._id)">
-          Delete
-        </button>
+        <div class="user-info">
+          <div class="avatar-username">
+            <div class="user-avatar me-2">
+              <img
+                [src]="
+                  user.image ? user.image : 'assets/images/default-avatar.jpeg'
+                "
+                alt="User Avatar"
+              />
+            </div>
+            <div class="username ms-2">
+              {{ user.username }}
+            </div>
+          </div>
+          <div class="user-details">
+            <p class="user-email">Email: {{ user.email }}</p>
+            <p class="user-gender">Gender: {{ user.gender }}</p>
+            <p
+              class="user-verified fw-bold"
+              [ngClass]="{
+                'text-success': user.verified,
+                'text-danger': !user.verified
+              }"
+            >
+              {{ user.verified ? "Verified" : "Not Verified" }}
+            </p>
+          </div>
+          <button class="delete-button w-100" (click)="deleteUser(user._id)">
+            Delete
+          </button>
+        </div>
       </li>
 
       <div *ngIf="users.length === 0" class="no-users-message">
