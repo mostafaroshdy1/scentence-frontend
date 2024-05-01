@@ -1,5 +1,5 @@
 <main class="main overflow-hidden">
-	<app-navbar *ngIf="shouldShowNavbar"></app-navbar>
-	<router-outlet />
-	<app-footer></app-footer>
+  <app-navbar *ngIf="shouldShowNavbar"></app-navbar>
+  <router-outlet />
+  <app-footer *ngIf="shouldShowNavbar"></app-footer>
 </main>

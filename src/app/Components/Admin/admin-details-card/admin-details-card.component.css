@@ -22,13 +22,13 @@
 .btn-custom {
   background-color: #cc5a73;
   border-color: #cc5a73;
-  color: #ffffff;
+  color: #ffffff!important;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 .btn-custom:hover {
   background-color: white;
   border-color: #cc5a73;
-  color: #000;
+  color: #000!important;
 }
 
 .container-fluid {

@@ -13,32 +13,32 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './home-components/footer/footer.component';
 
 @Component({
-	selector: 'app-root',
-	standalone: true,
-	imports: [
-		RouterOutlet,
-		CheckoutComponent,
-		OrdersHistoryComponent,
-		OrderDetailsComponent,
-		CommonModule,
-		CartComponent,
-		NavbarComponent,
-		LoginComponent,
-		SignupComponent,
-		ShopComponent,
-		FooterComponent,
-	],
-	templateUrl: './app.component.html',
-	styleUrl: './app.component.css',
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    CheckoutComponent,
+    OrdersHistoryComponent,
+    OrderDetailsComponent,
+    CommonModule,
+    CartComponent,
+    NavbarComponent,
+    LoginComponent,
+    SignupComponent,
+    ShopComponent,
+    FooterComponent,
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-	shouldShowNavbar: boolean = true;
+  shouldShowNavbar: boolean = true;
 
-	constructor(private router: Router) {
-		if (this.router.url.split('/')[1] === 'admin') {
-			this.shouldShowNavbar = false;
-		} else {
-			this.shouldShowNavbar = true;
-		}
-	}
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.shouldShowNavbar = !event.url.startsWith('/admin');
+      }
+    });
+  }
 }

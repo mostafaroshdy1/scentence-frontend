@@ -119,3 +119,8 @@ h6 {
 	font-family: 'Rubik', sans-serif;
 	font-optical-sizing: auto;
 }
+
+a{
+  text-decoration: none;
+  color:#000!important;
+}
