@@ -1,6 +1,6 @@
 .add-product-btn {
-  background-color: #e32a53;
-  color: white;
+  background-color: #e32a53!important;
+  color: white!important;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
@@ -14,8 +14,8 @@
 }
 
 form {
-  background-color: #fff;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fff!important;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1)!important;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;

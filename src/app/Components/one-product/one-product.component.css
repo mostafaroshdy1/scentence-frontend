@@ -107,25 +107,25 @@
 
 .wishList-btn:hover i,
 .cart-btn:hover i {
-  color: #e32a53;
+  color: #e32a53!important;
 }
 
 .remove-wishlist-btn i {
-  color: #e32a53;
+  color: #e32a53!important;
 }
 
 .remove-wishlist-btn:hover i {
-  color: #000000;
+  color: #000000!important;
 }
 
 .edit-delete-btn {
-  background-color: #cc5a73;
-  border-color: #cc5a73;
-  color: #fff;
+  background-color: #cc5a73!important;
+  border-color: #cc5a73!important;
+  color: #fff!important;
 }
 
 .edit-delete-btn:hover {
-  background-color: white;
-  border-color: #e32a53;
-  color: black;
+  background-color: white!important;
+  border-color: #e32a53!important;
+  color: black!important;
 }
