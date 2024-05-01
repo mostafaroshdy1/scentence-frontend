@@ -1,21 +1,21 @@
 <fa-icon
-	[icon]="barsIcon"
-	class="hover cursor-pointer block lg:hidden text-lg lg:text-2xl"
-	(click)="changeNav()"
+  [icon]="barsIcon"
+  class="hover cursor-pointer block lg:hidden text-lg lg:text-2xl"
+  (click)="changeNav()"
 ></fa-icon>
 <ul class="nav-links {{ navDisplay }}">
-	<div class="absolute inset-0 -translate-x-1/2 size-8 lg:hidden">
-		<fa-icon
-			class="hover cursor-pointer text-xl shadow-lg"
-			[icon]="closeIcon"
-			(click)="changeNav()"
-		></fa-icon>
-	</div>
-	@for (link of links; track link.link) {
-		<li class="capitalize hover">
-			<a routerLink="{{ link.link }}">
-				{{ link.name }}
-			</a>
-		</li>
-	}
+  <div class="absolute inset-0 -translate-x-1/2 size-8 lg:hidden">
+    <fa-icon
+      class="hover cursor-pointer text-xl shadow-lg"
+      [icon]="closeIcon"
+      (click)="changeNav()"
+    ></fa-icon>
+  </div>
+  @for (link of links; track link.link) {
+  <li class="capitalize hover">
+    <a routerLink="{{ link.link }}">
+      {{ link.name }}
+    </a>
+  </li>
+  }
 </ul>
