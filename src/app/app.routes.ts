@@ -21,6 +21,7 @@ import { CartComponent } from './Components/cart/cart.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { SignupComponent } from './signup/signup.component';
 import { WishListComponent } from './Components/wish-list/wish-list.component';
+import { ContactUsComponent } from './contactus/contactus.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -108,6 +109,7 @@ export const routes: Routes = [
       },
     ],
   },
+
   // TODO: add the error component
   // { path: '**', component: ErrorComponent },
 
@@ -116,4 +118,8 @@ export const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'wishlist', component: WishListComponent },
+  {
+    path: 'contactus',
+    component: ContactUsComponent,
+  },
 ];

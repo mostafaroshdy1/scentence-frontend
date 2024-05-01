@@ -17,7 +17,7 @@ export class NavbarLinksComponent {
     { name: 'product', link: '/products' },
     { name: 'Wish list', link: '/wishlist' },
     { name: 'about us', link: '/about-us' },
-    { name: 'contact', link: '/contact' },
+    { name: 'contact', link: '/contactus' },
   ];
 
   closeIcon = faCircleXmark;

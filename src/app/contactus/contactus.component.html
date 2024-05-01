@@ -1,0 +1,56 @@
+<div class="h-[calc(100vh-90px)] flex justify-center items-center">
+  <div class="bg-[#f3f3f3] p-8 overflow-hidden">
+    <h2 class="text-4xl font-extrabold capitalize text-center mb-4">
+      Contact Us
+    </h2>
+    <app-message-success [message]="message"></app-message-success>
+    <p>Please leave us a message using the following form:</p>
+    <form
+      class="mt-8 space-y-8"
+      (submit)="submitForm()"
+      [formGroup]="contactForm"
+    >
+      <div>
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+          formControlName="name"
+        />
+        <p *ngIf="nameInvalid" class="text-red-500 text-sm mt-2">
+          Please enter your name
+        </p>
+      </div>
+      <div>
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+          formControlName="email"
+        />
+        <p *ngIf="emailInvalid" class="text-red-500 text-sm mt-2">
+          Please enter a valid email
+        </p>
+      </div>
+      <div>
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          class="w-full bg-white p-3 text-base placeholder:text-black font-medium outline-none"
+          formControlName="message"
+        ></textarea>
+        <p *ngIf="messageInvalid" class="text-red-500 text-sm mt-2">
+          Please enter your message
+        </p>
+      </div>
+
+      <div
+        class="flex flex-col md:flex-row md:justify-between items-end md:items-center"
+      >
+        <button type="submit" class="btn-item">Send Message</button>
+      </div>
+    </form>
+  </div>
+</div>

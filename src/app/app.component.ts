@@ -11,6 +11,7 @@ import { OrdersHistoryComponent } from './Components/orders-history/orders-histo
 import { OrderDetailsComponent } from './Components/order-details/order-details.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './home-components/footer/footer.component';
+import { ContactUsComponent } from './contactus/contactus.component';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ import { FooterComponent } from './home-components/footer/footer.component';
     SignupComponent,
     ShopComponent,
     FooterComponent,
+    ContactUsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
