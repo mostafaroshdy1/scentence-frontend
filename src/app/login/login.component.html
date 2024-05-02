@@ -2,7 +2,7 @@
 	<div class="bg-[#f3f3f3] p-8 overflow-hidden">
 		<h2 class="text-4xl font-extrabold capitalize text-center mb-4">Login</h2>
 		<p>Please login using account detail bellow.</p>
-		<app-message-success [message]="message"></app-message-success>
+    <app-message-success [message]="message" [error]='message.text'></app-message-success>
 		<form class="mt-8 space-y-8" (submit)="checkData($event)" [formGroup]="checkForm">
 			<div class="">
 				<input
