@@ -18,14 +18,14 @@
                 </div>
                 @if (order.order.currentStatus === "cancelled"){
                 <div class="d-flex justify-content-end">
-                  <div class="mb-3 col-2 cancelled state d-flex">
-                    <p class="m-auto status">Cancelled</p>
+                  <div class="mb-3 w-28 cancelled state d-flex align-items-center justify-content-center">
+                    <p class="m-auto mb-1 p-1 status">Cancelled</p>
                   </div>
                 </div>
                 } @else if (order.order.currentStatus === "rejected"){
                 <div class="d-flex justify-content-end">
-                  <div class="mb-3 col-2 rejected state d-flex">
-                    <p class="m-auto status">Rejected</p>
+                  <div class="mb-3 w-28 rejected state d-flex align-items-center justify-content-center">
+                    <p class="m-auto mb-1 p-1 status">Rejected</p>
                   </div>
                 </div>
                 }

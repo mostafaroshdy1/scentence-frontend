@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
 	checkData(e: Event) {
 		e.preventDefault();
 		const messageElement = document.querySelector('[data-message]');
+    
 		messageElement?.classList.remove('translate-x-[1500px]');
 		if (this.checkForm.valid) {
 			const { email, password } = this.checkForm.value;
