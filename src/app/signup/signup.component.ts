@@ -131,7 +131,7 @@ export class SignupComponent {
   private getErrorMessage(error: HttpErrorResponse): string {
     let errorMessage = 'An error occurred';
     if (error.error?.errors?.length > 0) {
-      errorMessage = error.error.errors.map((e: any) => e.msg).join('<br>');
+      errorMessage = error.error.errors.map((e: any) => e.msg);
     }
     return errorMessage;
   }
