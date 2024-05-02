@@ -36,8 +36,8 @@
 }
 
 .product-image {
-  max-width: 100%;
-  height: auto;
+  width: 200px;
+  height: 250px;
   background-color: grey;
 }
 
