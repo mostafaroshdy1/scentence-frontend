@@ -19,13 +19,10 @@ export class VerificationComponent implements OnInit {
       if (this.verificationStatus === 'verified') {
         this.verificationMessage = 'Email verified successfully.';
         setTimeout(() => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
         }, 5000);
       } else {
         this.verificationMessage = 'Invalid verification link.';
-        // setTimeout(() => {
-        //   this.router.navigate(['/login']);
-        // }, 5000);
       }
     });
   }
