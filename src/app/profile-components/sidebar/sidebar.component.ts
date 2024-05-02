@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCircleInfo, faCircleUser, faInfo, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
 	selector: 'app-sidebar',
@@ -20,9 +22,10 @@ export class SidebarComponent implements OnInit {
 				name: 'Email & Passwords',
 				routerLink: '/profile/email',
 				active: this.routeLink === 'email',
+        icon: faCircleUser
 			},
-			{ name: 'Information', routerLink: '/profile/info', active: this.routeLink === 'info' },
-			{ name: 'Orders', routerLink: '/profile/orders', active: this.routeLink === 'orders' },
+			{ name: 'Information', routerLink: '/profile/info', active: this.routeLink === 'info', icon: faCircleInfo},
+			{ name: 'Orders', routerLink: '/profile/orders', active: this.routeLink === 'orders', icon: faShoppingBag },
 		];
 	}
 

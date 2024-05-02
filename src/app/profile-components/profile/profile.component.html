@@ -1,5 +1,8 @@
-<div class="container flex gap-4 min-h-[calc(100vh-90px)]">
-	<app-sidebar class="w-48" [userInfo]="userInfo"></app-sidebar>
+<div class="container flex gap-4 min-h-[calc(100vh-90px)] relative">
+	<app-sidebar
+		class="absolute bottom-0 w-full h-16 md:static md:w-auto md:h-auto z-50 pr-16 md:p-0"
+		[userInfo]="userInfo"
+	></app-sidebar>
 	<div class="w-full">
 		<router-outlet />
 	</div>

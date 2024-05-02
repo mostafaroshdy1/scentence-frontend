@@ -20,42 +20,42 @@
             <div
               class="col-lg-2 d-flex align-items-center justify-content-center"
             >
-              @if(order.status === 'accepted'){
+              @if(order.currentStatus === 'accepted'){
               <img
                 src="assets/images/check.png"
                 class="card-img img-fluid"
                 style="max-width: 100px"
                 alt="..."
               />
-              } @else if(order.status === 'rejected'){
+              } @else if(order.currentStatus === 'rejected'){
               <img
                 src="assets/images/close.png"
                 class="card-img img-fluid"
                 style="max-width: 100px"
                 alt="..."
               />
-              } @else if(order.status === 'pending'){
+              } @else if(order.currentStatus === 'pending'){
               <img
                 src="assets/images/clock.png"
                 class="card-img img-fluid"
                 style="max-width: 100px"
                 alt="..."
               />
-              } @else if(order.status === 'delivered'){
+              } @else if(order.currentStatus === 'delivered'){
               <img
                 src="assets/images/delivered.png"
                 class="card-img img-fluid"
                 style="max-width: 100px"
                 alt="..."
               />
-              } @else if(order.status === 'cancelled'){
+              } @else if(order.currentStatus === 'cancelled'){
               <img
                 src="assets/images/cancel.png"
                 class="card-img img-fluid"
                 style="max-width: 100px"
                 alt="..."
               />
-              } @else if(order.status === 'on way'){
+              } @else if(order.currentStatus === 'on way'){
               <img
                 src="assets/images/box-car.png"
                 class="card-img img-fluid"
@@ -105,7 +105,7 @@
                 *ngIf="!isAdmin"
                 class="d-flex flex-wrap l-col align-items-center justify-content-center"
               >
-                @if(order.status === 'accepted'){
+                @if(order.currentStatus === 'accepted'){
                 <div
                   class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 accepted state"
                 >
@@ -119,7 +119,7 @@
                     <i class="fa-solid fa-eye mr-1"></i>View
                   </button>
                 </div>
-                } @else if(order.status === 'rejected'){
+                } @else if(order.currentStatus === 'rejected'){
                 <div
                   class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 rejected state"
                 >
@@ -130,7 +130,7 @@
                     <i class="fa-solid fa-repeat mr-1"></i>Reorder
                   </button>
                 </div>
-                } @else if(order.status === 'pending'){
+                } @else if(order.currentStatus === 'pending'){
                 <div
                   class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 pending state"
                 >
@@ -144,7 +144,7 @@
                     <i class="fa-solid fa-ban mr-1"></i>Cancel
                   </button>
                 </div>
-                } @else if(order.status === 'delivered'){
+                } @else if(order.currentStatus === 'delivered'){
                 <div
                   class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 delivered state"
                 >
@@ -155,7 +155,7 @@
                     <i class="fa-solid fa-repeat mr-1"></i>Reorder
                   </button>
                 </div>
-                } @else if(order.status === 'cancelled'){
+                } @else if(order.currentStatus === 'cancelled'){
                 <div
                   class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 cancelled state"
                 >
@@ -166,7 +166,7 @@
                     <i class="fa-solid fa-repeat mr-1"></i>Reorder
                   </button>
                 </div>
-                }@else if(order.status === 'on way'){
+                }@else if(order.currentStatus === 'on way'){
                 <div
                   class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 on-way state"
                 >
@@ -188,10 +188,10 @@
               >
                 <div
                   class="mb-3 mr-3 mr-lg-0 mr-md-5 p-2 pr-3 pl-3 {{
-                    order.status == 'on way' ? 'on-way' : order.status
+                    order.currentStatus == 'on way' ? 'on-way' : order.currentStatus
                   }} state"
                 >
-                  <p class="m-auto">{{ order.status }}</p>
+                  <p class="m-auto">{{ order.currentStatus }}</p>
                 </div>
                 <div class="mb-3">
                   <div class="dropup">

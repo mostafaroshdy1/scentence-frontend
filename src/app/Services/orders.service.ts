@@ -66,11 +66,11 @@ export class OrdersService {
     }
     return this.http.post<any>(`${this.URL_DB}/discount`, promoData);
   }
-  updateOrderStatus(id: any, status: any) {
+  updateOrderStatus(id: any, currentStatus: any) {
     const jwtToken = localStorage.getItem('token');
     if (!jwtToken) {
       this.router.navigate(['/login']);
     }
-    return this.http.put<any>(`${this.URL_DB}/${id}`, { status });
+    return this.http.put<any>(`${this.URL_DB}/${id}`, { currentStatus });
   }
 }
