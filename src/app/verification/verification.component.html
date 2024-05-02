@@ -1,0 +1,7 @@
+<div class="Message">
+  @if (verificationStatus === 'verified') {
+  <h1 style="color: rgb(0, 255, 132)">{{ verificationMessage }}</h1>
+  } @else if(verificationStatus ==='invalid') {
+  <h1 style="color: red">{{ verificationMessage }}</h1>
+  }
+</div>

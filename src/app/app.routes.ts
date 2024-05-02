@@ -23,6 +23,7 @@ import { SignupComponent } from './signup/signup.component';
 import { WishListComponent } from './Components/wish-list/wish-list.component';
 import { ContactUsComponent } from './contactus/contactus.component';
 import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { VerificationComponent } from './verification/verification.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -124,4 +125,5 @@ export const routes: Routes = [
     component: ContactUsComponent,
   },
   { path: 'aboutus', component: AboutUsComponent },
+  { path: 'verify', component: VerificationComponent },
 ];
