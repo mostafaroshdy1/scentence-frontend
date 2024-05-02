@@ -25,6 +25,7 @@ export class CheckoutComponent {
   cart: any;
   promoData: any;
   invalidPromo: boolean = false;
+  allErrors: boolean = false;
   constructor(
     private orderService: OrdersService,
     private cartService: CartService,
@@ -111,6 +112,9 @@ export class CheckoutComponent {
   submitForm() {
     this.formData = this.regForm.value;
     this.promoData = this.promoForm.value;
+    if(this.regForm.invalid){
+      this.allErrors=true;
+    }
     this.orderService.createOrder(this.formData,this.promoData).subscribe({
       next: (data) => {
         window.location.href = data.redirectUrl;
