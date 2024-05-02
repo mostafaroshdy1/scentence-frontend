@@ -15,7 +15,7 @@ export class StarRatingComponent {
   prodRating: any;
   @Input() set: any;
   @Input() show: any;
-  rated:boolean=false;
+
   constructor(private productService: ProductsService) {}
   ngOnInit() {
     this.getRating();
@@ -30,7 +30,6 @@ export class StarRatingComponent {
                 if (data.totalRating.user.includes(decodedToken.id)) {
                   this.show = true;
                   this.set = false;
-                  this.rated=true;
                 }
               }
             } catch (e) {
@@ -48,7 +47,9 @@ export class StarRatingComponent {
   rate(rating: any) {
     this.productService.addRating(this.productId, rating).subscribe({
       next: (data: any) => {
-        this.rated=true;
+        this.show = true;
+        this.set = false;
+        this.getRating();
       },
       error: (err: any) => {
         console.log(err);
@@ -66,9 +67,6 @@ export class StarRatingComponent {
     });
   }
   highlightStars(star: number) {
-    if(this.rated){
-      return;
-    }
     const stars = document.querySelectorAll('.fa-star');
     stars.forEach((element, index) => {
       if (index < star) {
@@ -78,9 +76,6 @@ export class StarRatingComponent {
   }
 
   resetStars() {
-    if(this.rated){
-      return;
-    }
     const stars = document.querySelectorAll('.fa-star');
     stars.forEach((element) => {
       element.classList.remove('active');
