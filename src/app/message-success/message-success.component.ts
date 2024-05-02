@@ -9,4 +9,11 @@ import { Component, Input } from '@angular/core';
 })
 export class MessageSuccessComponent {
 	@Input() message!: any;
+  @Input() error!:any;
+
+  constructor() {
+    console.log(this.message);
+    console.log(this.error);
+  }
+
 }

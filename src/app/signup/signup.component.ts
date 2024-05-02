@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { finalize } from 'rxjs';
 import { MessageSuccessComponent } from '../message-success/message-success.component';
@@ -23,6 +23,7 @@ import { MessageSuccessComponent } from '../message-success/message-success.comp
 	styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
+  error: any;
 	constructor(
 		private authService: AuthService,
 		private router: Router,
@@ -65,17 +66,26 @@ export class SignupComponent {
 					}),
 				)
 				.subscribe(
-					(response) => {
-						console.log('Signup successful:', response);
+        {
+          next: (response) => {
+            console.log('Signup successful:', response);
 						this.router.navigate(['/login']);
 						this.message.status = 'success';
 						this.message.text = 'Signup Successed';
-					},
-					(error) => {
-						console.error('Signup failed:', error);
-						this.message.status = 'fail';
-						this.message.text = 'There is an error while signup';
-					},
+          },
+          error: (err: HttpErrorResponse) => {
+            this.message.status = 'fail';
+            console.error('Signup failed:', err);
+            // this.message.text = 'There is an error while signup';
+            if (err.status === 400 && err.error?.message) {
+              this.error = err.error.message;
+            } else {
+              this.error = this.getErrorMessage(err);
+            }
+            console.log(this.error);
+            console.log("STATUS",this.message.status);
+          },
+        }
 				);
 		} else {
 			console.log('Form is invalid');
@@ -117,4 +127,12 @@ export class SignupComponent {
 	get genderValid(): boolean {
 		return this.checkForm.controls.gender.valid;
 	}
+
+  private getErrorMessage(error: HttpErrorResponse): string {
+    let errorMessage = 'An error occurred';
+    if (error.error?.errors?.length > 0) {
+      errorMessage = error.error.errors.map((e: any) => e.msg).join('<br>');
+    }
+    return errorMessage;
+  }
 }
