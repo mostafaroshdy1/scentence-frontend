@@ -24,13 +24,13 @@
                     <h4>Order ID: {{ order.order.orderId }}</h4>
                   </div>
                 </div>
-                @if (order.order.status === "cancelled"){
+                @if (order.order.currentStatus === "cancelled"){
                 <div class="d-flex justify-content-end">
                   <div class="mb-3 col-2 cancelled state d-flex">
                     <p class="m-auto status">Cancelled</p>
                   </div>
                 </div>
-                } @else if (order.order.status === "rejected"){
+                } @else if (order.order.currentStatus === "rejected"){
                 <div class="d-flex justify-content-end">
                   <div class="mb-3 col-2 rejected state d-flex">
                     <p class="m-auto status">Rejected</p>
@@ -249,7 +249,7 @@
                       </button>
                     </div>
                   </div>
-                  } @else if(!isAdmin){ @if(order.order.status === 'rejected'){
+                  } @else if(!isAdmin){ @if(order.order.currentStatus === 'rejected'){
                   <div class="mb-3">
                     <button
                       (click)="reOrder(order.order._id)"
@@ -258,7 +258,7 @@
                       <i class="fa-solid fa-repeat mr-1"></i>Reorder
                     </button>
                   </div>
-                  } @else if(order.order.status === 'pending'){
+                  } @else if(order.order.currentStatus === 'pending'){
                   <div class="mb-3">
                     <button
                       (click)="cancelOrder(order.order._id)"
@@ -267,7 +267,7 @@
                       <i class="fa-solid fa-ban mr-1"></i>Cancel
                     </button>
                   </div>
-                  } @else if(order.order.status === 'delivered'){
+                  } @else if(order.order.currentStatus === 'delivered'){
                   <div class="mb-3">
                     <button
                       (click)="reOrder(order.order._id)"
@@ -276,7 +276,7 @@
                       <i class="fa-solid fa-repeat mr-1"></i>Reorder
                     </button>
                   </div>
-                  } @else if(order.order.status === 'cancelled'){
+                  } @else if(order.order.currentStatus === 'cancelled'){
                   <div class="mb-3">
                     <button
                       (click)="reOrder(order.order._id)"

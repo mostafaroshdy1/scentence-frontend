@@ -17,8 +17,8 @@ export class OrderDetailsComponent {
   orderStatuses: string[] = ['pending', 'accepted', 'on way', 'delivered'];
   currentStatusIndex: number = 0;
   isAdmin = false;
-  getCurrentStatusIndex(status: string): number {
-    return this.orderStatuses.indexOf(status);
+  getCurrentStatusIndex(currentStatus: string): number {
+    return this.orderStatuses.indexOf(currentStatus);
   }
   constructor(
     private orderService: OrdersService,
@@ -47,12 +47,12 @@ export class OrderDetailsComponent {
           this.time = new Date(this.order.order.createdAt).toLocaleTimeString();
           this.order.order.createdAt = this.date + ' ' + this.time;
           this.currentStatusIndex = this.getCurrentStatusIndex(
-            this.order.order.status
+            this.order.order.currentStatus
           );
           this.discount =
             ((this.order.order.total - 30) / (1 - this.order.order.discount)) *
             this.order.order.discount;
-          console.log(this.order.order.status);
+          console.log(this.order.order.currentStatus);
           console.log(this.order.products);
         },
         error: (error) => {
@@ -60,18 +60,18 @@ export class OrderDetailsComponent {
         },
       });
   }
-  updateStatus(id: any, status: any) {
+  updateStatus(id: any, currentStatus: any) {
     if (
-      status == 'delivered' ||
-      status == 'pending' ||
-      status == 'on way' ||
-      status == 'accepted' ||
-      status == 'rejected'
+      currentStatus == 'delivered' ||
+      currentStatus == 'pending' ||
+      currentStatus == 'on way' ||
+      currentStatus == 'accepted' ||
+      currentStatus == 'rejected'
     ) {
-      this.orderService.updateOrderStatus(id, status).subscribe({
+      this.orderService.updateOrderStatus(id, currentStatus).subscribe({
         next: (data) => {
-          this.order.order.status = status;
-          this.currentStatusIndex = this.getCurrentStatusIndex(status);
+          this.order.order.currentStatus = currentStatus;
+          this.currentStatusIndex = this.getCurrentStatusIndex(currentStatus);
         },
         error: (error) => {
           console.error(error);
@@ -106,7 +106,7 @@ export class OrderDetailsComponent {
   cancelOrder(id: any) {
     this.orderService.cancelOrder(id).subscribe({
       next: (data) => {
-        this.order.order.status = 'cancelled';
+        this.order.order.currentStatus = 'cancelled';
         this.currentStatusIndex = this.getCurrentStatusIndex('cancelled');
       },
       error: (error) => {

@@ -97,15 +97,15 @@ export class OrdersHistoryComponent implements OnInit {
   toggleDropdown(orderId: string) {
     this.dropdownStates[orderId] = !this.dropdownStates[orderId];
   }
-  updateStatus(id: any, status: any) {
+  updateStatus(id: any, currentStatus: any) {
     if (
-      status == 'delivered' ||
-      status == 'pending' ||
-      status == 'on way' ||
-      status == 'accepted' ||
-      status == 'rejected'
+      currentStatus == 'delivered' ||
+      currentStatus == 'pending' ||
+      currentStatus == 'on way' ||
+      currentStatus == 'accepted' ||
+      currentStatus == 'rejected'
     ) {
-      this.orderService.updateOrderStatus(id, status).subscribe({
+      this.orderService.updateOrderStatus(id, currentStatus).subscribe({
         next: (data) => {
           this.loadOrders();
         },
