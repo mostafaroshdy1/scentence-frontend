@@ -13,15 +13,31 @@ export class OrdersService {
   private readonly URL_DB = `${environment.apiUrl}/orders`;
 
   getUserOrders() {
+    const jwtToken = localStorage.getItem('token');
+    if (!jwtToken) {
+      this.router.navigate(['/login']);
+    }
     return this.http.get(this.URL_DB);
   }
   getOrderDetails(id: any) {
+    const jwtToken = localStorage.getItem('token');
+    if (!jwtToken) {
+      this.router.navigate(['/login']);
+    }
     return this.http.get<any>(`${this.URL_DB}/${id}`);
   }
   cancelOrder(id: any) {
+    const jwtToken = localStorage.getItem('token');
+    if (!jwtToken) {
+      this.router.navigate(['/login']);
+    }
     return this.http.put<any>(`${this.URL_DB}/cancel/${id}`, {});
   }
   createOrder(formData: any,promoData: any) {
+    const jwtToken = localStorage.getItem('token');
+    if (!jwtToken) {
+      this.router.navigate(['/login']);
+    }
     const requestData = {
       apartment: formData.apartment,
       floor: formData.floor,
@@ -37,12 +53,24 @@ export class OrdersService {
     return this.http.post<any>(this.URL_DB, requestData);
   }
   reOrder(id: any) {
+    const jwtToken = localStorage.getItem('token');
+    if (!jwtToken) {
+      this.router.navigate(['/login']);
+    }
     return this.http.post<any>(`${this.URL_DB}/reOrder/${id}`, {});
   }
   makeDiscount(promoData: any) {
+    const jwtToken = localStorage.getItem('token');
+    if (!jwtToken) {
+      this.router.navigate(['/login']);
+    }
     return this.http.post<any>(`${this.URL_DB}/discount`, promoData);
   }
   updateOrderStatus(id: any, status: any) {
+    const jwtToken = localStorage.getItem('token');
+    if (!jwtToken) {
+      this.router.navigate(['/login']);
+    }
     return this.http.put<any>(`${this.URL_DB}/${id}`, { status });
   }
 }
