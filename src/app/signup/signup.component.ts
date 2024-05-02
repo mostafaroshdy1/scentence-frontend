@@ -7,7 +7,7 @@ import {
 	ValidatorFn,
 	AbstractControl,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -16,7 +16,7 @@ import { MessageSuccessComponent } from '../message-success/message-success.comp
 
 @Component({
 	selector: 'app-signup',
-	imports: [ReactiveFormsModule, HttpClientModule, CommonModule, MessageSuccessComponent],
+	imports: [ReactiveFormsModule, HttpClientModule, CommonModule, MessageSuccessComponent, RouterModule],
 	standalone: true,
 	providers: [AuthService],
 	templateUrl: './signup.component.html',

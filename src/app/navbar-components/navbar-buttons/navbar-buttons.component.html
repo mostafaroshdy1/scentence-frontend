@@ -1,5 +1,5 @@
-<div class="flex gap-4 lg:gap-10 text-lg lg:text-2xl hidden-item show-item">
-  <!-- <div class="relative">
+<div class="flex gap-4 lg:gap-10 text-sm lg:text-2xl hidden-item show-item">
+	<!-- <div class="relative">
     <fa-icon
       [icon]="icons.icon"
       class="hover cursor-pointer"
@@ -7,31 +7,31 @@
     ></fa-icon>
     <app-search [showForm]="showSearch"></app-search>
   </div> -->
-  <div class="flex justify-center items-center gap-4">
-    <div class="relative" (click)="goToCart()">
-      <fa-icon [icon]="icons.cart" class="hover cursor-pointer"></fa-icon>
-      <div
-        class="absolute top-0 right-0 size-6 bg-rose-500 text-white rounded-full flex justify-center items-center text-sm translate-x-1/2 -translate-y-1/2"
-      >
-        <!-- TODO: add the cart variable -->
-        {{ cartSize }}
-      </div>
-    </div>
-    <div class="text-base">
-      <!-- TODO: add the cart price -->
-      &dollar; {{ total }}
-    </div>
-  </div>
-  <div class="">
-    <fa-icon
-      [icon]="icons.settings"
-      (click)="changeSettings($event)"
-      class="hover cursor-pointer"
-    ></fa-icon>
-    <app-settings
-      [showForm]="showSettings"
-      [loggedIn]="loggedIn"
-      (showFormChange)="updateShowSettings($event)"
-    ></app-settings>
-  </div>
+	<div class="flex justify-center items-center gap-4">
+		<div class="relative" (click)="goToCart()">
+			<fa-icon [icon]="icons.cart" class="hover cursor-pointer"></fa-icon>
+			<div
+				class="absolute top-0 right-0 size-6 bg-rose-500 text-white rounded-full flex justify-center items-center text-sm translate-x-1/2 -translate-y-1/2"
+			>
+				<!-- TODO: add the cart variable -->
+				{{ cartSize }}
+			</div>
+		</div>
+		<div class="text-base">
+			<!-- TODO: add the cart price -->
+			&dollar; {{ total }}
+		</div>
+	</div>
+	<div class="">
+		<fa-icon
+			[icon]="icons.settings"
+			(click)="changeSettings($event)"
+			class="hover cursor-pointer"
+		></fa-icon>
+		<app-settings
+			[showForm]="showSettings"
+			[loggedIn]="loggedIn"
+			(showFormChange)="updateShowSettings($event)"
+		></app-settings>
+	</div>
 </div>
