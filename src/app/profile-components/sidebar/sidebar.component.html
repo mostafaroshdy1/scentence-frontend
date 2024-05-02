@@ -1,7 +1,9 @@
-<div class="min-h-[calc(100vh-90px)] w-48 bg-[#212529] text-white sticky shadow-lg">
-	<div class="h-1/5 bg-[#4d5257] p-8 flex justify-center items-center flex-col gap-2">
+<div
+	class="w-full h-full md:p-0 gap-4 md:min-h-[calc(100vh-90px)] md:w-48 bg-[#212529] text-white lg:sticky shadow-lg"
+>
+	<div class="bg-[#4d5257] hidden md:flex p-8 justify-center items-center flex-col gap-2">
 		<div
-			class="size-20 border-4 border-[#212529] rounded-full flex justify-center items-center bg-white shadow-sm shadow-[#4d5257] overflow-hidden"
+			class="size-14 md:size-20 border-4 border-[#212529] rounded-full flex justify-center items-center bg-white shadow-sm shadow-[#4d5257] overflow-hidden"
 		>
 			@if (userInfo?.image) {
 				<img class="size-20 object-cover" src="{{ userInfo.image }}" alt="" />
@@ -21,18 +23,21 @@
 			}
 		</h3>
 	</div>
-	<div class="text-sm">
-		<h2 class="px-4 mt-4 text-gray-400">Account Settings</h2>
-		<ul data-sidebar-links>
+	<div class="text-sm h-full">
+		<h2 class="px-4 my-4 text-gray-400 hidden md:block">Account ettings</h2>
+		<ul class="grid grid-cols-3 md:block h-full md:h-auto" data-sidebar-links>
 			@for (sidebarItem of sidebarItems; track sidebarItem.routerLink) {
 				<li
-					class="!text-white cursor-pointer p-4 border-b border-gray-500 hover:bg-[#4d5257] transition duration-500 {{
+					class="!text-white cursor-pointer md:py-4 px-2 md:border-b border-gray-500 hover:bg-[#4d5257] transition duration-500 flex gap-4 justify-center md:justify-normal items-center {{
 						sidebarItem.active ? activeClass : ''
 					}}"
 					(click)="changeActiveClass($event)"
 					routerLink="{{ sidebarItem.routerLink }}"
 				>
-					<a style="color: white !important;">{{ sidebarItem.name }}</a>
+					<div class="md:w-2">
+						<fa-icon class="text-lg" [icon]="sidebarItem.icon"></fa-icon>
+					</div>
+					<a class="hidden md:block">{{ sidebarItem.name }}</a>
 				</li>
 			}
 		</ul>

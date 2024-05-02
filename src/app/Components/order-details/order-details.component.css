@@ -1,224 +1,228 @@
 body {
-  font-family: "Rubik", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+	font-family: 'Rubik', sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+}
+
+div {
+	padding: 0;
 }
 
 .container-fluid {
-  margin-top: 200px;
+	margin-top: 200px;
 }
 
 .card {
-  width: 100%;
-  border-radius: 0rem;
-  border: none;
-  background-color: #f6f6f6;
-  box-shadow: 0px 0px 10px 0px rgb(172, 172, 172);
+	width: 100%;
+	border-radius: 0rem;
+	border: none;
+	background-color: #f6f6f6;
+	box-shadow: 0px 0px 10px 0px rgb(172, 172, 172);
 }
 
 p {
-  font-size: 14px;
-  margin-bottom: 7px;
+	font-size: 14px;
+	margin-bottom: 7px;
 }
 
 .small {
-  letter-spacing: 0.5px !important;
+	letter-spacing: 0.5px !important;
 }
 
 .products::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 100%;
-  background-color: #e32a53;
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	width: 8px;
+	height: 100%;
+	background-color: #e32a53;
 }
 .products {
-  background-color: white;
+	background-color: white;
 }
 
 hr {
-  background-color: rgba(248, 248, 248, 0.667);
+	background-color: rgba(248, 248, 248, 0.667);
 }
 
 .bold {
-  font-weight: 500;
+	font-weight: 500;
 }
 
 .change-color {
-  color: black;
+	color: black;
 }
 
 .card-2 {
-  box-shadow: 1px 1px 3px 0px rgb(112, 115, 139);
-  width: 100%;
+	box-shadow: 1px 1px 3px 0px rgb(112, 115, 139);
+	width: 100%;
 }
 
 .rounded {
-  border-radius: 2.25rem !important;
+	border-radius: 2.25rem !important;
 }
 
 .invoice {
-  position: relative;
-  top: -70px;
+	position: relative;
+	top: -70px;
 }
 
 .Glasses {
-  position: relative;
-  top: -12px !important;
+	position: relative;
+	top: -12px !important;
 }
 
 .display-3 {
-  font-weight: 500 !important;
+	font-weight: 500 !important;
 }
 
 .card-footer small {
-  letter-spacing: 7px !important;
-  font-size: 12px;
+	letter-spacing: 7px !important;
+	font-size: 12px;
 }
 
 .bg-faded,
 .bg-secondary {
-  background-color: #f5f5f5 !important;
+	background-color: #f5f5f5 !important;
 }
 #progressbar {
-  margin-bottom: 30px;
-  overflow: visible;
-  color: #455a64;
-  padding-left: 0px;
-  margin-top: 30px;
-  height: 80px;
+	margin-bottom: 30px;
+	overflow: visible;
+	color: #455a64;
+	padding-left: 0px;
+	margin-top: 30px;
+	height: 80px;
 }
 
 #progressbar li {
-  list-style-type: none;
-  font-size: 13px;
-  width: 25%;
-  float: left;
-  position: relative;
-  font-weight: 400;
-  text-align: center;
+	list-style-type: none;
+	font-size: 13px;
+	width: 25%;
+	float: left;
+	position: relative;
+	font-weight: 400;
+	text-align: center;
 }
 
 #progressbar .step0:before {
-  font-family: FontAwesome;
-  content: "\f06a";
-  color: #fff;
+	font-family: FontAwesome;
+	content: '\f06a';
+	color: #fff;
 }
 
 #progressbar li:before {
-  width: 40px;
-  height: 40px;
-  line-height: 45px;
-  display: block;
-  font-size: 20px;
-  background: #c1c1c1;
-  border-radius: 50%;
-  margin: auto;
-  padding: 0px;
-  position: relative;
-  z-index: 2;
+	width: 40px;
+	height: 40px;
+	line-height: 45px;
+	display: block;
+	font-size: 20px;
+	background: #c1c1c1;
+	border-radius: 50%;
+	margin: auto;
+	padding: 0px;
+	position: relative;
+	z-index: 2;
 }
 
 #progressbar li span {
-  display: block;
-  position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-90deg);
-  white-space: nowrap;
-  z-index: 3;
+	display: block;
+	position: absolute;
+	bottom: -50px;
+	left: 50%;
+	transform: translateX(-50%) rotate(-90deg);
+	white-space: nowrap;
+	z-index: 3;
 }
 
 #progressbar li:after {
-  content: "";
-  width: 100%;
-  height: 12px;
-  background: #c1c1c1;
-  position: absolute;
-  left: 0;
-  top: 16px;
-  z-index: 1;
+	content: '';
+	width: 100%;
+	height: 12px;
+	background: #c1c1c1;
+	position: absolute;
+	left: 0;
+	top: 16px;
+	z-index: 1;
 }
 
 #progressbar li:last-child:after {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  position: absolute;
-  left: -50%;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	position: absolute;
+	left: -50%;
 }
 
 #progressbar li:nth-child(2):after,
 #progressbar li:nth-child(3):after {
-  left: -50%;
+	left: -50%;
 }
 
 #progressbar li:first-child:after {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  position: absolute;
-  left: 50%;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	position: absolute;
+	left: 50%;
 }
 
 #progressbar li:last-child:after {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 #progressbar li:first-child:after {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-  background: #e32a53;
+	background: #e32a53;
 }
 
 #progressbar li.active:before {
-  font-family: FontAwesome;
-  content: "\f00c";
+	font-family: FontAwesome;
+	content: '\f00c';
 }
 
 .my-right {
-  text-align: start;
+	text-align: start;
 }
 
 .img-fluid {
-  width: 70%;
-  height: 70%;
-  border-radius: 10px;
+	width: 70%;
+	height: 70%;
+	border-radius: 10px;
 }
 @media (max-width: 400px) {
-  .title {
-    font-size: 14px;
-  }
-  .price {
-    font-size: 12px;
-  }
-  .qty {
-    font-size: 12px;
-  }
+	.title {
+		font-size: 14px;
+	}
+	.price {
+		font-size: 12px;
+	}
+	.qty {
+		font-size: 12px;
+	}
 }
 .price {
-  color: #e32a53;
+	color: #e32a53;
 }
 .sq {
-  height: 100%;
+	height: 100%;
 }
 .state {
-  color: white;
-  border-radius: 50px;
-  height: 30px;
+	color: white;
+	border-radius: 50px;
+	height: 30px;
 }
 .cancelled {
-  background-color: rgb(0, 0, 0);
+	background-color: rgb(0, 0, 0);
 }
 .rejected {
-  background-color: #f44336;
+	background-color: #f44336;
 }
 .dropup .dropdown-menu {
-  bottom: 100%;
+	bottom: 100%;
 }
