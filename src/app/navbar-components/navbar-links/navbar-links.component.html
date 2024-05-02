@@ -13,9 +13,16 @@
   </div>
   @for (link of links; track link.link) {
   <li class="capitalize hover">
-    <a routerLink="{{ link.link }}">
+    @if(link.name == 'profile'){
+      <a (click)="changeProfile()" style="cursor: pointer;">
+        {{ link.name }}
+      </a>
+    }
+    @else{
+    <a routerLink="{{ link.link }}" (click)="unchangeProfile()">
       {{ link.name }}
     </a>
+  }
   </li>
   }
 </ul>

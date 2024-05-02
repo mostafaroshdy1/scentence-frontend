@@ -26,7 +26,7 @@
 		<ul data-sidebar-links>
 			@for (sidebarItem of sidebarItems; track sidebarItem.routerLink) {
 				<li
-					class="cursor-pointer p-4 border-b border-gray-500 hover:bg-[#4d5257] transition duration-500 {{
+					class="!text-white cursor-pointer p-4 border-b border-gray-500 hover:bg-[#4d5257] transition duration-500 {{
 						sidebarItem.active ? activeClass : ''
 					}}"
 					(click)="changeActiveClass($event)"
