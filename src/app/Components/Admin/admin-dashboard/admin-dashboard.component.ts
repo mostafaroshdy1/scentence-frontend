@@ -32,11 +32,10 @@ export class AdminDashboardComponent implements OnInit {
   ordersCount = 0;
 
   ngOnInit(): void {
-    this.apiService.getAllProducts().subscribe({
+    this.apiService.countAllProducts().subscribe({
       next: (data: any) => {
-        for (const prod of data.products) {
-          this.productsCount += 1;
-        }
+        console.log("data from count prod: ",data.count);
+        this.productsCount=data.count;
       },
       error: (error: any) => {
         console.log(error);

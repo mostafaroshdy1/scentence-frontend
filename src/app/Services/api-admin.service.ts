@@ -44,6 +44,10 @@ export class ApiAdminService {
   getAllProducts() {
     return this.http.get(this.url);
   }
+  
+  countAllProducts() {
+    return this.http.get(this.url+'/count');
+  }
 
   getProductById(id: string) {
     return this.http.get(`${this.url}/${id}`);
