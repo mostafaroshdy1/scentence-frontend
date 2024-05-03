@@ -65,7 +65,7 @@ Effortlessly configure the project locally through the following steps:
 
 Explore a comprehensive demonstration of the Scentence E-Commerce in action via the following video:
 
-[![Scentence E-Commerce Demo]()]()
+[![Scentence E-Commerce Demo](https://img.youtube.com/vi/FfvFiVY5YCY/0.jpg)](https://www.youtube.com/watch?v=FfvFiVY5YCY)
 
 
 ## Contributors
